@@ -1,0 +1,3 @@
+const authModel = {
+  user: {}
+}

@@ -1,0 +1,41 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#app{
+  min-height: 100vh ;
+}
+.auth-container{
+  height: 100vh;
+}
+.table{
+  width: 50vw;
+  border: 1px solid #333333;
+  border-collapse: collapse;
+  /* border-spacing: 0; */
+}
+.table__head{
+  color: blue;
+  font-weight: bolder;
+  border: 1px solid #333333;
+  background-color: violet;
+  padding: 1rem 0;
+  margin: 0;
+}
+.table__data{
+  text-align: center;
+  padding: 1rem 0;
+  border: 1px solid #333333
+}
+
+/* Utils */
+.pointer{
+  cursor: pointer;
+}
+
+/* Modal */
+.modal{
+  display: block;
+  background-color: #33333377;
+}

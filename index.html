@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <title>Convert Excel Tool</title>
+
+
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app"></div>
+  <div class="modal__container"></div>
+
+
+  <!-- FIREBASE CONFIG -->
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyD4lsMzI1dSI-hHZmNb9xwe2ukOZw0Nqx8",
+      authDomain: "driving-test-exam.firebaseapp.com",
+      databaseURL: "https://driving-test-exam.firebaseio.com",
+      projectId: "driving-test-exam",
+      storageBucket: "driving-test-exam.appspot.com",
+      messagingSenderId: "514702656135",
+      appId: "1:514702656135:web:523ea9c90e5447cc1d6e22"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
+<!-- CONVERT EXCEL (USE LATER IN ADMIN PAGE) -->
+  <script lang="javascript" src="./js/xlsx.full.min.js"></script>
+  <script src="./js/convertExcel.js"></script>
+    
+<!-- PAGES -->
+  <script src="./js/pages/auth/components.js"></script>
+  <script src="./js/pages/main/components.js"></script>
+  
+  <script src="./js/pages/auth/model.js"></script>
+  <script src="./js/pages/main/model.js"></script>
+
+  <script src="./js/pages/auth/controller.js"></script>
+  <script src="./js/pages/main/controller.js"></script>
+
+  <script src="./js/pages/auth/view.js"></script>
+  <script src="./js/pages/main/view.js"></script>
+  
+  <script src="./js/pages/index.js"></script>
+</body>
+</html>
