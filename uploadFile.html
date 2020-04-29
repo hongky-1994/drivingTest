@@ -4,17 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-
   <title>Convert Excel Tool</title>
+  <script lang="javascript" src="./js/xlsx.full.min.js"></script>
 
 
 
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div id="app"></div>
-  <div class="modal__container"></div>
+  <div id="app">
+    <div class="row ">
+      <div class="col-12 d-flex justify-content-center my-4">
+        <input type="file" name="" id="excel" >
+      </div>
+      <div class="col-12 d-flex justify-content-center my-4">
+        <button class="mx-3 btn btn-primary uploadExcel">Convert</button>
+        <button class="mx-3 btn btn-success uploadFIRESTORE">UPLOAD TO FIRE STORE</button>
+
+      </div>
+
+    </div>
+    <div class="results"></div>
+  </div>
 
 
   <!-- FIREBASE CONFIG -->
@@ -35,26 +46,21 @@
   </script>
 
 <!-- CONVERT EXCEL (USE LATER IN ADMIN PAGE) -->
-  <!-- <script lang="javascript" src="./js/xlsx.full.min.js"></script>
-  <script src="./js/convertExcel.js"></script> -->
+  <script src="./js/convertExcel.js"></script>
     
 <!-- PAGES -->
-  <script src="./js/pages/auth/components.js"></script>
+  <!-- <script src="./js/pages/auth/components.js"></script>
   <script src="./js/pages/main/components.js"></script>
-  <script src="./js/pages/user/components.js"></script>
   
   <script src="./js/pages/auth/model.js"></script>
   <script src="./js/pages/main/model.js"></script>
-  <script src="./js/pages/user/model.js"></script>
 
   <script src="./js/pages/auth/controller.js"></script>
   <script src="./js/pages/main/controller.js"></script>
-  <script src="./js/pages/user/controller.js"></script>
 
   <script src="./js/pages/auth/view.js"></script>
   <script src="./js/pages/main/view.js"></script>
-  <script src="./js/pages/user/view.js"></script>
   
-  <script src="./js/pages/index.js"></script>
+  <script src="./js/pages/index.js"></script> -->
 </body>
 </html>
