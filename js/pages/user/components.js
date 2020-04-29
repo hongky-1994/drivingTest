@@ -1,20 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <title>Convert Excel Tool</title>
-  <script lang="javascript" src="./js/xlsx.full.min.js"></script>
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body> 
-  <section class="user-container">
+const userComponents = {
+    user: `
+    <section class="user-container">
     <div class="user-nav-header"></div>
     <div class="user-nav">
-      <button class="logo-nav-header" onclick="mainView.showScreen('main')">DRIVING TEST</button>
+    <button class="logo-nav-header" onclick="mainView.showScreen('main')">DRIVING TEST</button>
       <button class="btn-user-menu">
         <i class="fas fa-bars"></i>
       </button>
@@ -35,7 +24,7 @@
           </button>
         </div>
         <div class="user-email">
-          <div>Email: quan.trananh12@gmail.com</div>
+          <div class="user-email-html">Email: </div>
           <button class="btn-edit-icon icon-email">
             <i class="far fa-edit fa-2x"></i>
           </button>
@@ -129,41 +118,6 @@
       </div>
     </div>
   </section>
+    `,
 
-
-  <!-- FIREBASE CONFIG -->
-  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
-  <script>
-    var firebaseConfig = {
-      apiKey: "AIzaSyD4lsMzI1dSI-hHZmNb9xwe2ukOZw0Nqx8",
-      authDomain: "driving-test-exam.firebaseapp.com",
-      databaseURL: "https://driving-test-exam.firebaseio.com",
-      projectId: "driving-test-exam",
-      storageBucket: "driving-test-exam.appspot.com",
-      messagingSenderId: "514702656135",
-      appId: "1:514702656135:web:523ea9c90e5447cc1d6e22"
-    };
-    firebase.initializeApp(firebaseConfig);
-  </script>
-
-<!-- CONVERT EXCEL (USE LATER IN ADMIN PAGE) -->
-  <!-- <script src="./js/convertExcel.js"></script> -->
-    
-<!-- PAGES -->
-  <!-- <script src="./js/pages/auth/components.js"></script>
-  <script src="./js/pages/main/components.js"></script>
-  
-  <script src="./js/pages/auth/model.js"></script>
-  <script src="./js/pages/main/model.js"></script>
-
-  <script src="./js/pages/auth/controller.js"></script>
-  <script src="./js/pages/main/controller.js"></script>
-
-  <script src="./js/pages/auth/view.js"></script>
-  <script src="./js/pages/main/view.js"></script>
-  
-  <script src="./js/pages/index.js"></script> -->
-</body>
-</html>
+}
