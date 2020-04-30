@@ -8,12 +8,15 @@ const authView = {
     e.preventDefault()
     const email = e.target.email.value
     const password = e.target.password.value
-    if(authView.validateAuthentication('signIn', {email, password})) {
+    if (authView.validateAuthentication('signIn', {
+        email,
+        password
+      })) {
       firebase
         .auth()
         .signInWithEmailAndPassword(email, password)
-        .then(()=>{
-          authView.openModal(true,"Thông báo" ,"Đăng nhập thành công")
+        .then(() => {
+          authView.openModal(true, "Thông báo", "Đăng nhập thành công")
           mainView.showScreen("main")
         })
         .catch(error => {
@@ -29,13 +32,17 @@ const authView = {
     const password = e.target.password.value
     const rePassword = e.target.rePassword.value
 
-    if(authView.validateAuthentication("signUp",{email, password, rePassword})) {
+    if (authView.validateAuthentication("signUp", {
+        email,
+        password,
+        rePassword
+      })) {
       firebase
         .auth()
         .createUserWithEmailAndPassword(email, password)
-        .then(()=>{
+        .then(() => {
           console.log("loioioioi roi ")
-          authView.openModal(true,"Thông báo" ,"Đăng ký thành công")
+          authView.openModal(true, "Thông báo", "Đăng ký thành công")
           authView.showScreen("signIn")
         })
         .catch(error => {
@@ -43,7 +50,7 @@ const authView = {
           var errorMessage = error.message;
           authView.openModal(true, errorCode, errorMessage)
         })
-        
+
 
     }
   },
@@ -53,10 +60,10 @@ const authView = {
   },
   openModal: (open, title, content) => {
     const modal = document.querySelector(".modal__container")
-    if(open) {
+    if (open) {
       console.log("OPEN MODAL RUN")
       modal.innerHTML = authComponents.modal
-      
+
       // Pass data to modal
       const modalTitle = document.querySelector(".modal-title")
       const modalContent = document.querySelector('.modal-body>p')
@@ -77,12 +84,15 @@ const authView = {
       window.scrollTo(0, parseInt(scrollY || '0') * -1);
     }
   },
-  validateAuthentication : (action, data) => {
-    if(action === "signIn") {
-      const {email, password} = data
-      
+  validateAuthentication: (action, data) => {
+    if (action === "signIn") {
+      const {
+        email,
+        password
+      } = data
+
       // check email 
-      if(!email || !email.includes("@")) {
+      if (!email || !email.includes("@")) {
         authView.showError(".error__email", "Vui lòng nhập đúng định dạng email.")
         return false
       } else {
@@ -90,7 +100,7 @@ const authView = {
       }
 
       // check password
-      if(!password) {
+      if (!password) {
         authView.showError(".error__password", "Vui lòng nhập mật khẩu.")
         return false
       } else {
@@ -101,12 +111,16 @@ const authView = {
       return true
     }
 
-    if(action === "signUp") {
-      const {email, password, rePassword} = data
+    if (action === "signUp") {
+      const {
+        email,
+        password,
+        rePassword
+      } = data
       let checkeResult = true
 
       // check email
-      if(!email || !email.includes("@")) {
+      if (!email || !email.includes("@")) {
         authView.showError(".error__email", "Vui lòng nhập đúng định dạng email.")
         checkeResult = false
       } else {
@@ -114,15 +128,15 @@ const authView = {
       }
 
       // check password 
-      if(!password || password.length < 6) {
+      if (!password || password.length < 6) {
         authView.showError(".error__password", "Mật khẩu dài hơn 6 ký tự.")
         checkeResult = false
       } else {
         authView.showError(".error__password", "")
       }
-      
+
       // check repassword
-      if(password !== rePassword) {
+      if (password !== rePassword) {
         authView.showError(".error__rePassword", "Nhập lại mật khẩu không trùng khớp")
         checkeResult = false
       } else {
@@ -132,9 +146,9 @@ const authView = {
       return checkeResult
     }
   },
-  showError : (query, message) => {
+  showError: (query, message) => {
     const target = document.querySelector(query)
     target.innerHTML = message
   }
-  
+
 }
