@@ -3,6 +3,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+a:hover{
+  text-decoration: none;
+  cursor: pointer;
+}
 #app{
   min-height: 100vh ;
 }

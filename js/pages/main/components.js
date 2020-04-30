@@ -2,9 +2,14 @@ const mainComponents = {
   main:`
   <div class="main">
       <div class="container border">
-        <div class="main__header py-5 d-flex justify-content-between">
+        <div class="main__header py-5 d-flex justify-content-between align-self-center">
           <h1>Xin chào người dùng</h1>
-          <button class="btn btn-danger" onclick="authView.signOut()">Đăng xuất</button>
+          <div>
+            <button class="btn" onclick="userView.showScreen('user')">
+              <i class="far fa-user" style="font-size: 30px;"></i>
+            </button>
+            <button class="btn btn-danger" onclick="authView.signOut()">Đăng xuất</button>
+          </div>
         </div>
         <div class="main__body">
           <div class="tests row bg-light">
