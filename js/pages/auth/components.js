@@ -13,7 +13,7 @@ const authComponents = {
           <div class="input-wrapper">
             <input type="text" class="form-control" name="email"/>
             <span class="error__message error__email text-danger"></span>
-          </div>
+          </div>  
         </div>
         <div class="form-group">
           <label for="password">Mật khẩu</label>

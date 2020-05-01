@@ -3,44 +3,94 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TESTING DRIVING TEST WEBSITE</title>
-
-  <!-- Bootstrap CDN -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+  <title>Convert Excel Tool</title>
+  <script lang="javascript" src="./js/xlsx.full.min.js"></script>
 
-
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"> -->
+  <link rel="stylesheet" href="./library/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
+
+  <link rel="stylesheet" href="css/userPage.css">
 </head>
-<body>
-  <div id="app">
-    <div class="main">
-      <div class="main__header py-5 d-flex">
-        <div class="main__header py-5 display-4">
-          Xin chào người dùng
-        </div>
-        <div class="main__body">
-          <div class="tests row bg-light">
-            <div class="col-12 h2 pt-4 font-weight-bold text-primary">Bằng lái B2</div>
-
-            <div class="col-sm-6 col-lg-3 p-sm-4 py-2">
-              <h3 class="text-center justify-content-center align-items-center d-flex w-100 h-100 font-weight-bold p-sm-4 py-2 pointer text-white rounded bg-info">Thông tin bằng lái</h3>
-            </div>
-            <div class="col-sm-6 col-lg-3 p-sm-4 py-2">
-              <h3 class="text-center justify-content-center align-items-center d-flex w-100 h-100 font-weight-bold p-sm-4 py-2 pointer text-white rounded bg-primary">Làm đề thi</h3>
-            </div>
-            <div class="col-sm-6 col-lg-3 p-sm-4 py-2">
-              <h3 class="text-center justify-content-center align-items-center d-flex w-100 h-100 font-weight-bold p-sm-4 py-2 pointer text-white rounded bg-success">Ngân hàng câu hỏi</h3>
-            </div>
-            <div class="col-sm-6 col-lg-3 p-sm-4 py-2">
-              <h3 class="text-center justify-content-center align-items-center d-flex w-100 h-100 font-weight-bold p-sm-4 py-2 pointer text-white rounded bg-warning">Thống kê kết quả</h3>
-            </div>
-
-          </div>
-        </div>
-        
+<body> 
+  <div class="container auth-container mt-5">
+    <form action="" class="w-100 bg-white rounded" onsubmit="authView.signIn(event)">
+      <h1 class="font-weight-bold text-center mb-5 text-primary">DRIVING REAL TEST</h1>
+      <div class="row mb-4 bg-light rounded">
+        <h2 class="font-weight-bold col-4 m-0 py-2 text-center rounded pointer text-white bg-primary">Đăng nhập</h2>
+        <h2 class="font-weight-bold col-4 m-0 py-2 text-center rounded pointer text-secondary" onclick="authView.showScreen('signUp')">Đăng ký</h2>
+        <h2 class="font-weight-bold col-4 m-0 py-2 text-center rounded pointer text-secondary" onclick="authView.showScreen('anonymous')">Ẩn danh</h2>
       </div>
+      <div class="form-group ">
+        <label for="">Email của bạn</label>
+        <div class="input-wrapper">
+          <input type="text" class="form-control" name="email"/>
+          <span class="error__message error__email text-danger"></span>
+        </div>  
+      </div>
+      <div class="form-group">
+        <label for="password">Mật khẩu</label>
+        <input type="password" class="form-control" name="password"/>
+        <span class="error__message error__password text-danger"></span>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Đăng nhập</button>
+      </div>
+    </form>
+  </div>`
+
+  
+  <div class="modal-edit-email">
+    <div class="modal-edit-email-container">
+      <form class="form-input-edit-email">
+        <span class="close-modal-edit-email">Cancel</span>
+        <button class="submit-modal-edit-email">Done</button>
+        <div class="input-wrapper">
+          <input type="email" name="currentEmail" placeholder="Enter your email">
+          <div id="input-email-error" class="message-error"></div>
+        </div>
+        <div class="input-wrapper">
+          <input type="password" name="currentPassword" placeholder="Enter your password">
+          <div id="input-password-error"></div>
+        </div>
+      </form>
     </div>
   </div>
+
+  <!-- FIREBASE CONFIG -->
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyD4lsMzI1dSI-hHZmNb9xwe2ukOZw0Nqx8",
+      authDomain: "driving-test-exam.firebaseapp.com",
+      databaseURL: "https://driving-test-exam.firebaseio.com",
+      projectId: "driving-test-exam",
+      storageBucket: "driving-test-exam.appspot.com",
+      messagingSenderId: "514702656135",
+      appId: "1:514702656135:web:523ea9c90e5447cc1d6e22"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
+<!-- CONVERT EXCEL (USE LATER IN ADMIN PAGE) -->
+  <!-- <script src="./js/convertExcel.js"></script> -->
+    
+<!-- PAGES -->
+  <!-- <script src="./js/pages/auth/components.js"></script>
+  <script src="./js/pages/main/components.js"></script>
+  
+  <script src="./js/pages/auth/model.js"></script>
+  <script src="./js/pages/main/model.js"></script>
+
+  <script src="./js/pages/auth/controller.js"></script>
+  <script src="./js/pages/main/controller.js"></script>
+
+  <script src="./js/pages/auth/view.js"></script>
+  <script src="./js/pages/main/view.js"></script>
+  
+  <script src="./js/pages/index.js"></script> -->
 </body>
 </html>
