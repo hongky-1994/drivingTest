@@ -32,14 +32,3 @@ a:hover{
   padding: 1rem 0;
   border: 1px solid #333333
 }
-
-/* Utils */
-.pointer{
-  cursor: pointer;
-}
-
-/* Modal */
-.modal{
-  display: block;
-  background-color: #33333377;
-}
