@@ -12,17 +12,21 @@ const authView = {
         email,
         password
       })) {
+      loadingView.show()
       firebase
         .auth()
         .signInWithEmailAndPassword(email, password)
         .then(() => {
-          authView.openModal(true, "Thông báo", "Đăng nhập thành công")
+          authView.openModal(true, "Thông báo","success", "Đăng nhập thành công")
           mainView.showScreen("main")
+          loadingView.hide()
+
         })
         .catch(error => {
           var errorCode = error.code;
           var errorMessage = error.message;
-          authView.openModal(true, errorCode, errorMessage)
+          authView.openModal(true, errorCode,"error", errorMessage)
+          loadingView.hide()
         })
     }
   },
@@ -42,13 +46,13 @@ const authView = {
         .createUserWithEmailAndPassword(email, password)
         .then(() => {
           console.log("loioioioi roi ")
-          authView.openModal(true, "Thông báo", "Đăng ký thành công")
+          authView.openModal(true, "Thông báo", "success", "Đăng ký thành công")
           authView.showScreen("signIn")
         })
         .catch(error => {
           var errorCode = error.code;
           var errorMessage = error.message;
-          authView.openModal(true, errorCode, errorMessage)
+          authView.openModal(true, errorCode, "error", errorMessage)
         })
 
 
@@ -58,7 +62,7 @@ const authView = {
     firebase.auth().signOut()
     authModel.user = {}
   },
-  openModal: (open, title, content) => {
+  openModal: (open, title, icon, content) => {
     const modal = document.querySelector(".modal__container")
     if (open) {
       console.log("OPEN MODAL RUN")
@@ -67,8 +71,23 @@ const authView = {
       // Pass data to modal
       const modalTitle = document.querySelector(".modal-title")
       const modalContent = document.querySelector('.modal-body>p')
+      const modalIcon = document.querySelector('.modal-icon')
+
       modalTitle.innerHTML = title
       modalContent.innerHTML = content
+      switch (icon) {
+        case "success": {
+          modalIcon.innerHTML = `<i class="fas fa-check-circle fa-5x mb-3 text-success"></i>`
+          break
+        }
+        case "error": {
+          modalIcon.innerHTML = `<i class="fas fa-times-circle fa-5x mb-3 text-danger"></i>`
+          break
+        }
+        default:{
+          modalIcon.innerHTML = ""
+        }
+      }
 
       // No scroll white open modal
       document.body.style.position = 'fixed';

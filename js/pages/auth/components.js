@@ -1,6 +1,6 @@
 const authComponents = {
   signIn: `
-    <div class="container auth-container mt-5">
+    <div class="container auth-container pt-5">
       <form action="" class="w-100 bg-white rounded" onsubmit="authView.signIn(event)">
         <h1 class="font-weight-bold text-center mb-5 text-primary">DRIVING REAL TEST</h1>
         <div class="row mb-4 bg-light rounded">
@@ -26,7 +26,7 @@ const authComponents = {
       </form>
     </div>`,
   signUp: `
-    <div class="container auth-container mt-5">
+    <div class="container auth-container pt-5">
       <form action="" class="w-100 bg-white rounded" onsubmit="authView.signUp(event)">
         <h1 class="font-weight-bold text-center mb-5 text-primary">DRIVING REAL TEST</h1>
         <div class="row mb-4 bg-light rounded">
@@ -55,7 +55,7 @@ const authComponents = {
       </form>
     </div>`,
   anonymous: `
-    <div class="container auth-container mt-5">
+    <div class="container auth-container pt-5">
       <form class="w-100 bg-white rounded" onsubmit="authView.signUp(event)">
         <h1 class="font-weight-bold text-center mb-5 text-primary">DRIVING REAL TEST</h1>
         <div class="row mb-4 bg-light rounded">
@@ -80,7 +80,8 @@ const authComponents = {
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body d-flex flex-column align-items-center">
+          <div class="modal-icon"></div>
           <p class="text-capitalize"></p>
         </div>
         <div class="modal-footer">
