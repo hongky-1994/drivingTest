@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="./css/colors.css">
   <link rel="stylesheet" href="./css/auth.css">
   <link rel="stylesheet" href="./css/userPage.css">
+  <link rel="stylesheet" href="./css/layout.css">
 </head>
 
 
@@ -28,7 +29,10 @@
   <!-- --------THIS SECTION IS RENDER TO APP -------- -->
   <!-- ---------------------------------------------- -->
   <!-- ---------------------------------------------- -->
-  <div id="app"></div>
+  <div id="app" class="d-flex flex-column justify-content-start align-items-center min-vh-100">
+    <div class="header w-100"></div>
+    <div class="app-container w-100"></div>
+  </div>
   <div class="modal__container"></div>
   <div class="loader"></div>
   
@@ -70,11 +74,7 @@
   <script src="./js/pages/auth/components.js"></script>
   <script src="./js/pages/main/components.js"></script>
   <script src="./js/pages/user/components.js"></script>
-<<<<<<< HEAD
-  
-=======
 
->>>>>>> 332ebe1cddd620bf6fa1d63b311b81e56ff68bd7
   <script src="./js/pages/auth/model.js"></script>
   <script src="./js/pages/main/model.js"></script>
   <script src="./js/pages/user/model.js"></script>
@@ -83,16 +83,11 @@
   <script src="./js/pages/main/controller.js"></script>
   <script src="./js/pages/user/controller.js"></script>
 
-
+  <script src="./js/pages/Layout/header.js"></script>
   <script src="./js/utils/loading/view.js"></script>
   <script src="./js/pages/auth/view.js"></script>
   <script src="./js/pages/main/view.js"></script>
   <script src="./js/pages/user/view.js"></script>
-<<<<<<< HEAD
-  
-=======
-
->>>>>>> 332ebe1cddd620bf6fa1d63b311b81e56ff68bd7
   <script src="./js/pages/index.js"></script>
 </body>
 

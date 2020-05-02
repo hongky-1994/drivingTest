@@ -1,6 +1,7 @@
 const userView = {
     showScreen: (screen) => {
-        let app = document.querySelector('#app')
+        let app = document.querySelector('.app-container')
+        console.log("app",app)
 
         switch (screen) {
             case 'user':{
@@ -46,6 +47,7 @@ const userView = {
                 }
                 break;
             }
+            default : {return}
         
         }
     },
@@ -54,7 +56,8 @@ const userView = {
     showCurrentUserInfo: () => {
         //display user email
         let userEmailHtml = document.querySelector('.user-email-html')
-        let currentEmail = firebase.auth().currentUser.email
+        let currentEmail = firebase.auth().currentUser.email || ""
+        console.log(currentEmail)
         userEmailHtml.innerHTML += currentEmail
     },
     validateEditEmail: () => {
