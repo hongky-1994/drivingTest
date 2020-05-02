@@ -2,7 +2,6 @@ const authView = {
   showScreen: (screen) => {
     console.log("Show screen ", screen)
     const app = document.querySelector(".app-container")
-    console.log("app-container", app)
     app.innerHTML = authComponents[screen]
   },
   signIn: (e) => {
@@ -38,7 +37,8 @@ const authView = {
     const name = e.target.name.value
     const password = e.target.password.value
     const rePassword = e.target.rePassword.value
-    console.log('name input', name)
+    authModel.user = {name};
+
     if (authView.validateAuthentication("signUp", {
         email,
         name,
@@ -140,6 +140,7 @@ const authView = {
     if (action === "signUp") {
       const {
         email,
+        name,
         password,
         rePassword
       } = data
@@ -151,6 +152,13 @@ const authView = {
         checkeResult = false
       } else {
         authView.showInputError(".error__email", "")
+      }
+
+      if (!name) {
+        authView.showInputError(".error__name", "Vui lòng nhập tên của bạn.")
+        checkeResult = false
+      } else {
+        authView.showInputError(".error__name", "")
       }
 
       // check password 
