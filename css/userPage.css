@@ -1,0 +1,186 @@
+/* User page */
+.user-nav-header{
+width: 100vw;
+height: 1.5vh;
+background: #400ef0;
+}
+.user-nav{
+display: flex;
+align-items: center;
+justify-content: space-between;
+width: 100vw;
+height: 12vh;
+background: #661fff;
+font-size: 5vh;
+color: white;
+padding-left: 7vw;
+padding-right: 2vw;
+}
+.logo-nav-header{
+background: none;
+border: none;
+color: #ffffff;
+}
+.btn-user-menu{
+background: none;
+border: none;
+color: white;
+}
+.user-nav-footer{
+width: 100vw;
+height: 2vh;
+background-image: linear-gradient(rgba(0, 0, 0, 0.329), white);
+margin-bottom: 6vh;
+}
+
+.user-content{
+padding-left: 7vw;
+padding-right: calc(4vw + 36px);
+height: 80.5vh;
+display: flex;
+justify-content: space-between;
+}
+
+.user-greetings>div{
+font-size: 30px;
+font-weight: 800;
+}
+
+.user-email>div{
+font-size: 20px;
+font-weight: 600;
+}
+
+.user-greetings, .user-email{
+display: flex;
+justify-content: space-between;
+}
+
+
+.btn-edit-icon{
+margin-left: 5px;
+background: none;
+border: none;
+}
+.user-image{
+display: flex;
+align-items: center;
+justify-content: center;
+background-image: url("https://vn112.com/wp-content/uploads/2018/01/1516131509lc4p8.jpg");
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+border-radius: 50%;
+height: 400px;
+width: 400px;
+margin-top: 2vh;
+margin-bottom: 2vh;
+}
+.user-profile-icon{
+background: none;
+border: none;
+}
+.user-image:hover{
+filter: brightness(90%);
+transition: .3s ease;
+}
+.far.fa-edit:hover{
+color: black;
+text-shadow:  2px 2px #3cabec;
+}
+
+/* table test history */
+table, th, td{
+border: 1px solid black;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+.test-history-see-all, .pros-see-all, .cons-see-all{
+background: none;
+border: none;
+color: white;
+}
+
+.user-result{
+/* width: calc(89vw - 436px); */
+width: 88vw;
+padding-left: 10vw;
+}
+
+.user-pros, .user-cons{
+width: 23vw;
+}
+
+table.table-test-history, .user-pros>table, .user-cons>table{
+width: 100%;
+}
+
+.user-test-history{
+margin-bottom: 4vh;
+}
+
+.user-pros-cons{
+display: flex;
+justify-content: space-between;
+}
+
+.input-wrapper>input{
+height: 38px;
+margin-bottom: 10px;
+width: 100%;
+border-radius: 5px;
+padding-left: 10px;
+border-style: solid;
+border-color: rgb(197, 193, 193);
+}
+
+.modal-edit-email{
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 20vh; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-edit-email-container{
+    height: fit-content;
+    background-color: #fefefe;
+    margin: auto;
+    border: 1px solid #888;
+    width: 55vh;
+    border-radius: 1vh;
+    padding: 16px;
+}
+
+.close-modal-edit-email{
+    float: left;
+    margin-bottom: 3px;
+}
+
+.submit-modal-edit-email{
+    float: right;
+    margin-bottom: 3px;
+    color: #122ee0;
+    background: none;
+    border: none;
+}
+
+.close-modal-edit-email:hover, .submit-modal-edit-email:hover{
+    cursor: pointer;    
+    opacity: 0.7;
+}
+
+.message-error{
+    color: #ff0000;
+    padding: none;
+    margin: none;
+    text-align: center;
+}
