@@ -13,11 +13,12 @@
   <link rel="stylesheet" href="./css/colors.css">
   <link rel="stylesheet" href="./css/auth.css">
   <link rel="stylesheet" href="./css/userPage.css">
-  <link rel="stylesheet" href="styles.css">
+
 </head>
 
 
 <body>
+    <div></div>
 
 
 
@@ -29,8 +30,9 @@
   <!-- -------------------------------THIS SECTION IS RENDER TO APP ------------------------------------ -->
   <!-- ------------------------------------------------------------------------------------------------- -->
   <!-- ------------------------------------------------------------------------------------------------- -->
-  <div id="app"></div>
-  <div class="modal__container"></div>
+
+  <!-- <div id="app"></div>
+  <div class="modal__container"></div> -->
   
   <!-- ------------------------------------------------------------------------------------------------- -->
   <!-- ------------------------------------------------------------------------------------------------- -->
@@ -45,43 +47,6 @@
 
 
 
-  <!-- FIREBASE CONFIG -->
-  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-storage.js"></script>
-  <script>
-    var firebaseConfig = {
-      apiKey: "AIzaSyD4lsMzI1dSI-hHZmNb9xwe2ukOZw0Nqx8",
-      authDomain: "driving-test-exam.firebaseapp.com",
-      databaseURL: "https://driving-test-exam.firebaseio.com",
-      projectId: "driving-test-exam",
-      storageBucket: "driving-test-exam.appspot.com",
-      messagingSenderId: "514702656135",
-      appId: "1:514702656135:web:523ea9c90e5447cc1d6e22"
-    };
-    firebase.initializeApp(firebaseConfig);
-  </script>
-
-
-
-
-  <!-- PAGES JS FILE-->
-  <script src="./js/pages/auth/components.js"></script>
-  <script src="./js/pages/main/components.js"></script>
-  <script src="./js/pages/user/components.js"></script>
-  <script src="./js/pages/auth/model.js"></script>
-  <script src="./js/pages/main/model.js"></script>
-  <script src="./js/pages/user/model.js"></script>
-
-  <script src="./js/pages/auth/controller.js"></script>
-  <script src="./js/pages/main/controller.js"></script>
-  <script src="./js/pages/user/controller.js"></script>
-
-  <script src="./js/pages/auth/view.js"></script>
-  <script src="./js/pages/main/view.js"></script>
-  <script src="./js/pages/user/view.js"></script>
-  <script src="./js/pages/index.js"></script>
 </body>
 
 </html>
