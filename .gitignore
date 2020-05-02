@@ -1,0 +1,16 @@
+
+# Created by https://www.gitignore.io/api/web
+# Edit at https://www.gitignore.io/?templates=web
+
+### Web ###
+*.asp
+*.cer
+*.csr
+*.htm
+*.php
+*.rss
+*.wasm
+*.wat
+*.xhtml
+
+# End of https://www.gitignore.io/api/web

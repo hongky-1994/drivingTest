@@ -35,11 +35,13 @@ const authView = {
   signUp: (e) => {
     e.preventDefault();
     const email = e.target.email.value
+    const name = e.target.name.value
     const password = e.target.password.value
     const rePassword = e.target.rePassword.value
-
+    console.log('name input', name)
     if (authView.validateAuthentication("signUp", {
         email,
+        name,
         password,
         rePassword
       })) {
@@ -47,15 +49,10 @@ const authView = {
         .auth()
         .createUserWithEmailAndPassword(email, password)
         .then(() => {
-          console.log("loioioioi roi ")
           authView.openModal(true, "Thông báo", "success", "Đăng ký thành công")
-          authView.showScreen("signIn")
         })
-        .catch(error => {
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          authView.openModal(true, errorCode, "error", errorMessage)
-        })
+        .catch(error => authView.openModal(true, error.code, "error", error.message))
+    
     }
   },
   signAnonymouse: () => {
