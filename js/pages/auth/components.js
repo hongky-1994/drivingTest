@@ -47,7 +47,7 @@ const authComponents = {
           <label for="name" class="col-3 h4">Tên của bạn</label>
           <div class="input-wrapper col-9">
             <input type="text" class="form-control h4" name="name" placeholder="VD: Nguyễn Xuân Anh"/>
-            <span class="error__message error__email text-danger"></span>
+            <span class="error__message error__name text-danger"></span>
           </div>  
         </div>
         <div class="form-group row mb-3">
