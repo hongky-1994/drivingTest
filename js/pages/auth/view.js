@@ -1,7 +1,8 @@
 const authView = {
   showScreen: (screen) => {
     console.log("Show screen ", screen)
-    const app = document.querySelector("#app")
+    const app = document.querySelector(".app-container")
+    console.log("app-container", app)
     app.innerHTML = authComponents[screen]
   },
   signIn: (e) => {
@@ -18,7 +19,8 @@ const authView = {
         .signInWithEmailAndPassword(email, password)
         .then(() => {
           authView.openModal(true, "Thông báo","success", "Đăng nhập thành công")
-          mainView.showScreen("main")
+          userView.showScreen("user")
+          console.log("Open user page")
           loadingView.hide()
 
         })
