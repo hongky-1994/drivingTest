@@ -1,6 +1,8 @@
+/* testType */
 .title {
     margin: auto;
     font-size: 3rem;
+    text-align: center;
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
 }
@@ -35,9 +37,45 @@
     box-shadow: 0px 10px 20px var(--colorGrey3);
     border-radius: 10px;
     cursor: pointer;
+    margin-bottom: 3rem;
 }
 
 .test-type-description>div {
     font-size: 2rem;
     text-align: center;
+}
+/* testQuestion */
+.section-container {
+    margin-top: 1.5rem;
+    margin-right: 6rem;
+    margin-left: 6rem;
+    display: flex;
+    width: calc(100% - 12rem);
+}
+
+.exam-left-column {
+    width: 18rem;
+}
+
+.timer-container {
+    width: 18rem;
+    height: 7rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 1.8rem;
+    box-shadow: 0px 5px 5px var(--colorGrey3) ;
+}
+
+.question-container {
+    display: flex;
+    justify-content: space-between;
+}
+.question-box {
+    width: 2.5rem;
+    height: 2.5rem;
+    text-align: center;
+    line-height: 2.5rem;
+    border-radius: 5px;
+    box-shadow: 0px 5px 5px var(--colorGrey3) ;
+    font-size: 1.5rem;
 }

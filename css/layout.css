@@ -16,16 +16,16 @@
   display: none;
   overflow: hidden;
   position: absolute;
-  top: 7.5rem;
+  top: 5.5rem;
   width: 100%;
   transition: ease-in 0.3s;
 }
 .header__nav--overlay{
   display: none;
-  height: calc(100vh - 7.5rem);
+  height: 100vh;
   overflow: hidden;
   position: absolute;
-  top: 7.5rem;
+  top: 5.5rem;
   width: 100%;
   background-color: #363636b6;
 }

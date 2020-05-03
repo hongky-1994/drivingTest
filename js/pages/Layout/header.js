@@ -50,7 +50,7 @@ const headerComponents = {
     </div>
     <div class="header__nav--overlay" onclick="layoutView.showNav()"></div>
     <div class="header__nav">
-      <div class="header__item pl-4 py-3 color--grey3 h2 font-weight-lighter m-0 bg--white1 bg--hover--grey2 color--hover--purple2">Kiểm tra kiến thức</div>
+      <div class="header__item pl-4 py-3 color--grey3 h2 font-weight-lighter m-0 bg--white1 bg--hover--grey2 color--hover--purple2" onclick="examView.showScreen('testType')">Kiểm tra kiến thức</div>
       <div class="header__item pl-4 py-3 color--grey3 h2 font-weight-lighter m-0 bg--white1 bg--hover--grey2 color--hover--purple2">Thư viện đề thi</div>
       <div class="header__item pl-4 py-3 color--grey3 h2 font-weight-lighter m-0 bg--white1 bg--hover--grey2 color--hover--purple2">Thông tin cá nhân</div>
       <div onclick="authView.signOut()" class="header__item pl-4 py-3 text-danger h2 font-weight-lighter m-0 bg--white1 bg--hover--grey2 color--hover--red1">Đăng xuất</div>
