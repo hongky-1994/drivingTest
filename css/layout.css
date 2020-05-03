@@ -1,8 +1,13 @@
 .header{
   position: relative;
+  height: 5.5rem;
+}
+.header h1{
+  font-weight: 600;
 }
 .header__item{
   border: 1px solid var(--colorGrey1);
+  cursor: pointer;
 }
 .header__item:hover{
   border-left: 10px solid var(--colorPurple1);

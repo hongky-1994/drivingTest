@@ -1,0 +1,43 @@
+.title {
+    margin: auto;
+    font-size: 3rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.test-type-section {
+    margin-left: 6rem;
+    margin-right: 6rem;
+    width: calc(100% - 12rem);
+    display: flex;
+    justify-content: space-between;
+}
+
+.test-type {
+    width: 100%;
+    height: 5rem;
+    text-align: center;
+    line-height: 5rem;
+    font-size: 2.5rem;
+    border-radius: 10px 10px 0 0; 
+}
+
+.test-type-description {
+    margin: auto;
+    width: 80%;
+    font-size: 1.2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.test-type-container {
+    width: calc(50% - 3rem);
+    box-shadow: 0px 10px 20px var(--colorGrey3);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.test-type-description>div {
+    font-size: 2rem;
+    text-align: center;
+}
