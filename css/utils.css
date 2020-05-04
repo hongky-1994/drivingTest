@@ -2,21 +2,23 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
 }
+
 a:hover{
   text-decoration: none;
   cursor: pointer;
 }
+
 #app{
   min-height: 100vh ;
 }
-.app-container{
-  height: calc(100vh - 7.5rem);
-  overflow: hidden;
-}
+
 .html{
   font-size: 16p;
 }
+
 /* Media query */
 @media (max-width: 575.98px) { 
 
