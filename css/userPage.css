@@ -128,11 +128,6 @@ display: flex;
 justify-content: space-between;
 }
 
-<<<<<<< Updated upstream
-.input-wrapper>input{   
-height: 38px;
-margin-bottom: 10px;
-=======
 .table-header>tr>th{
     padding-bottom: 1.5vh; 
     padding-top: 1.5vh; 
@@ -157,7 +152,6 @@ margin-bottom: 10px;
 .input-wrapper-edit-email>input{
 height: 2.25rem;
 margin-bottom: 0.7rem;
->>>>>>> Stashed changes
 width: 100%;
 border-radius: 0.3rem;
 padding-left: 0.7rem;

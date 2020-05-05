@@ -60,12 +60,8 @@ const userView = {
     showCurrentUserInfo: () => {
         //display user email
         let userEmailHtml = document.querySelector('.user-email-html')
-<<<<<<< Updated upstream
-        let currentEmail = firebase.auth().currentUser.email
-=======
         let currentEmail = firebase.auth().currentUser.email || ""
         // console.log(currentEmail)
->>>>>>> Stashed changes
         userEmailHtml.innerHTML += currentEmail
     },
     validateEditEmail: () => {
