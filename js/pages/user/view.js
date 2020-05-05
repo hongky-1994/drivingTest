@@ -8,6 +8,12 @@ const userView = {
 
                 userView.showCurrentUserInfo()
 
+                //su kien: sign-out
+                let btnSignOut = document.querySelector('.btn-sign-out')
+                btnSignOut.onclick = function(){
+                    userController.signOut()
+                } 
+
                 //su kien: load test history from firestore -> display
 
                 //su kien: edit email -> display modal
@@ -54,7 +60,12 @@ const userView = {
     showCurrentUserInfo: () => {
         //display user email
         let userEmailHtml = document.querySelector('.user-email-html')
+<<<<<<< Updated upstream
         let currentEmail = firebase.auth().currentUser.email
+=======
+        let currentEmail = firebase.auth().currentUser.email || ""
+        // console.log(currentEmail)
+>>>>>>> Stashed changes
         userEmailHtml.innerHTML += currentEmail
     },
     validateEditEmail: () => {

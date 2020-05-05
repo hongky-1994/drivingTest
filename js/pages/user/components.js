@@ -1,14 +1,6 @@
 const userComponents = {
     user: `
     <section class="user-container">
-    <div class="user-nav-header"></div>
-    <div class="user-nav">
-    <button class="logo-nav-header" onclick="mainView.showScreen('main')">DRIVING TEST</button>
-      <button class="btn-user-menu">
-        <i class="fas fa-bars"></i>
-      </button>
-    </div> 
-    <div class="user-nav-footer"></div>
     <div class="user-content">
       <!-- user info -->
       <div class="user-info">
@@ -18,6 +10,7 @@ const userComponents = {
             <i class="far fa-edit fa-2x"></i>
           </button>
         </div>
+        <div class="btn-sign-out">Không phải tôi? Đăng xuất</div>
         <div class="user-image">
           <button class="user-profile-icon">
             <i class="far fa-edit fa-3x"></i>
@@ -37,11 +30,11 @@ const userComponents = {
           <form class="form-input-edit-email">
             <span class="close-modal-edit-email">Cancel</span>
             <button class="submit-modal-edit-email">Done</button>
-            <div class="input-wrapper">
+            <div class="input-wrapper-edit-email">
               <input type="email" name="currentEmail" placeholder="Enter your email">
               <div id="input-email-error" class="message-error"></div>
             </div>
-            <div class="input-wrapper">
+            <div class="input-wrapper-edit-email">
               <input type="password" name="currentPassword" placeholder="Enter your password">
               <div id="input-password-error" class="message-error"></div>
             </div>
@@ -62,6 +55,7 @@ const userComponents = {
 
             <tbody>
               <tr>
+<<<<<<< Updated upstream
                 <td style="width: 15%; padding-top: 1.5vh; padding-bottom: 1.5vh; border-right: none; text-align: center; border-left: 1px solid black;border-top: 1px solid black;border-bottom: 1px solid black;">
                 Tổng hợp
                 </td>
@@ -76,6 +70,16 @@ const userComponents = {
                 </td>
                 <td style="width: 15%;; padding-top: 1.5vh; padding-bottom: 1.5vh; border-left: none; border-right: none; text-align: center;border-bottom: 1px solid black;">29/30</td>
                 <td style="width: 70%;; border-left: none; padding-right: 2vw; text-align: end; border-right: 2px solid black;border-bottom: 1px solid black;">12:00:00 - 30/04/2020</td>
+=======
+                <td style="width: 15%; padding-top: 1.5vh; padding-bottom: 1.5vh; border-right: none; text-align: center; border-left: 1px solid black; ">Đề 123</td>
+                <td style="width: 15%; padding-top: 1.5vh; padding-bottom: 1.5vh; border-left: none; border-right: none; text-align: center;">30/30</td>
+                <td style="width: 70%; border-left: none; padding-right: 2vw; text-align: end; border-right: 2px solid black;">12:00:00 - 29/04/2020</td>
+              </tr>
+              <tr>
+                <td style="width: 15%; padding-top: 1.5vh; padding-bottom: 1.5vh; border-right: none; text-align: center;border-left: 1px solid black;border-top: 1px solid black">Đề 124</td>
+                <td style="width: 15%; padding-top: 1.5vh; padding-bottom: 1.5vh; border-left: none; border-right: none; text-align: center;border-top: 1px solid black">29/30</td>
+                <td style="width: 70%; border-left: none; padding-right: 2vw; text-align: end; border-right: 2px solid black;border-top: 1px solid black">12:00:00 - 30/04/2020</td>
+>>>>>>> Stashed changes
               </tr>
 
               <tr class="table-footer">
@@ -98,12 +102,21 @@ const userComponents = {
   
               <tbody>
                 <tr>
+<<<<<<< Updated upstream
                   <td style="width: 70%; padding-left: 1vw; padding-top: 1.5vh; padding-bottom: 1.5vh; border-right: none; text-align: start;border-left: 1px solid black;border-top: 1px solid black;border-bottom: 1px solid black;">Khái niệm và quy tắc giao thông</td>
                   <td style="width: 30%;; border-left: none; padding-right: 2vw; text-align: end;border-right: 2px solid black;border-bottom: 1px solid black;">11/12</td>
                 </tr>
                 <tr>
                   <td style="width: 70%; padding-left: 1vw; padding-top: 1.5vh; padding-bottom: 1.5vh; border-right: none; text-align: start;border-left: 1px solid black;border-bottom: 1px solid black;">Nghiệp vụ vận tải</td>
                   <td style="width: 30%;; border-left: none; padding-right: 2vw; text-align: end;border-right: 2px solid black;border-bottom: 1px solid black;">9/10</td>
+=======
+                  <td style="width: 70%; padding-left: 1vw; padding-top: 1.5vh; padding-bottom: 1.5vh; border-right: none; text-align: start;border-left: 1px solid black;">Khái niệm và quy tắc giao thông</td>
+                  <td style="width: 30%;; border-left: none; padding-right: 2vw; text-align: end;border-right: 2px solid black;">11/12</td>
+                </tr>
+                <tr>
+                  <td style="width: 70%; padding-left: 1vw; padding-top: 1.5vh; padding-bottom: 1.5vh; border-right: none; text-align: start;border-left: 1px solid black;border-top: 1px solid black">Nghiệp vụ vận tải</td>
+                  <td style="width: 30%;; border-left: none; padding-right: 2vw; text-align: end;border-right: 2px solid black;border-top: 1px solid black">9/10</td>
+>>>>>>> Stashed changes
                 </tr>
   
                 <tr class="table-footer">
@@ -119,18 +132,27 @@ const userComponents = {
             <table class="table-test-cons">
               <thead class="table-header">
                 <tr>
-                  <th colspan="2" style="padding-bottom: 1.5vh; padding-top: 1.5vh; text-align: center; background: #e68516; color: white;">Cần luyện thêm</th>
+                  <th colspan="2" style="background: #e68516;">Cần luyện thêm</th>
                 </tr>
               </thead>
   
               <tbody>
                 <tr>
+<<<<<<< Updated upstream
                   <td style="width: 70%; padding-left: 1vw; padding-top: 1.5vh; padding-bottom: 1.5vh; border-right: none; text-align: start;border-left: 1px solid black;border-top: 1px solid black;border-bottom: 1px solid black;">Giải các thế sa hình</td>
                   <td style="width: 30%;; border-left: none; padding-right: 2vw; text-align: end;border-right: 2px solid black;border-bottom: 1px solid black;">1/12</td>
                 </tr>
                 <tr>
                   <td style="width: 70%; padding-left: 1vw; padding-top: 1.5vh; padding-bottom: 1.5vh; border-right: none; text-align: start;border-left: 1px solid black;border-bottom: 1px solid black;">Kỹ thuật lái ôtô</td>
                   <td style="width: 30%;; border-left: none; padding-right: 2vw; text-align: end;border-right: 2px solid black;">3/10</td>
+=======
+                  <td style="width: 70%; padding-left: 1vw; padding-top: 1.5vh; padding-bottom: 1.5vh; border-right: none; text-align: start;border-left: 1px solid black;">Giải các thế sa hình</td>
+                  <td style="width: 30%;; border-left: none; padding-right: 2vw; text-align: end;border-right: 2px solid black;">1/12</td>
+                </tr>
+                <tr>
+                  <td style="width: 70%; padding-left: 1vw; padding-top: 1.5vh; padding-bottom: 1.5vh; border-right: none; text-align: start;border-left: 1px solid black;border-top: 1px solid black">Kỹ thuật lái ôtô</td>
+                  <td style="width: 30%;; border-left: none; padding-right: 2vw; text-align: end;border-right: 2px solid black;border-top: 1px solid black">3/10</td>
+>>>>>>> Stashed changes
                 </tr>
   
                 <tr class="table-footer">
