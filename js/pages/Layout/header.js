@@ -36,7 +36,7 @@ const headerComponents = {
   <section class="header">
     <div class="bg--purple1 py-2"></div>
     <div class="bg--purple2 d-flex w-100 justify-content-between align-items-center px-5 py-2">
-      <h1 class="color--white1 px-5 my-1" onclick="userView.showScreen('user')">DRIVING TEST</h1>
+      <h1 class="color--white1 px-5 my-1" onclick=" mainView.showScreen('main')">DRIVING TEST</h1>
       <div class="color--white1 px-5 d-flex align-items-center">
         <div class="d-flex align-items-center pr-4">
           <div class="avata__container">
@@ -59,7 +59,7 @@ const headerComponents = {
         Thư viện đề thi
       </div>
       <div class="header__item pl-4 py-3 color--grey3 h2 font-weight-lighter m-0 bg--white1 bg--hover--grey2 color--hover--purple2"
-        onclick="layoutView.showNav()">
+        onclick="userView.showScreen('user'); layoutView.showNav()">
         Thông tin cá nhân
         </div>
       <div class="header__item pl-4 py-3 text-danger h2 font-weight-lighter m-0 bg--white1 bg--hover--grey2 color--hover--red1"

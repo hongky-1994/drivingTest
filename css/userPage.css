@@ -149,7 +149,7 @@ justify-content: space-between;
     border-bottom-right-radius: 20px;
 }
 
-.input-wrapper-edit-email>input{
+.input-wrapper-edit-password>input{
 height: 2.25rem;
 margin-bottom: 0.7rem;
 width: 100%;
@@ -159,7 +159,7 @@ border-style: solid;
 border-color: rgb(197, 193, 193);
 }
 
-.modal-edit-email{
+.modal-edit-password{
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -173,22 +173,22 @@ border-color: rgb(197, 193, 193);
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-.modal-edit-email-container{
+.modal-edit-password-container{
     height: fit-content;
     background-color: #fefefe;
     margin: auto;
     border: 1px solid #888;
-    width: 55vh;
+    width: 45vw;
     border-radius: 1vh;
     padding: 1rem
 }
 
-.close-modal-edit-email{
+.close-modal-edit-password{
     float: left;
     margin-bottom: 3px;
 }
 
-.submit-modal-edit-email{
+.submit-modal-edit-password{
     float: right;
     margin-bottom: 0.25rem;
     color: #122ee0;
@@ -196,7 +196,7 @@ border-color: rgb(197, 193, 193);
     border: none;
 }
 
-.close-modal-edit-email:hover, .submit-modal-edit-email:hover{
+.close-modal-edit-password:hover, .submit-modal-edit-password:hover{
     cursor: pointer;    
     opacity: 0.7;
 }

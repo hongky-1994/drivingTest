@@ -18,37 +18,51 @@ const userView = {
                 //su kien: load test history from firestore -> display
 
                 //su kien: edit email -> display modal
-                let btnEditEmail = document.querySelector('.icon-email')
-                let modalEditEmail = document.querySelector('.modal-edit-email')
-                let closeModal = document.querySelector('.close-modal-edit-email')
-                let submitModal = document.querySelector('.submit-modal-edit-email') 
-                let formEditEmail = document.querySelector('.form-input-edit-email') 
-                btnEditEmail.onclick = function(){
+                let btnEditPassword = document.querySelector('.icon-password')
+                let modalEditPassword = document.querySelector('.modal-edit-password')
+                let closeModal = document.querySelector('.close-modal-edit-password')
+                let submitModal = document.querySelector('.submit-modal-edit-password') 
+                let formEditPassword = document.querySelector('.form-input-edit-password') 
+                btnEditPassword.onclick = function(){
                     //display modal
-                    modalEditEmail.style.display = "block"
+                    modalEditPassword.style.display = "block"
                 }
                 closeModal.onclick = function(){
-                    modalEditEmail.style.display = "none"
-                    userView.setText('#input-email-error', '')
-                    userView.setText('#input-password-error', '')
+                    modalEditPassword.style.display = "none"
+                    //clear message error
+                    userView.setText('#input-current-password-error', '')
+                    userView.setText('#input-new-password-error', '')
+                    userView.setText('#input-confirm-new-password-error', '')
+
+                    //clear input
+                    formEditPassword.currentPassword.value = ''
+                    formEditPassword.newPassword.value = ''
+                    formEditPassword.confirmNewPassword.value = ''
                 }
                 submitModal.onclick = function(event){
                     event.preventDefault()
-                    userView.validateEditEmail()
+                    userView.validateEditPassword()
 
-                    // modalEditEmail.style.display = "none"
+                    // modalEditPassword.style.display = "none"
                     // userView.showScreen('user')
                 }
-                formEditEmail.onsubmit = function(event){
+                formEditPassword.onsubmit = function(event){
                     event.preventDefault()
 
-                    userView.validateEditEmail()
+                    userView.validateEditPassword()
                 }
                 window.onclick = function(){
-                    if(this.event.target == modalEditEmail){
-                        modalEditEmail.style.display = "none"
-                        userView.setText('#input-email-error', '')
-                        userView.setText('#input-password-error', '')
+                    if(this.event.target == modalEditPassword){
+                        modalEditPassword.style.display = "none"
+                        //clear message error
+                        userView.setText('#input-current-password-error', '')
+                        userView.setText('#input-new-password-error', '')
+                        userView.setText('#input-confirm-new-password-error', '')
+
+                        //clear input
+                        formEditPassword.currentPassword.value = ''
+                        formEditPassword.newPassword.value = ''
+                        formEditPassword.confirmNewPassword.value = ''
                     }
                 }
                 break;
@@ -63,34 +77,42 @@ const userView = {
         //display user email
         let userEmailHtml = document.querySelector('.user-email-html')
         let currentEmail = firebase.auth().currentUser.email || ""
-        // console.log(currentEmail)
         userEmailHtml.innerHTML += currentEmail
+
+        //TODO: show profile image
+
     },
-    validateEditEmail: () => {
+    validateEditPassword: () => {
         //get data
-        let modalEditEmail = document.querySelector('.modal-edit-email')
-        let formEditEmail = document.querySelector('.form-input-edit-email')
+        let modalEditPassword = document.querySelector('.modal-edit-password')
+        let formEditPassword = document.querySelector('.form-input-edit-password')
         let inputInfo = {
-            email: formEditEmail.currentEmail.value.trim().toLowerCase(),
-            password: formEditEmail.currentPassword.value,
+            //need current password to reauthenticate
+            currentPassword: formEditPassword.currentPassword.value,
+            newPassword: formEditPassword.newPassword.value,
+            confirmNewPassword: formEditPassword.confirmNewPassword.value,
         }
-        console.log(inputInfo);
         
         //validate data
         let validateResult = [
-            userView.validate(inputInfo.email, '#input-email-error', "Missing email"),
-            userView.validate(inputInfo.password, '#input-password-error', "Missing password")
+            userView.validate(inputInfo.currentPassword, '#input-current-password-error', "Missing current password"),
+            userView.validate(inputInfo.newPassword, '#input-new-password-error', "Missing new password"),
+            userView.validate(inputInfo.confirmNewPassword==inputInfo.newPassword, '#input-confirm-new-password-error', "Confirm password not match")
         ]
 
         //submit data
         if(userView.allPassed(validateResult)){
-            modalEditEmail.style.display = "none"
-            userView.setText('#input-email-error', '')
-            userView.setText('#input-password-error', '')
-            userController.editEmail(inputInfo.email, inputInfo.password)
-            console.log("submitted to userController")
+            modalEditPassword.style.display = "none"
+            userView.setText('#input-current-password-error', '')
+            userView.setText('#input-new-password-error', '')
+            userView.setText('#input-confirm-new-password-error', '')
+
+            formEditPassword.currentPassword.value = ''
+            formEditPassword.newPassword.value = ''
+            formEditPassword.confirmNewPassword.value = ''
+            userController.editPassword(inputInfo.currentPassword ,inputInfo.newPassword)
         }else{
-            modalEditEmail.style.display = "block"
+            modalEditPassword.style.display = "block"
         }
     },
 
