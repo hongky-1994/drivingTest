@@ -25,6 +25,9 @@ const layoutView = {
       navbarOverlay.style.display = "none"
       app.style.height = ""
     }
+  },
+  saveLocation: (location) => {
+    localStorage.setItem("currentLocation", location)
   }
 }
 
@@ -36,13 +39,13 @@ const headerComponents = {
   <section class="header">
     <div class="bg--purple1 py-2"></div>
     <div class="bg--purple2 d-flex w-100 justify-content-between align-items-center px-5 py-2">
-      <h1 class="color--white1 px-5 my-1" onclick=" mainView.showScreen('main')">DRIVING TEST</h1>
+      <h1 class="color--white1 px-5 my-1 pointer" onclick=" mainView.showScreen('main')">DRIVING TEST</h1>
       <div class="color--white1 px-5 d-flex align-items-center">
         <div class="d-flex align-items-center pr-4">
-          <div class="avata__container">
+          <div class="avata__container pointer">
             <img class="avata__img" src="" alt="user avata"/>
           </div>
-          <h2 class="mb-0 px-3 border-right header__welcome">Xin chào </h2>
+          <h2 class="mb-0 px-3 border-right header__welcome pointer" onclick="userView.showScreen('user')">Xin chào </h2>
         </div>
         <i class="fas fa-bars fa-3x pointer" onclick="layoutView.showNav()" ></i>
       </div>
@@ -54,18 +57,22 @@ const headerComponents = {
         onclick="examView.showScreen('testType'); layoutView.showNav()">
         Kiểm tra kiến thức
       </div>
+
       <div class="header__item pl-4 py-3 color--grey3 h2 font-weight-lighter m-0 bg--white1 bg--hover--grey2 color--hover--purple2"
         onclick="layoutView.showNav()">
         Thư viện đề thi
       </div>
+
       <div class="header__item pl-4 py-3 color--grey3 h2 font-weight-lighter m-0 bg--white1 bg--hover--grey2 color--hover--purple2"
         onclick="userView.showScreen('user'); layoutView.showNav()">
         Thông tin cá nhân
-        </div>
+      </div>
+
       <div class="header__item pl-4 py-3 text-danger h2 font-weight-lighter m-0 bg--white1 bg--hover--grey2 color--hover--red1"
         onclick="authView.signOut()">
         Đăng xuất
       </div>
+
     </div>
   </section>
   `
