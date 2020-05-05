@@ -1,7 +1,7 @@
 const mainComponents = {
   main:`
   <div class="main">
-      <div class="container border">
+      <div class="container-fluid px-lg-5">
         <div class="main__header py-5 d-flex justify-content-between align-self-center">
           <h1>Xin chào người dùng</h1>
           <div>

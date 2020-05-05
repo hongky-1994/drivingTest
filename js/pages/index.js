@@ -1,14 +1,19 @@
 firebase.auth().onAuthStateChanged((user) => {
   if(user) {
-    name = user.displayName;
-    email = user.email;
-    photoUrl = user.photoURL;
-    emailVerified = user.emailVerified;
-    uid = user.uid; 
-    authModel.user = {name, email, photoUrl, emailVerified, uid}
-    mainView.showScreen("main")
+    authModel.user = {
+      name: user.displayName || authModel.user.name,
+      email: user.email || null,
+      photoUrl: user.photoURL || "./js/assets/images/anonymous-icon.png",
+      emailVerified: user.emailVerified,
+      uid: user.uid,
+      isAnonymous: user.isAnonymous
+    }
+    layoutView.show(".header")
+    userView.showScreen("user")
+
   } else {
     authModel.user = {}
+    layoutView.hide(".header")
     authView.showScreen("signIn")
   }
 })
