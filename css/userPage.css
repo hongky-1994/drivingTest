@@ -1,41 +1,10 @@
 /* User page */
-.user-nav-header{
-width: 100vw;
-height: 1.5vh;
-background: #400ef0;
-}
-.user-nav{
-display: flex;
-align-items: center;
-justify-content: space-between;
-width: 100vw;
-height: 12vh;
-background: #661fff;
-font-size: 5vh;
-color: white;
-padding-left: 7vw;
-padding-right: 2vw;
-}
-.logo-nav-header{
-background: none;
-border: none;
-color: #ffffff;
-}
-.btn-user-menu{
-background: none;
-border: none;
-color: white;
-}
-.user-nav-footer{
-width: 100vw;
-height: 2vh;
-background-image: linear-gradient(rgba(0, 0, 0, 0.329), white);
-margin-bottom: 6vh;
-}
+
 
 .user-content{
+margin-top: 2rem;
 padding-left: 7vw;
-padding-right: calc(4vw + 36px);
+padding-right: calc(4vw + 2rem);
 height: 80.5vh;
 display: flex;
 justify-content: space-between;
@@ -46,8 +15,13 @@ font-size: 30px;
 font-weight: 800;
 }
 
+.btn-sign-out{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .user-email>div{
-font-size: 20px;
+font-size: 1.25rem;
 font-weight: 600;
 }
 
@@ -58,7 +32,7 @@ justify-content: space-between;
 
 
 .btn-edit-icon{
-margin-left: 5px;
+margin-left: 0.25rem;
 background: none;
 border: none;
 }
@@ -71,8 +45,8 @@ background-size: cover;
 background-repeat: no-repeat;
 background-position: center;
 border-radius: 50%;
-height: 400px;
-width: 400px;
+height: 25rem;
+width: 25rem;
 margin-top: 2vh;
 margin-bottom: 2vh;
 }
@@ -90,11 +64,43 @@ text-shadow:  2px 2px #3cabec;
 }
 
 /* table test history */
+.table-test-history, .user-pros>table, .user-cons>table{
+    width: 100%;
+    border-top: none;
+    border-bottom: none;
+}
+
 table, th, td{
-border: 1px solid black;
 white-space: nowrap;
 overflow: hidden;
 text-overflow: ellipsis;
+}
+
+td:hover{
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: #122ee0;
+}
+
+.table-header>tr>th{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding-bottom: 1.5vh; 
+    padding-top: 1.5vh; 
+    text-align: center; 
+    color: white;
+    border-top: none;
+    border-bottom: 1px;
+}
+
+.table-footer>td{
+    padding-bottom: 1.5vh; 
+    padding-top: 1.5vh;
+    color: white;
+    text-align: center;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom: none;
 }
 
 .test-history-see-all, .pros-see-all, .cons-see-all{
@@ -113,10 +119,6 @@ padding-left: 10vw;
 width: 23vw;
 }
 
-table.table-test-history, .user-pros>table, .user-cons>table{
-width: 100%;
-}
-
 .user-test-history{
 margin-bottom: 4vh;
 }
@@ -126,12 +128,33 @@ display: flex;
 justify-content: space-between;
 }
 
-.input-wrapper>input{
-height: 38px;
-margin-bottom: 10px;
+.table-header>tr>th{
+    padding-bottom: 1.5vh; 
+    padding-top: 1.5vh; 
+    text-align: center; 
+    background: #5067ff; 
+    color: white;
+    border-bottom: 1px solid black;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.table-footer>td{
+    padding-bottom: 1.5vh; 
+    padding-top: 1.5vh; 
+    text-align: center; 
+    color: white; 
+    border-top: 1px solid black;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.input-wrapper-edit-email>input{
+height: 2.25rem;
+margin-bottom: 0.7rem;
 width: 100%;
-border-radius: 5px;
-padding-left: 10px;
+border-radius: 0.3rem;
+padding-left: 0.7rem;
 border-style: solid;
 border-color: rgb(197, 193, 193);
 }
@@ -157,7 +180,7 @@ border-color: rgb(197, 193, 193);
     border: 1px solid #888;
     width: 55vh;
     border-radius: 1vh;
-    padding: 16px;
+    padding: 1rem
 }
 
 .close-modal-edit-email{
@@ -167,7 +190,7 @@ border-color: rgb(197, 193, 193);
 
 .submit-modal-edit-email{
     float: right;
-    margin-bottom: 3px;
+    margin-bottom: 0.25rem;
     color: #122ee0;
     background: none;
     border: none;
