@@ -20,7 +20,10 @@ firebase.auth().onAuthStateChanged((user) => {
         console.log("Open test type")
         break;
       
-      
+      case "userPage": 
+        userView.showScreen("user")
+        break;
+        
       default:
         userView.showScreen("user")
         break;

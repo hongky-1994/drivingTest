@@ -20,6 +20,7 @@ const authView = {
           authView.openModal(true, "Thông báo","success", "Đăng nhập thành công")
           userView.showScreen("user")
           console.log("Open user page")
+          layoutView.saveLocation("userPage")
           loadingView.hide()
 
         })
@@ -69,6 +70,7 @@ const authView = {
   },
   signOut: () => {
     firebase.auth().signOut()
+    localStorage.clear()    
     authModel.user = {}
   },
   openModal: (open, title, icon, content) => {
