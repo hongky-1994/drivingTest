@@ -5,7 +5,7 @@ const layoutView = {
     
     // change avata
     document.querySelector(".avata__img").src = authModel.user.photoUrl
-    document.querySelector(".header__welcome").innerText = "Xin chào "+ (authModel.user.name === null ? "Người lạ." : authModel.user.name)
+    document.querySelector(".header__welcome").innerText = "Xin chào "+ ((authModel.user.name === null || authModel.user.name === undefined) ? "Người lạ" : authModel.user.name)
   },
   hide: (screen) => {
     const div = document.querySelector(screen)
@@ -50,10 +50,22 @@ const headerComponents = {
     </div>
     <div class="header__nav--overlay" onclick="layoutView.showNav()"></div>
     <div class="header__nav">
-      <div class="header__item pl-4 py-3 color--grey3 h2 font-weight-lighter m-0 bg--white1 bg--hover--grey2 color--hover--purple2" onclick="examView.showScreen('testType')">Kiểm tra kiến thức</div>
-      <div class="header__item pl-4 py-3 color--grey3 h2 font-weight-lighter m-0 bg--white1 bg--hover--grey2 color--hover--purple2">Thư viện đề thi</div>
-      <div class="header__item pl-4 py-3 color--grey3 h2 font-weight-lighter m-0 bg--white1 bg--hover--grey2 color--hover--purple2">Thông tin cá nhân</div>
-      <div onclick="authView.signOut()" class="header__item pl-4 py-3 text-danger h2 font-weight-lighter m-0 bg--white1 bg--hover--grey2 color--hover--red1">Đăng xuất</div>
+      <div class="header__item pl-4 py-3 color--grey3 h2 font-weight-lighter m-0 bg--white1 bg--hover--grey2 color--hover--purple2" 
+        onclick="examView.showScreen('testType'); layoutView.showNav()">
+        Kiểm tra kiến thức
+      </div>
+      <div class="header__item pl-4 py-3 color--grey3 h2 font-weight-lighter m-0 bg--white1 bg--hover--grey2 color--hover--purple2"
+        onclick="layoutView.showNav()">
+        Thư viện đề thi
+      </div>
+      <div class="header__item pl-4 py-3 color--grey3 h2 font-weight-lighter m-0 bg--white1 bg--hover--grey2 color--hover--purple2"
+        onclick="layoutView.showNav()">
+        Thông tin cá nhân
+        </div>
+      <div class="header__item pl-4 py-3 text-danger h2 font-weight-lighter m-0 bg--white1 bg--hover--grey2 color--hover--red1"
+        onclick="authView.signOut()">
+        Đăng xuất
+      </div>
     </div>
   </section>
   `
