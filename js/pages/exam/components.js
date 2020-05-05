@@ -1,7 +1,7 @@
 examComponents = {
     testType: `
     <div class="title-holder">
-        <div class="title color--purple1">CHỌN HÌNH THỨC THI</div>
+        <div class="test-type-title color--purple1">CHỌN HÌNH THỨC THI</div>
     </div>
     <section class="test-type-section">
         <div class="test-type-container structured-test">
