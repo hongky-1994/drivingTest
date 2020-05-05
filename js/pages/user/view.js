@@ -9,6 +9,12 @@ const userView = {
 
                 userView.showCurrentUserInfo()
 
+                //su kien: sign-out
+                let btnSignOut = document.querySelector('.btn-sign-out')
+                btnSignOut.onclick = function(){
+                    userController.signOut()
+                } 
+
                 //su kien: load test history from firestore -> display
 
                 //su kien: edit email -> display modal
@@ -57,7 +63,11 @@ const userView = {
         //display user email
         let userEmailHtml = document.querySelector('.user-email-html')
         let currentEmail = firebase.auth().currentUser.email || ""
+<<<<<<< HEAD
         console.log(currentEmail)
+=======
+        // console.log(currentEmail)
+>>>>>>> 63706ea4ed35cc1a8227e48f16ae2a8c3d37b0d8
         userEmailHtml.innerHTML += currentEmail
     },
     validateEditEmail: () => {
