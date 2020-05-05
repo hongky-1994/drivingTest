@@ -18,26 +18,32 @@ const userComponents = {
         </div>
         <div class="user-email">
           <div class="user-email-html">Email: </div>
-          <button class="btn-edit-icon icon-email">
+          <button class="btn-edit-icon icon-password">
             <i class="far fa-edit fa-2x"></i>
           </button>
         </div>
       </div>
 
-      <!-- modal edit email --> 
-      <div class="modal-edit-email">
-        <div class="modal-edit-email-container">
-          <form class="form-input-edit-email">
-            <span class="close-modal-edit-email">Cancel</span>
-            <button class="submit-modal-edit-email">Done</button>
-            <div class="input-wrapper-edit-email">
-              <input type="email" name="currentEmail" placeholder="Enter your email">
-              <div id="input-email-error" class="message-error"></div>
+      <!-- modal edit password --> 
+      <div class="modal-edit-password">
+        <div class="modal-edit-password-container">
+          <form class="form-input-edit-password">
+            <span class="close-modal-edit-password">Cancel</span>
+            <button class="submit-modal-edit-password">Done</button>
+
+            <div class="input-wrapper-edit-password">
+              <input type="password" name="currentPassword" placeholder="Enter your current password">
+              <div id="input-current-password-error" class="message-error"></div>
             </div>
-            <div class="input-wrapper-edit-email">
-              <input type="password" name="currentPassword" placeholder="Enter your password">
-              <div id="input-password-error" class="message-error"></div>
+            <div class="input-wrapper-edit-password">
+              <input type="password" name="newPassword" placeholder="Enter your new password">
+              <div id="input-new-password-error" class="message-error"></div>
             </div>
+            <div class="input-wrapper-edit-password">
+              <input type="password" name="confirmNewPassword" placeholder="Confirm your new password">
+              <div id="input-confirm-new-password-error" class="message-error"></div>
+            </div>
+
           </form>
         </div>
       </div>
