@@ -22,7 +22,7 @@ const authComponents = {
             <span class="error__message error__password text-danger"></span>
           </div>
         </div>
-        <div class="form-group">
+        <div class="form-group d-flex">
           <p class="font-italic mb-5 h5 color--gray2 color--hover--blue1 pointer"
             onclick="authView.showScreen('resetPassword')"  
           >Quên mật khẩu ?</p>
