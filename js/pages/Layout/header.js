@@ -15,13 +15,10 @@ const layoutView = {
     const navbar = document.querySelector('.header__nav')
     const navbarOverlay = document.querySelector('.header__nav--overlay')
     const app = document.querySelector('#app')
-    console.log("nav bar navbar", navbar.style.display)
-    console.log("nav bar navbar overlay", navbarOverlay.style.display)
     if(navbar.style.display === "none" || !navbar.style.display) {
       navbarOverlay.style.display = navbar.style.display = "block"
       app.style.height = "100vh"
       app.style.overFlow = "hidden"
-      console.log()
     } else {
       navbar.style.display = "none"
       navbarOverlay.style.display = "none"

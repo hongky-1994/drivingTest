@@ -4,6 +4,7 @@ const authView = {
     const app = document.querySelector(".app-container")
     app.innerHTML = authComponents[screen]
   },
+  
   signIn: (e) => {
     e.preventDefault()
     const email = e.target.email.value
@@ -32,6 +33,7 @@ const authView = {
         })
     }
   },
+  
   signUp: (e) => {
     e.preventDefault();
     const email = e.target.email.value
@@ -56,6 +58,7 @@ const authView = {
     
     }
   },
+  
   signAnonymouse: () => {
     firebase.auth().signInAnonymously()
     .then(
@@ -68,11 +71,13 @@ const authView = {
       authView.openModal(true, errorCode, "error", errorMessage)
     });
   },
+  
   signOut: () => {
     firebase.auth().signOut()
     localStorage.clear()    
     authModel.user = {}
   },
+  
   resetPassword: (e) => {
     e.preventDefault()
     // var auth = firebase.auth();
@@ -93,6 +98,7 @@ const authView = {
         .catch(error => authView.openModal(true, error.code, "error", error.message));
     }
   },
+  
   openModal: (open, title, icon, content) => {
     const modal = document.querySelector(".modal__container")
     if (open) {
@@ -134,89 +140,59 @@ const authView = {
       window.scrollTo(0, parseInt(scrollY || '0') * -1);
     }
   },
+  
   validateAuthentication: (action, data) => {
-    if (action === "signIn") {
-      const { email,password } = data
-      let checkeResult = true
-
-      // check email 
-      if (!email || !email.includes("@")) {
-        authView.showInputError(".error__email", "Vui lòng nhập đúng định dạng email.")
-        checkeResult = false
-      } else {
-        authView.showInputError(".error__email", "")
+    switch (action) {
+      case "signIn":{
+        const { email,password } = data
+        const checkeResult = [
+          authView.validate(!email || !email.includes("@"),".error__email", "Vui lòng nhập đúng định dạng email."),
+          authView.validate(!password,".error__password", "Vui lòng nhập mật khẩu.")
+        ] 
+        // no error return true
+        return authView.allPassed(checkeResult)
       }
-
-      // check password
-      if (!password) {
-        authView.showInputError(".error__password", "Vui lòng nhập mật khẩu.")
-        checkeResult = false
-      } else {
-        authView.showInputError(".error__password", "")
+        
+      case "signUp": {
+        const { email, name, password, rePassword } = data
+        const checkeResult = [
+          authView.validate(!email || !email.includes("@"),".error__email", "Vui lòng nhập đúng định dạng email."),
+          authView.validate(!name,".error__name", "Vui lòng nhập tên của bạn."),
+          authView.validate(!password || password.length < 6,".error__password", "Mật khẩu dài hơn 6 ký tự."),
+          authView.validate(password !== rePassword,".error__rePassword", "Nhập lại mật khẩu không trùng khớp")
+        ]
+        return authView.allPassed(checkeResult)
       }
-
-      // no error return true
-      return checkeResult
-    }
-
-    if (action === "signUp") {
-      const {
-        email,
-        name,
-        password,
-        rePassword
-      } = data
-      let checkeResult = true
-
-      // check email
-      if (!email || !email.includes("@")) {
-        authView.showInputError(".error__email", "Vui lòng nhập đúng định dạng email.")
-        checkeResult = false
-      } else {
-        authView.showInputError(".error__email", "")
+      case "resetPassword": {
+        const email = data
+        return authView.validate(!email || !email.includes("@"),".error__email", "Vui lòng nhập đúng định dạng email.")
       }
-
-      if (!name) {
-        authView.showInputError(".error__name", "Vui lòng nhập tên của bạn.")
-        checkeResult = false
-      } else {
-        authView.showInputError(".error__name", "")
-      }
-
-      // check password 
-      if (!password || password.length < 6) {
-        authView.showInputError(".error__password", "Mật khẩu dài hơn 6 ký tự.")
-        checkeResult = false
-      } else {
-        authView.showInputError(".error__password", "")
-      }
-
-      // check repassword
-      if (password !== rePassword) {
-        authView.showInputError(".error__rePassword", "Nhập lại mật khẩu không trùng khớp")
-        checkeResult = false
-      } else {
-        authView.showInputError(".error__rePassword", "")
-      }
-
-      return checkeResult
-    }
-
-    if (action === "resetPassword") {
-      const email = data
-      let checkeResult = true
-      if (!email || !email.includes("@")) {
-        authView.showInputError(".error__email", "Vui lòng nhập đúng định dạng email.")
-        checkeResult = false
-      } else {
-        authView.showInputError(".error__email", "")
-      }
-    return checkeResult
+      default:
+        break;
     }
   },
+  
   showInputError: (query, message) => {
     const target = document.querySelector(query)
     target.innerHTML = message
-  }
+  },
+  
+  validate: (condition, queryLogError, errorMessage) => {
+    if(condition) {
+      authView.showInputError(queryLogError,errorMessage)
+      return false
+    } 
+    authView.showInputError(queryLogError,"")
+    return true
+  },
+  
+  allPassed: (validateResult) => {
+    for(let result of validateResult){
+        if(!result){
+            return false
+        }
+    }
+    return true
+}   
 
 }
