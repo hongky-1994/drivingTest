@@ -55,22 +55,6 @@ const userComponents = {
 
             <tbody>
               <tr>
-<<<<<<< Updated upstream
-                <td style="width: 15%; padding-top: 1.5vh; padding-bottom: 1.5vh; border-right: none; text-align: center; border-left: 1px solid black;border-top: 1px solid black;border-bottom: 1px solid black;">
-                Tổng hợp
-                </td>
-                <td style="width: 15%;; padding-top: 1.5vh; padding-bottom: 1.5vh; border-left: none; border-right: none; text-align: center;border-bottom: 1px solid black;">
-                30/30
-                </td>
-                <td style="width: 70%;; border-left: none; padding-right: 2vw; text-align: end; border-right: 2px solid black;border-bottom: 1px solid black;">12:00:00 - 29/04/2020</td>
-              </tr>
-              <tr>
-                <td style="width: 15%; padding-top: 1.5vh; padding-bottom: 1.5vh; border-right: none; text-align: center;border-left: 1px solid black;border-bottom: 1px solid black;">
-                Cấu trúc
-                </td>
-                <td style="width: 15%;; padding-top: 1.5vh; padding-bottom: 1.5vh; border-left: none; border-right: none; text-align: center;border-bottom: 1px solid black;">29/30</td>
-                <td style="width: 70%;; border-left: none; padding-right: 2vw; text-align: end; border-right: 2px solid black;border-bottom: 1px solid black;">12:00:00 - 30/04/2020</td>
-=======
                 <td style="width: 15%; padding-top: 1.5vh; padding-bottom: 1.5vh; border-right: none; text-align: center; border-left: 1px solid black; ">Đề 123</td>
                 <td style="width: 15%; padding-top: 1.5vh; padding-bottom: 1.5vh; border-left: none; border-right: none; text-align: center;">30/30</td>
                 <td style="width: 70%; border-left: none; padding-right: 2vw; text-align: end; border-right: 2px solid black;">12:00:00 - 29/04/2020</td>
@@ -79,7 +63,6 @@ const userComponents = {
                 <td style="width: 15%; padding-top: 1.5vh; padding-bottom: 1.5vh; border-right: none; text-align: center;border-left: 1px solid black;border-top: 1px solid black">Đề 124</td>
                 <td style="width: 15%; padding-top: 1.5vh; padding-bottom: 1.5vh; border-left: none; border-right: none; text-align: center;border-top: 1px solid black">29/30</td>
                 <td style="width: 70%; border-left: none; padding-right: 2vw; text-align: end; border-right: 2px solid black;border-top: 1px solid black">12:00:00 - 30/04/2020</td>
->>>>>>> Stashed changes
               </tr>
 
               <tr class="table-footer">
@@ -102,21 +85,12 @@ const userComponents = {
   
               <tbody>
                 <tr>
-<<<<<<< Updated upstream
-                  <td style="width: 70%; padding-left: 1vw; padding-top: 1.5vh; padding-bottom: 1.5vh; border-right: none; text-align: start;border-left: 1px solid black;border-top: 1px solid black;border-bottom: 1px solid black;">Khái niệm và quy tắc giao thông</td>
-                  <td style="width: 30%;; border-left: none; padding-right: 2vw; text-align: end;border-right: 2px solid black;border-bottom: 1px solid black;">11/12</td>
-                </tr>
-                <tr>
-                  <td style="width: 70%; padding-left: 1vw; padding-top: 1.5vh; padding-bottom: 1.5vh; border-right: none; text-align: start;border-left: 1px solid black;border-bottom: 1px solid black;">Nghiệp vụ vận tải</td>
-                  <td style="width: 30%;; border-left: none; padding-right: 2vw; text-align: end;border-right: 2px solid black;border-bottom: 1px solid black;">9/10</td>
-=======
                   <td style="width: 70%; padding-left: 1vw; padding-top: 1.5vh; padding-bottom: 1.5vh; border-right: none; text-align: start;border-left: 1px solid black;">Khái niệm và quy tắc giao thông</td>
                   <td style="width: 30%;; border-left: none; padding-right: 2vw; text-align: end;border-right: 2px solid black;">11/12</td>
                 </tr>
                 <tr>
                   <td style="width: 70%; padding-left: 1vw; padding-top: 1.5vh; padding-bottom: 1.5vh; border-right: none; text-align: start;border-left: 1px solid black;border-top: 1px solid black">Nghiệp vụ vận tải</td>
                   <td style="width: 30%;; border-left: none; padding-right: 2vw; text-align: end;border-right: 2px solid black;border-top: 1px solid black">9/10</td>
->>>>>>> Stashed changes
                 </tr>
   
                 <tr class="table-footer">
@@ -138,21 +112,12 @@ const userComponents = {
   
               <tbody>
                 <tr>
-<<<<<<< Updated upstream
-                  <td style="width: 70%; padding-left: 1vw; padding-top: 1.5vh; padding-bottom: 1.5vh; border-right: none; text-align: start;border-left: 1px solid black;border-top: 1px solid black;border-bottom: 1px solid black;">Giải các thế sa hình</td>
-                  <td style="width: 30%;; border-left: none; padding-right: 2vw; text-align: end;border-right: 2px solid black;border-bottom: 1px solid black;">1/12</td>
-                </tr>
-                <tr>
-                  <td style="width: 70%; padding-left: 1vw; padding-top: 1.5vh; padding-bottom: 1.5vh; border-right: none; text-align: start;border-left: 1px solid black;border-bottom: 1px solid black;">Kỹ thuật lái ôtô</td>
-                  <td style="width: 30%;; border-left: none; padding-right: 2vw; text-align: end;border-right: 2px solid black;">3/10</td>
-=======
                   <td style="width: 70%; padding-left: 1vw; padding-top: 1.5vh; padding-bottom: 1.5vh; border-right: none; text-align: start;border-left: 1px solid black;">Giải các thế sa hình</td>
                   <td style="width: 30%;; border-left: none; padding-right: 2vw; text-align: end;border-right: 2px solid black;">1/12</td>
                 </tr>
                 <tr>
                   <td style="width: 70%; padding-left: 1vw; padding-top: 1.5vh; padding-bottom: 1.5vh; border-right: none; text-align: start;border-left: 1px solid black;border-top: 1px solid black">Kỹ thuật lái ôtô</td>
                   <td style="width: 30%;; border-left: none; padding-right: 2vw; text-align: end;border-right: 2px solid black;border-top: 1px solid black">3/10</td>
->>>>>>> Stashed changes
                 </tr>
   
                 <tr class="table-footer">

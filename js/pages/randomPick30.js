@@ -36,7 +36,7 @@ const showQues =  () => {
   
     listQuestion.innerHTML = list30Questions.map(ques => `
       <p class="col-6">${ques.question}</p>
-      <p class="col-6">${ques.images}</p>
+      <img class="col-6" src="${ques.images}">
       `)},1000)
   
 

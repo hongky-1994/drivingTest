@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="./library/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="./library/fontawesome/css/all.min.css" > 
 <!-- Font: Open Sans -->
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
   <!-- Custom CSS for pages -->
   <link rel="stylesheet" href="./css/utils.css">
   <link rel="stylesheet" href="./css/colors.css">
@@ -39,6 +39,9 @@
       <div class="exam-left-column">
         <div class="timer-container bg--pink2">
           Thời gian còn lại<br>
+          <div class="timer-time-container">
+            <span id="minute" class="timer-time"></span>:<span class="timer-time" id="second"></span>
+          </div>
         </div>
         <div class="question-container">
           <div class="question-box bg--grey2 color--white1">1</div>
@@ -49,9 +52,32 @@
         </div>
       </div>
       <div class="exam-right-column">
-        <div class="test-question"></div>
-        <div class="difficulties"></div>
-        <div class="testt-answer"></div>
+        <p class="test-question">Xe ô tô tham gia giao thông đường bộ phải bảo đảm các quy định về chất lượng, an toàn kỹ thuật và bảo vệ môi trường nào ghi dưới đây?</p>
+        <form class="test-answer-container">
+          <label for="answer1" class="test-answer col-xl-6">
+            <input type="checkbox" id="answer1" name="answer1" >
+              Kính chắn gió, kính cửa phải là loại kính an toàn, bảo đảm tầm nhìn cho người điều khiển; có đủ hệ thống hãm và hệ thống chuyển hướng có hiệu lực, tay lái của xe ô tô ở bên trái của xe, có còi với âm lượng đúng quy chuẩn kỹ thuật
+          </label>  
+
+          <label for="answer1" class="test-answer col-xl-6">
+            <input type="checkbox" id="answer1" name="answer1" >
+              Kính chắn gió, kính cửa phải là loại kính an toàn, bảo đảm tầm nhìn cho người điều khiển; có đủ hệ thống hãm và hệ thống chuyển hướng có hiệu lực, tay lái của xe ô tô ở bên trái của xe, có còi với âm lượng đúng quy chuẩn kỹ thuật
+          </label>
+
+          <label for="answer1" class="test-answer col-xl-6">
+            <input type="checkbox" id="answer1" name="answer1" >
+              Kính chắn gió, kính cửa phải là loại kính an toàn, bảo đảm tầm nhìn cho người điều khiển; có đủ hệ thống hãm và hệ thống chuyển hướng có hiệu lực, tay lái của xe ô tô ở bên trái của xe, có còi với âm lượng đúng quy chuẩn kỹ thuật
+          </label> 
+          
+          <label for="answer1" class="test-answer col-xl-6">
+            <input type="checkbox" id="answer1" name="answer1" >
+              Kính chắn gió, kính cửa phải là loại kính an toàn, bảo đảm tầm nhìn cho người điều khiển; có đủ hệ thống hãm và hệ thống chuyển hướng có hiệu lực, tay lái của xe ô tô ở bên trái của xe, có còi với âm lượng đúng quy chuẩn kỹ thuật
+          </label>  
+
+         
+          
+          
+        </form>
       </div>
     </div>
   </div>
@@ -115,6 +141,8 @@
   <script src="./js/pages/user/view.js"></script>
   <script src="./js/pages/exam/view.js"></script>
   <script src="./js/pages/index.js"></script>
+
+  <script src="js/pages/timer.js"></script>
 </body>
 
 </html>
