@@ -65,6 +65,19 @@ const userView = {
                         formEditPassword.confirmNewPassword.value = ''
                     }
                 }
+
+                //su kien: user's profile image
+                let btnEditProfileImage = document.querySelector('.user-profile-icon')
+                let btnSubmitProfileImage = document.querySelector('.btn-submit-user-image')
+                // let profileImage = document.querySelector('.user-image')
+
+                btnEditProfileImage.onclick = function(){
+                    btnSubmitProfileImage.style.display = "block"
+                    const file = document.querySelector('#photo').files[0]
+                    if(file){
+                        btnSubmitProfileImage.onsubmit = userController.editProfileImage(file)
+                    }
+                }
                 break;
             }
             default : {return}
@@ -80,7 +93,7 @@ const userView = {
         userEmailHtml.innerHTML += currentEmail
 
         //TODO: show profile image
-
+        
     },
     validateEditPassword: () => {
         //get data

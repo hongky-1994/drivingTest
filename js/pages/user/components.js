@@ -14,6 +14,8 @@ const userComponents = {
         <div class="user-image">
           <button class="user-profile-icon">
             <i class="far fa-edit fa-3x"></i>
+            <input type="file" id="photo" class="custom-file-input">
+            <input type="submit" value="Submit" class="btn-submit-user-image">
           </button>
         </div>
         <div class="user-email">
