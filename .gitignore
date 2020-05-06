@@ -13,4 +13,8 @@
 *.wat
 *.xhtml
 .DS_Store
+test.html
+testKy.html
+testQuan.html
+testPage.html
 # End of https://www.gitignore.io/api/web

@@ -73,6 +73,26 @@ const authView = {
     localStorage.clear()    
     authModel.user = {}
   },
+  resetPassword: (e) => {
+    e.preventDefault()
+    // var auth = firebase.auth();
+    const emailAddress = e.target.email.value
+
+    console.log('email to reset', emailAddress)
+
+
+    if (authView.validateAuthentication("resetPassword", emailAddress)) {
+
+      firebase.auth()
+        .sendPasswordResetEmail(emailAddress)
+        .then(() => {
+            authView.openModal(true, "Thông báo","success",`Đã gửi email thay đổi mật khẩu về hòm thư "${emailAddress}". Vui lòng kiểm tra hòm thư của bạn`)
+            authView.showScreen('signIn')
+          })
+
+        .catch(error => authView.openModal(true, error.code, "error", error.message));
+    }
+  },
   openModal: (open, title, icon, content) => {
     const modal = document.querySelector(".modal__container")
     if (open) {
@@ -180,6 +200,18 @@ const authView = {
       }
 
       return checkeResult
+    }
+
+    if (action === "resetPassword") {
+      const email = data
+      let checkeResult = true
+      if (!email || !email.includes("@")) {
+        authView.showInputError(".error__email", "Vui lòng nhập đúng định dạng email.")
+        checkeResult = false
+      } else {
+        authView.showInputError(".error__email", "")
+      }
+    return checkeResult
     }
   },
   showInputError: (query, message) => {
