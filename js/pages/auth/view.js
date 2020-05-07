@@ -1,6 +1,5 @@
 const authView = {
   showScreen: (screen) => {
-    console.log("Show screen ", screen)
     const app = document.querySelector(".app-container")
     app.innerHTML = authComponents[screen]
   },

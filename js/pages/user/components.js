@@ -14,6 +14,8 @@ const userComponents = {
         <div class="user-image">
           <button class="user-profile-icon">
             <i class="far fa-edit fa-3x"></i>
+            <input type="file" id="photo" class="custom-file-input">
+            <input type="submit" value="Submit" class="btn-submit-user-image">
           </button>
         </div>
         <div class="user-email">
@@ -55,24 +57,24 @@ const userComponents = {
           <table class="table-test-history">
             <thead class="table-header">
               <tr>
-                <th colspan="3" style="background: #5067ff;">Lịch sử làm bài</th>
+                <th colspan="3" class="table-1-header-footer">Lịch sử làm bài</th>
               </tr>
             </thead>
 
             <tbody>
               <tr>
-                <td style="width: 15%; padding-top: 1.5vh; padding-bottom: 1.5vh; border-right: none; text-align: center; border-left: 1px solid black; ">Tổng hợp</td>
-                <td style="width: 15%; padding-top: 1.5vh; padding-bottom: 1.5vh; border-left: none; border-right: none; text-align: center;">30/30</td>
-                <td style="width: 70%; border-left: none; padding-right: 2vw; text-align: end; border-right: 2px solid black; color: #a09595; text-decoration: none;">12:00:00 - 29/04/2020</td>
+                <td class="table-1-row-2-col-1">Tổng hợp</td>
+                <td class="table-1-row-2-col-2">30/30</td>
+                <td class="table-1-row-2-col-3">12:00:00 - 29/04/2020</td>
               </tr>
               <tr>
-                <td style="width: 15%; padding-top: 1.5vh; padding-bottom: 1.5vh; border-right: none; text-align: center;border-left: 1px solid black;border-top: 1px solid black">Cấu trúc</td>
-                <td style="width: 15%; padding-top: 1.5vh; padding-bottom: 1.5vh; border-left: none; border-right: none; text-align: center;border-top: 1px solid black">29/30</td>
-                <td style="width: 70%; border-left: none; padding-right: 2vw; text-align: end; border-right: 2px solid black;border-top: 1px solid black; color: #a09595; text-decoration: none;">12:00:00 - 30/04/2020</td>
+                <td class="table-1-row-3-col-1">Cấu trúc</td>
+                <td class="table-1-row-3-col-2">29/30</td>
+                <td class="table-1-row-3-col-3">12:00:00 - 30/04/2020</td>
               </tr>
 
               <tr class="table-footer">
-                <td colspan="3" style="background: #5067ff;">
+                <td colspan="3" class="table-1-header-footer">
                   <button class="test-history-see-all">Xem tất cả</button>
                 </td>
               </tr>
@@ -85,22 +87,22 @@ const userComponents = {
             <table class="table-test-pros">
               <thead class="table-header">
                 <tr>
-                  <th colspan="2" style="background: #a0d400;">Đạt yêu cầu</th>
+                  <th colspan="2" class="table-2-header-footer">Đạt yêu cầu</th>
                 </tr>
               </thead>
   
               <tbody>
                 <tr>
-                  <td style="width: 70%; padding-left: 1vw; padding-top: 1.5vh; padding-bottom: 1.5vh; border-right: none; text-align: start;border-left: 1px solid black;">Khái niệm và quy tắc giao thông</td>
-                  <td style="width: 30%;; border-left: none; padding-right: 1vw; text-align: end;border-right: 2px solid black;">11/12</td>
+                  <td class="table-2-row-2-col-1">Khái niệm và quy tắc giao thông</td>
+                  <td class="table-2-row-2-col-2">11/12</td>
                 </tr>
                 <tr>
-                  <td style="width: 70%; padding-left: 1vw; padding-top: 1.5vh; padding-bottom: 1.5vh; border-right: none; text-align: start;border-left: 1px solid black;border-top: 1px solid black">Nghiệp vụ vận tải</td>
-                  <td style="width: 30%;; border-left: none; padding-right: 1vw; text-align: end;border-right: 2px solid black;border-top: 1px solid black">9/10</td>
+                  <td class="table-2-row-3-col-1">Nghiệp vụ vận tải</td>
+                  <td class="table-2-row-3-col-2">9/10</td>
                 </tr>
   
                 <tr class="table-footer">
-                  <td colspan="2" style="background: #a0d400;">
+                  <td colspan="2" class="table-2-header-footer">
                     <button class="pros-see-all">Xem tất cả</button>
                   </td>
                 </tr>
@@ -112,22 +114,22 @@ const userComponents = {
             <table class="table-test-cons">
               <thead class="table-header">
                 <tr>
-                  <th colspan="2" style="background: #e68516;">Cần luyện thêm</th>
+                  <th colspan="2" class="table-3-header-footer">Cần luyện thêm</th>
                 </tr>
               </thead>
   
               <tbody>
                 <tr>
-                  <td style="width: 70%; padding-left: 1vw; padding-top: 1.5vh; padding-bottom: 1.5vh; border-right: none; text-align: start;border-left: 1px solid black;">Giải các thế sa hình</td>
-                  <td style="width: 30%;; border-left: none; padding-right: 1vw; text-align: end;border-right: 2px solid black;">1/12</td>
+                  <td class="table-3-row-2-col-1">Giải các thế sa hình</td>
+                  <td class="table-3-row-2-col-2">1/12</td>
                 </tr>
                 <tr>
-                  <td style="width: 70%; padding-left: 1vw; padding-top: 1.5vh; padding-bottom: 1.5vh; border-right: none; text-align: start;border-left: 1px solid black;border-top: 1px solid black">Kỹ thuật lái ôtô</td>
-                  <td style="width: 30%;; border-left: none; padding-right: 1vw; text-align: end;border-right: 2px solid black;border-top: 1px solid black">3/10</td>
+                  <td class="table-3-row-3-col-1">Kỹ thuật lái ôtô</td>
+                  <td class="table-3-row-3-col-2">3/10</td>
                 </tr>
   
                 <tr class="table-footer">
-                  <td colspan="2" style="background: #e68516;">
+                  <td colspan="2" class="table-3-header-footer">
                     <button class="cons-see-all">Xem tất cả</button>
                   </td>
                 </tr>
