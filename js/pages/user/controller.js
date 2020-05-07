@@ -34,5 +34,30 @@ const userController = {
             })
         }
     },
+    editProfileImage: (file) => {
+        console.log("user's profile image")
+        let email = firebase.auth().currentUser.email
+        const ref = firebase.storage().refFromURL(`gs://driving-test-exam.appspot.com/user-image/${email}`)
+        
+        const name = email + '-' + file.name + '-' + new Date()
+        // const name = new Date()
+        const metadata = {
+            contentType: file.type,
+        }
+        
+        const task = ref.child(name).put(file, metadata)
+        task
+            .then(snapshot => snapshot.ref.getDownloadURL())
+            .then(url => {
+                let profileImage = document.querySelector('.user-image')
+                let btnSubmitProfileImage = document.querySelector('.btn-submit-user-image')
+                
+                // console.log(url);
+                console.log('upload successful');
 
+                profileImage.style.backgroundImage = `url('${url}')`
+                btnSubmitProfileImage.style.display = "none"
+            })
+        
+    },
 }
