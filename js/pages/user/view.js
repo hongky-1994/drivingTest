@@ -42,9 +42,6 @@ const userView = {
                 submitModal.onclick = function(event){
                     event.preventDefault()
                     userView.validateEditPassword()
-
-                    // modalEditPassword.style.display = "none"
-                    // userView.showScreen('user')
                 }
                 formEditPassword.onsubmit = function(event){
                     event.preventDefault()
@@ -66,10 +63,9 @@ const userView = {
                     }
                 }
 
-                //su kien: user's profile image
                 let btnEditProfileImage = document.querySelector('.user-profile-icon')
                 let btnSubmitProfileImage = document.querySelector('.btn-submit-user-image')
-                // let profileImage = document.querySelector('.user-image')
+
 
                 btnEditProfileImage.onclick = function(){
                     btnSubmitProfileImage.style.display = "block"
@@ -92,8 +88,24 @@ const userView = {
         let currentEmail = firebase.auth().currentUser.email || ""
         userEmailHtml.innerHTML += currentEmail
 
-        //TODO: show profile image
-        
+        //display profile image
+        let profileImage = document.querySelector('.user-image')
+        let storageRef = firebase.storage().refFromURL("gs://driving-test-exam.appspot.com/")
+        let listRef = storageRef.child(`user-image/${currentEmail}`)
+
+        listRef.listAll().then((res)=>{
+            if(res.items.length){
+                let item = res.items[0]
+                item
+                .getDownloadURL()
+                .then(url => {
+                    profileImage.style.backgroundImage = `url('${url}')`
+                })
+                //pick the earliest url in the (???)
+            }else{
+                profileImage.style.backgroundImage = "url('https://vn112.com/wp-content/uploads/2018/01/1516131509lc4p8.jpg')"
+            }
+        })
     },
     validateEditPassword: () => {
         //get data
