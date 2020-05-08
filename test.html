@@ -13,9 +13,9 @@
 </head>
 <body> 
   <section class="user-container">
-    <div class="user-content">
+    <div class="user-content row">
       <!-- user info -->
-      <div class="user-info">
+      <div class="user-info col-lg-6 col-12">
         <div class="user-greetings">
           <div>Xin chào, user</div>
           <button class="btn-edit-icon icon-greetings">
@@ -37,34 +37,8 @@
           </button>
         </div>
       </div>
-
-      <!-- modal edit password --> 
-      <div class="modal-edit-password">
-        <div class="modal-edit-password-container">
-          <form class="form-input-edit-password">
-            <span class="close-modal-edit-password">Cancel</span>
-            <button class="submit-modal-edit-password">Done</button>
-
-            <div class="input-wrapper-edit-password">
-              <input type="password" name="currentPassword" placeholder="Enter your current password">
-              <div id="input-current-password-error" class="message-error"></div>
-            </div>
-            <div class="input-wrapper-edit-password">
-              <input type="password" name="newPassword" placeholder="Enter your new password">
-              <div id="input-new-password-error" class="message-error"></div>
-            </div>
-            <div class="input-wrapper-edit-password">
-              <input type="password" name="confirmNewPassword" placeholder="Confirm your new password">
-              <div id="input-confirm-new-password-error" class="message-error"></div>
-            </div>
-
-          </form>
-        </div>
-      </div>
-
-
       <!-- user test result -->
-      <div class="user-result">
+      <div class="user-result col-lg-6 col-12">
         <div class="user-test-history">
           <table class="table-test-history">
             <thead class="table-header">
@@ -94,8 +68,8 @@
           </table>
         </div>
 
-        <div class="user-pros-cons">
-          <div class="user-pros">
+        <div class="user-pros-cons row">
+          <div class="user-pros col-12 col-lg-6">
             <table class="table-test-pros">
               <thead class="table-header">
                 <tr>
@@ -120,9 +94,8 @@
                 </tr>
               </tbody>
             </table>
-          </div>
-      
-          <div class="user-cons">
+          </div>  
+          <div class="user-cons cole-12 col-lg-6">
             <table class="table-test-cons">
               <thead class="table-header">
                 <tr>
@@ -149,10 +122,35 @@
             </table>
           </div>
         </div>
+
+
+        </div>
+      </div>
+            <!-- modal edit password --> 
+      <div class="modal-edit-password">
+        <div class="modal-edit-password-container">
+          <form class="form-input-edit-password">
+            <span class="close-modal-edit-password">Cancel</span>
+            <button class="submit-modal-edit-password">Done</button>
+
+            <div class="input-wrapper-edit-password">
+              <input type="password" name="currentPassword" placeholder="Enter your current password">
+              <div id="input-current-password-error" class="message-error"></div>
+            </div>
+            <div class="input-wrapper-edit-password">
+              <input type="password" name="newPassword" placeholder="Enter your new password">
+              <div id="input-new-password-error" class="message-error"></div>
+            </div>
+            <div class="input-wrapper-edit-password">
+              <input type="password" name="confirmNewPassword" placeholder="Confirm your new password">
+              <div id="input-confirm-new-password-error" class="message-error"></div>
+            </div>
+
+          </form>
+        </div>
       </div>
     </div>
-    <input type="file" class="custom-input">
-    <input type="submit" value="Submit">
+
 
   </section>
 

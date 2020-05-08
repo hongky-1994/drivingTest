@@ -3,7 +3,7 @@ firebase.auth().onAuthStateChanged((user) => {
     authModel.user = {
       name: user.displayName || authModel.user.name,
       email: user.email || null,
-      photoUrl: user.photoURL || "./js/assets/images/anonymous-icon.png",
+      photoUrl: user.photoURL || "./js/assets/images/anonymous-icon.png", //get url from userController?
       emailVerified: user.emailVerified,
       uid: user.uid,
       isAnonymous: user.isAnonymous

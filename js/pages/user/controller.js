@@ -49,9 +49,19 @@ const userController = {
         task
             .then(snapshot => snapshot.ref.getDownloadURL())
             .then(url => {
+                let user = firebase.auth().currentUser
                 let profileImage = document.querySelector('.user-image')
                 let btnSubmitProfileImage = document.querySelector('.btn-submit-user-image')
-                
+            
+                user.updateProfile({
+                    photoURL: url
+                }).then(()=>{
+                    authModel.user.photoURL = url
+                    console.log('updated photo');
+                    authView.openModal(true, "Thông báo","success", "Update succesfully")
+                    console.log(authModel.user, user);
+                    
+                })
                 // console.log(url);
                 console.log('upload successful');
 
