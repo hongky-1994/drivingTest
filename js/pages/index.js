@@ -8,8 +8,27 @@ firebase.auth().onAuthStateChanged((user) => {
       uid: user.uid,
       isAnonymous: user.isAnonymous
     }
+
+    // check current path 
+    const current =  localStorage.getItem("currentLocation")
     layoutView.show(".header")
-    userView.showScreen("user")
+    console.log("Location", current)
+
+    switch (current) {
+      case "testType":
+        examView.showScreen('testType')
+        console.log("Open test type")
+        break;
+      
+      case "userPage": 
+        userView.showScreen("user")
+        break;
+        
+      default:
+        userView.showScreen("user")
+        break;
+    }
+
 
   } else {
     authModel.user = {}
@@ -17,3 +36,4 @@ firebase.auth().onAuthStateChanged((user) => {
     authView.showScreen("signIn")
   }
 })
+

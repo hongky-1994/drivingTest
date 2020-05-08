@@ -22,6 +22,11 @@ const authComponents = {
             <span class="error__message error__password text-danger"></span>
           </div>
         </div>
+        <div class="form-group d-flex">
+          <p class="font-italic mb-5 h5 color--gray2 color--hover--blue1 pointer"
+            onclick="authView.showScreen('resetPassword')"  
+          >Quên mật khẩu ?</p>
+        </div>
         <div class="form-group">
           <button type="submit" class="h2 w-100 bg--purple2 text-white p-2 border-0 rounded--15 shadow">Đăng nhập</button>
         </div>
@@ -84,6 +89,27 @@ const authComponents = {
           <h3 class="text-justify color--grey3">- Để có thể lưu trữ kết quả và xem lại lịch sử thi, vui lòng đăng nhập hoặc đăng ký tài khoản.</h3>
         </div>
         <button type="submit" class="h2 w-100 bg--purple2 text-white p-2 border-0 rounded--15 shadow" >Đăng nhập ẩn danh</button>
+      </form>
+    </div>
+  `,
+  resetPassword: `
+  <div class="container auth-container pt-5">
+      <form class="w-100 bg-white rounded--15" onsubmit="authView.resetPassword(event)">
+        <h1 class="auth--title display-4 font-weight-bold text-center mb-5 color--purple2 text-shadow">DRIVING TEST EXAM</h1>
+        <div class="row mb-5 bg--grey1 p-2 rounded--15 shadow">
+          <h2 class="col-4 m-0 py-2 text-center rounded--15 pointer color--purple2" onclick="authView.showScreen('signIn')">Quay lại</h2>
+          <h2 class="col-8 m-0 py-2 text-center rounded--15 pointer text-white bg--purple2">Lấy lại mật khẩu</h2>
+        </div>
+        <div class="form-group row mb-3">
+          <label for="email" class="col-3 h4">Email đăng ký của bạn</label>
+          <div class="input-wrapper col-9">
+            <input type="text" class="form-control h4" name="email" placeholder="VD: test1@gmail.com"/>
+            <span class="error__message error__email text-danger"></span>
+          </div>  
+        </div>
+        <div class="form-group">
+          <button type="submit" class="h2 w-100 bg--purple2 text-white p-2 border-0 rounded--15 shadow">Gửi email xác nhận.</button>
+        </div>
       </form>
     </div>
   `,
