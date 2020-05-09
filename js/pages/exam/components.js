@@ -1,10 +1,10 @@
-examComponents = {
+const examComponents={
     testType: `
     <div class="title-holder">
         <div class="test-type-title color--purple1">CHỌN HÌNH THỨC THI</div>
     </div>
     <section class="test-type-section">
-        <div class="test-type-container structured-test">
+        <div class="test-type-container structured-test" onclick = "examView.showScreen('structuredTest')">
             <div class="test-type bg--blue1 color--white1">
                 Cấu trúc
             </div>
@@ -23,7 +23,7 @@ examComponents = {
                 </p>                
             </div>
         </div>
-        <div class="test-type-container random-test">    
+        <div class="test-type-container random-test" onclick="examView.showScreen('randomTest')">    
             <div class="test-type bg--purple1 color--white1">
                 Tổng hợp
             </div>
@@ -34,6 +34,51 @@ examComponents = {
         </div>
     </section>
     `,
-    testQuestion: `
+    structuredTest: `
+    <div class="section-container">
+      <div class="exam-left-column">
+        <div class="timer-container bg--pink2">
+          Thời gian còn lại<br>
+          <div class="timer-time-container">
+            <span id="minute" class="timer-time"></span>:<span class="timer-time" id="second"></span>
+          </div>
+        </div>
+        <div class="question-container">
+        </div>
+      </div>
+      <div class="exam-right-column">
+        <p class="test-question"></p>
+        <form class="test-answer-form">
+          <div class="test-answer-container col-xl-6">
+            <input type="checkbox" id="answer1" name="answer1">
+            <label for="answer1">
+            </label>
+          </div>
+
+          <div class="test-answer-container col-xl-6">
+            <input type="checkbox" id="answer2" name="answer2">
+            <label for="answer2">
+            </label>
+          </div>
+
+          <div class="test-answer-container col-xl-6">
+            <input type="checkbox" id="answer3" name="answer3">
+            <label for="answer3">
+            </label>
+          </div>
+
+          <div class="test-answer-container col-xl-6">
+            <input type="checkbox" id="answer4" name="answer4">
+            <label for="answer4">
+            </label>
+          </div>
+ 
+           
+
+          
+          
+        </form>
+      </div>
+    </div>
     `
 }

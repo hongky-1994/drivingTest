@@ -24,6 +24,9 @@ firebase.auth().onAuthStateChanged((user) => {
         userView.showScreen("user")
         break;
         
+        case "testType":{
+          examView.showScreen("testType")
+        }
       default:
         userView.showScreen("user")
         break;
