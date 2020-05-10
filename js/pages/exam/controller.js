@@ -61,8 +61,11 @@ const examController = {
             userAnswerNotSaved.push(answerIdShorten)
             userAnswerNotSaved.sort((a, b) => a - b)
         })
+        console.log("userAnswerNotSaved", userAnswerNotSaved)
         let userAnswer = examModel.list30Answer()[thisQuestionName - 1].userAnswer
         userAnswer = userAnswerNotSaved
+        console.log("userAnswer", userAnswer);
+        
 
     },
     saveThisQuestionName: (thisQuestionName) => {

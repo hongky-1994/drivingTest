@@ -57,10 +57,7 @@ const examView = {
                     console.log("form changed")
                     examController.saveUserAnswerTo(examModel.thisQuestionName)
                 })
-                // let examRightColumn = document.querySelector(".exam-right-column")
-                // const callback = () => {}
-                // const observer = new MutationObserver(callback)
-                // observer.observe(examRightColumn, { characterData:true, subtree:true, childList: true })
+
 
             }
         }
@@ -85,7 +82,13 @@ const examView = {
                 </label>
                 `
             }    
-        });
+        })
+        
+        let userAnswer = examModel.list30Answer()[index].userAnswer
+        userAnswer.forEach((element) => {
+            let checkedAnswer = document.querySelector(`#answer-${element}`)
+            checkedAnswer.setAttribute("checked")
+        })
     },
 
     changeCurrentQuestionBoxColor: (currentQuestionBox) => {

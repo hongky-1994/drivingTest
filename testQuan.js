@@ -20,10 +20,11 @@
 //trừ string
 // console.log("question-1".replace("question-", ""));
 
-//thêm event chang cho form
-let form = document.querySelector("form")
-form.addEventListener('change', () => {alert("form changed")})
+//thêm event change cho form
+// let form = document.querySelector("form")
+// form.addEventListener('change', () => {alert("form changed")})
 
+//tìm bug
 let checkedAnswers = document.querySelectorAll('input:checked')
 let userAnswerNotSaved = []
 checkedAnswers.forEach(element => {
@@ -32,5 +33,6 @@ checkedAnswers.forEach(element => {
     userAnswerNotSaved.push(answerIdShorten)
     userAnswerNotSaved.sort((a, b) => a - b)
 })
+
 let userAnswer = examModel.list30Answer()[thisQuestionName - 1].userAnswer
 userAnswer = userAnswerNotSaved
