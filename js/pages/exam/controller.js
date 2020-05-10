@@ -52,5 +52,21 @@ const examController = {
         }
         )
     },
+    saveUserAnswerTo: (thisQuestionName) => {
+        let checkedAnswers = document.querySelectorAll('input:checked')
+        let userAnswerNotSaved = []
+        checkedAnswers.forEach(element => {
+            let answerId = element.id
+            let answerIdShorten = answerId.replace("answer-", "")
+            userAnswerNotSaved.push(answerIdShorten)
+            userAnswerNotSaved.sort((a, b) => a - b)
+        })
+        let userAnswer = examModel.list30Answer()[thisQuestionName - 1].userAnswer
+        userAnswer = userAnswerNotSaved
+
+    },
+    saveThisQuestionName: (thisQuestionName) => {
+        examModel.thisQuestionName = thisQuestionName
+    }
 }
 

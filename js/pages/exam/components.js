@@ -48,35 +48,33 @@ const examComponents={
       </div>
       <div class="exam-right-column">
         <p class="test-question"></p>
+        <div class="test-image"></div>
         <form class="test-answer-form">
           <div class="test-answer-container col-xl-6">
-            <input type="checkbox" id="answer1" name="answer1">
-            <label for="answer1">
-            </label>
+            <!--<input type="checkbox" id="answer0" name="answer0" >
+            <label for="answer0" >
+            </label>-->
           </div>
 
           <div class="test-answer-container col-xl-6">
-            <input type="checkbox" id="answer2" name="answer2">
+            <!--<input type="checkbox" id="answer2" name="answer2">
             <label for="answer2">
-            </label>
+            </label>-->
           </div>
 
           <div class="test-answer-container col-xl-6">
-            <input type="checkbox" id="answer3" name="answer3">
+            <!--<input type="checkbox" id="answer3" name="answer3">
             <label for="answer3">
-            </label>
+            </label>-->
           </div>
 
           <div class="test-answer-container col-xl-6">
-            <input type="checkbox" id="answer4" name="answer4">
+            <!--<input type="checkbox" id="answer4" name="answer4">
             <label for="answer4">
-            </label>
-          </div>
- 
-           
+            </label>-->
+          </div>  
 
-          
-          
+          <button class="submit-answer" type="submit">Nộp bài</button>
         </form>
       </div>
     </div>
