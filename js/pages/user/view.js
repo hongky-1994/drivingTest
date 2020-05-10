@@ -111,11 +111,9 @@ const userView = {
             }
             profileImage.onmouseout = function(){
                 profileIcon.style.display = "none"
-
             }
         }else{
             profileImage.style.backgroundImage = `url('${photoURL}')`
-
         }
     },
     
