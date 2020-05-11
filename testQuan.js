@@ -25,14 +25,61 @@
 // form.addEventListener('change', () => {alert("form changed")})
 
 //tìm bug
-let checkedAnswers = document.querySelectorAll('input:checked')
-let userAnswerNotSaved = []
-checkedAnswers.forEach(element => {
-    let answerId = element.id
-    let answerIdShorten = answerId.replace("answer-", "")
-    userAnswerNotSaved.push(answerIdShorten)
-    userAnswerNotSaved.sort((a, b) => a - b)
-})
+// let checkedAnswers = document.querySelectorAll('input:checked')
+// let userAnswerNotSaved = []
+// checkedAnswers.forEach(element => {
+//     let answerId = element.id
+//     let answerIdShorten = answerId.replace("answer-", "")
+//     userAnswerNotSaved.push(answerIdShorten)
+//     userAnswerNotSaved.sort((a, b) => a - b)
+// })
 
-let userAnswer = examModel.list30Answer()[thisQuestionName - 1].userAnswer
-userAnswer = userAnswerNotSaved
+// let userAnswer = examModel.list30Answer()[thisQuestionName - 1].userAnswer
+// userAnswer = userAnswerNotSaved
+
+//tìm more bug
+// let abc = [...Array(30)].map((value, index) => {
+//     return {
+//         question: `question-${examModel.list30Index[index]}`,
+//         userAnswer: [],
+//     }
+// })
+// abc[0].userAnswer = [1,2,3]
+// console.log(abc);
+
+// Promise
+// api.getUser = function(username) {
+//     // Hàm api.getUser() trả về một promise object
+//     return new Promise((resolve, reject) => {
+//       // Gửi AJAX request
+//       http.get(`/users/${username}`, (err, result) => {
+//         // Nếu có lỗi bên trong callback, chúng ta gọi đến hàm `reject()`
+//         if (err) return reject(err)
+  
+//         // Ngược lại, dùng `resolve()` để trả dữ liệu về cho `.then()`
+//         resolve(result)
+//       })
+//     })
+//   }
+
+//more promise 
+// const promise = iWillBuyCake('bánh sinh nhật')
+// iWillBuyCake('bánh sinh nhật')
+//     .then("quẩy như dự định") //resolved
+//     .catch("kế hoạch B")  //rejected
+
+let money = 999
+const iWillBuyCake = cakeType => {
+    return new Promise((resolve, reject ) =>{
+        setTimeout(() => {
+            if (money > 1000) {
+                resolve(cakeType)
+            } else {
+                reject("Không đủ tiền")
+            }
+        }, 1000)
+    })
+}
+
+
+

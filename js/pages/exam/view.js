@@ -8,63 +8,79 @@ const examView = {
                 break
             }
             case 'structuredTest': {
-                examController.getStructuredIndex()
-                examController.getQuestionObject()
-                app.innerHTML = examComponents.structuredTest
                 let list30Index = examModel.list30Index
-                let questionContainer = document.querySelector(".question-container") 
-                
-                for (i = 0; i < 30; i += 5) {
-                    questionContainer.innerHTML += `
-                    <div class="row col-container justify-content-between mx-0 mb-3">
-                        <div class="col-2 px-0 ">
-                            <div class="question-box bg--grey2 color--white1" 
-                            id="question-${i + 1}">${i + 1}</div>
-                        </div>
-                        <div class="col-2 px-0 ">
-                            <div class="question-box bg--grey2 color--white1" 
-                            id="question-${i + 2}">${i + 2}</div>
-                        </div>
-                        <div class="col-2 px-0 ">
-                            <div class="question-box bg--grey2 color--white1" 
-                            id="question-${i + 3}">${i + 3}</div>
-                        </div>
-                        <div class="col-2 px-0 ">
-                            <div class="question-box bg--grey2 color--white1" 
-                            id="question-${i + 4}">${i + 4}</div>
-                        </div>
-                        <div class="col-2 px-0 ">
-                            <div class="question-box bg--grey2 color--white1" 
-                            id="question-${i + 5}">${i + 5}</div>
-                        </div>
-                    </div>
-                    `
-                }
+                examController.getStructuredIndex()
 
-                examView.showFirstQuestion()
-
-                list30Index.forEach((element, index) => {                 
-                    let questionBox = document.querySelector(`#question-${index + 1}`)
-                    questionBox.addEventListener("click", () => {
-                        examView.showQuestion(index)
-                        examView.changeCurrentQuestionBoxColor(questionBox)
-                        examController.saveThisQuestionName(index + 1)
+                const getQuestionObject = () => {
+                    return new Promise((resolve, reject) => {
+                        examController.getQuestionObject()
+                        if (examModel.dataState) {
+                            resolve(examModel.list30Question)
+                        } else {
+                            reject("có lỗi xảy ra")
+                        }
                     })
-                })
+                }
+                let promise1 = getQuestionObject()
+                    .then(result => {
+                        app.innerHTML = examComponents.structuredTest
+                        examController.createList30Answer()
+                        examView.showQuestionBoxes()
+                        examView.showFirstQuestion(result)
+                        examView.setUpButtons(list30Index)
+                        let testAnswerForm = document.querySelector(".test-answer-form")
+                        testAnswerForm.addEventListener("change",() => {
+                            examController.saveUserAnswerTo(examModel.thisQuestionName)
+                        })
+                    })
+                    .catch(err => console.log(err))
+                console.log("promise1", promise1)
 
-                let testAnswerForm = document.querySelector(".test-answer-form")
-                testAnswerForm.addEventListener("change",() => {
-                    console.log("form changed")
-                    examController.saveUserAnswerTo(examModel.thisQuestionName)
-                })
 
 
+
+                // //disable all buttons
+                // let nodes = document.querySelector(".exam-left-column").getElementsByTagName('*');
+                //     for(let i = 0; i < nodes.length; i++){
+                //         nodes[i].disabled = true;
+                //     }
+                break
             }
         }
     },
 
-    showQuestion: async (index) => {        
-        let questionObject = examModel.list30Question[index] 
+    showQuestionBoxes: () => {
+        let questionContainer = document.querySelector(".question-container")                     
+        for (let i = 0; i < 30; i += 5) {
+            questionContainer.innerHTML += `
+            <div class="row col-container justify-content-between mx-0 mb-3">
+                <div class="col-2 px-0 ">
+                    <div class="question-box bg--grey2 color--white1" 
+                    id="question-${i + 1}">${i + 1}</div>
+                </div>
+                <div class="col-2 px-0 ">
+                    <div class="question-box bg--grey2 color--white1" 
+                    id="question-${i + 2}">${i + 2}</div>
+                </div>
+                <div class="col-2 px-0 ">
+                    <div class="question-box bg--grey2 color--white1" 
+                    id="question-${i + 3}">${i + 3}</div>
+                </div>
+                <div class="col-2 px-0 ">
+                    <div class="question-box bg--grey2 color--white1" 
+                    id="question-${i + 4}">${i + 4}</div>
+                </div>
+                <div class="col-2 px-0 ">
+                    <div class="question-box bg--grey2 color--white1" 
+                    id="question-${i + 5}">${i + 5}</div>
+                </div>
+            </div>
+            `
+        }
+    },
+
+    showQuestion: (index, list30Question) => {        
+        let questionObject = list30Question[index]        
         let testQuestion = document.querySelector(".test-question")
         let testImage = document.querySelector(".test-image")
         testQuestion.innerHTML = questionObject.question
@@ -81,13 +97,15 @@ const examView = {
                     ${questionObject.answers[index].value}
                 </label>
                 `
-            }    
+            } else if (questionObject.answers[index].value == null) {
+                questionAnwerContainers[index].innerHTML = []
+            }
         })
         
-        let userAnswer = examModel.list30Answer()[index].userAnswer
+        let userAnswer = examModel.list30Answer[index].userAnswer
         userAnswer.forEach((element) => {
             let checkedAnswer = document.querySelector(`#answer-${element}`)
-            checkedAnswer.setAttribute("checked")
+            checkedAnswer.setAttribute("checked","")
         })
     },
 
@@ -99,12 +117,31 @@ const examView = {
         currentQuestionBox.classList.add('current-question')
     },
 
-    showFirstQuestion: () => {
-        setTimeout(() => {
-            examView.showQuestion(0)
+    showFirstQuestion: (list30Question) => {
+        
+            examView.showQuestion(0, list30Question)
             examView.changeCurrentQuestionBoxColor(document.getElementById('question-1'))
-        }, 1500) 
-    }
+        
+    },
+
+    setUpButtons: (list30Index) => {
+        list30Index.forEach((element, index) => {                 
+            let questionBox = document.querySelector(`#question-${index + 1}`)
+            questionBox.addEventListener("click", () => {
+                examView.showQuestion(index, examModel.list30Question)
+                examView.changeCurrentQuestionBoxColor(questionBox)
+                examController.saveThisQuestionName(index + 1)
+            })
+        })
+    },
+    // khóa các nút chọn testtype trong lúc test load
+    loadTest: (testType, testSelector) => {
+        let structuredTest = document.querySelector(testSelector)
+        examView.showScreen(testType)
+        setTimeout(() => {
+            structuredTest.addEventListener("click", examView.showScreen(testType))            
+        }, 2500)
+    },
 
 
 }

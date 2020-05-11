@@ -31,26 +31,19 @@ const examController = {
         list30Index = randomSelectCategory( 9, 256, 100,list30Index)  // bien bao           256-355 (100 ques)  pick-9
         list30Index = randomSelectCategory( 9, 356, 95,list30Index)   // Sa hinh            356-450 (95  ques)  pick-9    
         
-        // await list30Index.forEach( (e) => {
-        //     firebase.firestore().doc(`tests/B2/question-list/question-${e}`)
-        //         .get()
-        //         .then( result => list30Questions.push(result.data()))
-        //         .catch(err => console.log("Error:  ", err))
-        // })
-        
         examModel.list30Index = list30Index
 
     },
-    getQuestionObject: () => {
-        examModel.list30Index.forEach( async (element) => {
-            await firebase.firestore().doc(`tests/B2/question-list/question-${element}`)
+    getQuestionObject: async () => {
+        await examModel.list30Index.forEach((element) => {
+            firebase.firestore().doc(`tests/B2/question-list/question-${element}`)
                 .get()
                 .then((result) => {
                     examModel.list30Question.push(result.data())
                 })
                 .catch((err) => console.log("Co loi:", err))
-        }
-        )
+        })
+        examModel.dataState = true
     },
     saveUserAnswerTo: (thisQuestionName) => {
         let checkedAnswers = document.querySelectorAll('input:checked')
@@ -59,17 +52,21 @@ const examController = {
             let answerId = element.id
             let answerIdShorten = answerId.replace("answer-", "")
             userAnswerNotSaved.push(answerIdShorten)
-            userAnswerNotSaved.sort((a, b) => a - b)
         })
-        console.log("userAnswerNotSaved", userAnswerNotSaved)
-        let userAnswer = examModel.list30Answer()[thisQuestionName - 1].userAnswer
-        userAnswer = userAnswerNotSaved
-        console.log("userAnswer", userAnswer);
-        
-
+        userAnswerNotSaved.sort((a, b) => a - b)
+        examModel.list30Answer[thisQuestionName - 1].userAnswer = userAnswerNotSaved        
     },
     saveThisQuestionName: (thisQuestionName) => {
         examModel.thisQuestionName = thisQuestionName
+    },
+
+    createList30Answer: () => {
+        examModel.list30Answer = [...Array(30)].map((value, index) => {
+            return {
+                question: `question-${examModel.list30Index[index]}`,
+                userAnswer: [],
+            }
+        })
     }
 }
 
