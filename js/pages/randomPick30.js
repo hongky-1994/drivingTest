@@ -1,10 +1,25 @@
 const listIndex = document.querySelector(".list__index")
 const listQuestion = document.querySelector(".list__questions")
+const score = document.querySelector('.user-score')
 const btnShowIndex = document.querySelector(".btn.btn-primary")
 const btnShowQues = document.querySelector(".btn.btn-success")
-let list30Index = []
-const list30Questions =[]
 
+const btnSubmitUserAns = document.querySelector('.btn.btn-secondary')
+let list30Index = []
+let list30Questions =[]
+
+//get userAns from firebase
+let userAns = [[1, null],[1, null],[1, null],[1, null],[1, null],
+                [1, null],[1, null],[1, null],[1, null],[1, null],
+                [1, null],[1, null],[1, null],[1, null],[1, null],
+                [1, null],[1, null],[1, null],[1, null],[1, null],
+                [1, null],[1, null],[1, null],[1, null],[1, null],
+                [1, null],[1, null],[1, null],[1, null],[1, null],]
+
+
+let listCorrectAns = []
+let indexQues = 0
+let correctCount = 0
 
 const showList = () => {
   
@@ -41,8 +56,27 @@ const showQues =  () => {
   
 
 }
-btnShowIndex.addEventListener('click', showList)
-btnShowQues.addEventListener('click', showQues)
+
+const submitUserAns = () => {
+  //array of correct answer
+  for (let question of list30Questions){
+    listCorrectAns.push(question.correct)
+  }
+
+  //scoring
+  for (let ans of userAns){
+      let correctAns = listCorrectAns[indexQues]
+      if(JSON.stringify(ans)==JSON.stringify(correctAns) || JSON.stringify(ans.reverse())==JSON.stringify(correctAns)){
+          correctCount++
+      }else{
+        console.log(list30Questions[indexQues])
+      }
+      indexQues++
+  }
+  // console.log('correct: ', correctCount)
+  score.innerHTML = `Correct: ${correctCount}/30`
+
+}
 
 // random question each category
 const randomSelectCategory = ( numberOfQuestion, startQuestion, queryLength, arrayList ) => {
@@ -56,6 +90,11 @@ const randomSelectCategory = ( numberOfQuestion, startQuestion, queryLength, arr
   }
   return arrayList
 }
+
+
+btnShowIndex.addEventListener('click', showList)
+btnShowQues.addEventListener('click', showQues)
+btnSubmitUserAns.addEventListener('click', submitUserAns)
 
 
 // random number
