@@ -1,5 +1,5 @@
 /* testType */
-.title {
+.test-type-title {
     margin: auto;
     font-size: 3rem;
     text-align: center;
@@ -57,6 +57,11 @@
     width: 18rem;
 }
 
+.exam-right-column {
+    margin-left: 6rem;
+    width:100%;
+}
+
 .timer-container {
     width: 18rem;
     height: 7rem;
@@ -64,12 +69,13 @@
     text-align: center;
     font-size: 1.8rem;
     box-shadow: 0px 5px 5px var(--colorGrey3) ;
+    border-radius: 10px;
 }
 
-.question-container {
-    display: flex;
-    justify-content: space-between;
+.timer-time-container {
+    font-size: 2.5rem;
 }
+
 .question-box {
     width: 2.5rem;
     height: 2.5rem;
@@ -78,4 +84,66 @@
     border-radius: 5px;
     box-shadow: 0px 5px 5px var(--colorGrey3) ;
     font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.test-answer-container {
+    display: flex;
+    margin-top: 1rem;
+}
+
+.test-answer-form {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1.2rem;
+    justify-content: flex-end;
+}
+
+.test-question {
+    font-weight: 700;
+    font-style: italic;
+    font-size: 1.5rem;
+}
+
+.test-answer-container input {
+    visibility: hidden;
+}
+
+.test-answer-container label {
+    cursor: pointer;
+}
+
+.test-answer-container input:checked + label {
+    color: var(--colorPurple2);
+}
+
+.test-answer-container label:hover {
+    color: var(--colorPurple2)
+}
+
+.test-image {
+    text-align: center;
+}
+
+button {
+    height: 3rem;
+    border-radius: 10px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    color: var(--colorWhite1);
+    border: 0;
+    box-shadow: 0px 5px 5px var(--colorGrey3);
+}
+
+.submit-answer {
+    background-color: var(--colorOrange2);
+
+}
+
+.current-question {
+    background-color: var(--colorPink1) !important;
+}
+
+.done-question {
+    background-color: var(--colorBlue1);
 }
