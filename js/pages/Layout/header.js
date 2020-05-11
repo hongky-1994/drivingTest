@@ -24,9 +24,6 @@ const layoutView = {
       navbarOverlay.style.display = "none"
       app.style.height = ""
     }
-  },
-  saveLocation: (location) => {
-    localStorage.setItem("currentLocation", location)
   }
 }
 
@@ -44,7 +41,7 @@ const headerComponents = {
           <div class="avata__container pointer">
             <img class="avata__img" src="" alt="user avata"/>
           </div>
-          <h2 class="mb-0 px-3 border-right header__welcome pointer" onclick="userView.showScreen('user')">Xin chào </h2>
+          <h2 class="mb-0 px-3 border-right header__welcome pointer" onclick="push('user')">Xin chào </h2>
         </div>
         <i class="fas fa-bars fa-3x pointer" onclick="layoutView.showNav()" ></i>
       </div>
@@ -54,7 +51,7 @@ const headerComponents = {
 
     <div class="header__nav">
       <div class="header__item pl-4 py-3 color--grey3 h2 font-weight-lighter m-0 bg--white1 bg--hover--grey2 color--hover--purple2" 
-        onclick="examView.showScreen('testType'); layoutView.showNav()">
+        onclick="push('testType'); layoutView.showNav()">
         Kiểm tra kiến thức
       </div>
 
@@ -64,8 +61,13 @@ const headerComponents = {
       </div>
 
       <div class="header__item pl-4 py-3 color--grey3 h2 font-weight-lighter m-0 bg--white1 bg--hover--grey2 color--hover--purple2"
-        onclick="userView.showScreen('user'); layoutView.showNav()">
+        onclick="push('user'); layoutView.showNav()">
         Thông tin cá nhân
+      </div>
+
+      <div class="header__item pl-4 py-3 color--grey3 h2 font-weight-lighter m-0 bg--white1 bg--hover--grey2 color--hover--purple2"
+        onclick="push('admin'); layoutView.showNav()">
+        Trang quản lý câu hỏi của admin
       </div>
 
       <div class="header__item pl-4 py-3 text-danger h2 font-weight-lighter m-0 bg--white1 bg--hover--grey2 color--hover--red1"

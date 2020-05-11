@@ -1,7 +1,6 @@
 const userView = {
     showScreen: (screen) => {
         let app = document.querySelector('.app-container')
-        console.log("app",app)
 
         switch (screen) {
             case 'user':{

@@ -8,19 +8,15 @@ const authView = {
     e.preventDefault()
     const email = e.target.email.value
     const password = e.target.password.value
-    if (authView.validateAuthentication('signIn', {
-        email,
-        password
-      })) {
+    if (authView.validateAuthentication('signIn', {email,password})) {
       loadingView.show()
       firebase
         .auth()
         .signInWithEmailAndPassword(email, password)
         .then(() => {
           authView.openModal(true, "Thông báo","success", "Đăng nhập thành công")
-          userView.showScreen("user")
-          console.log("Open user page")
-          layoutView.saveLocation("userPage")
+          // userView.showScreen("user", 'user')
+          push('user')
           loadingView.hide()
 
         })
@@ -192,6 +188,6 @@ const authView = {
         }
     }
     return true
-}   
+  }   
 
 }
