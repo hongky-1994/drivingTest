@@ -1,11 +1,11 @@
 const loadingView = {
   show: () => {
-    const app = document.querySelector(".loader")
-    app.innerHTML = `<div class="loading__container"><div class="loading"></div></div>`
+    const loadingDiv = document.querySelector(".loader")
+    loadingDiv.innerHTML = `<div class="loading__container"><div class="loading"></div></div>`
   },
   hide: () => {
-    const app = document.querySelector(".loader")
-    app.innerHTML = ""
+    const loadingDiv = document.querySelector(".loader")
+    loadingDiv.innerHTML = ""
   }
 
 }

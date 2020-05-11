@@ -1,7 +1,6 @@
 const userView = {
     showScreen: (screen) => {
         let app = document.querySelector('.app-container')
-        console.log("app",app)
 
         switch (screen) {
             case 'user':{
@@ -41,12 +40,12 @@ const userView = {
                 }
                 submitModal.onclick = function(event){
                     event.preventDefault()
-                    userView.validateEditPassword()
+                    userView.submitToValidate()
                 }
                 formEditPassword.onsubmit = function(event){
                     event.preventDefault()
 
-                    userView.validateEditPassword()
+                    userView.submitToValidate()
                 }
                 window.onclick = function(){
                     if(this.event.target == modalEditPassword){
@@ -71,43 +70,55 @@ const userView = {
                     btnSubmitProfileImage.style.display = "block"
                     const file = document.querySelector('#photo').files[0]
                     if(file){
-                        btnSubmitProfileImage.onsubmit = userController.editProfileImage(file)
+                        btnSubmitProfileImage.onchange = userController.editProfileImage(file)
                     }
                 }
+
+
+                ////////see history///////
+                let seeHistory = document.querySelector('.test-history-see-all')
+                seeHistory.onclick = function(){
+                    userView.showScreen('history')
+                }
+
                 break;
             }
+            case 'history':{
+                app.innerHTML = userComponents.history;
+                
+
+            }
             default : {return}
-        
+         
         }
     },
     
     //functions in use
-    showCurrentUserInfo: () => {
+    showCurrentUserInfo:() => {
         //display user email
         let userEmailHtml = document.querySelector('.user-email-html')
-        let currentEmail = firebase.auth().currentUser.email || ""
-        userEmailHtml.innerHTML += currentEmail
-
-        //display profile image
+        let user = firebase.auth().currentUser
         let profileImage = document.querySelector('.user-image')
-        let storageRef = firebase.storage().refFromURL("gs://driving-test-exam.appspot.com/")
-        let listRef = storageRef.child(`user-image/${currentEmail}`)
+        let profileIcon = document.querySelector('.user-profile-icon')
 
-        listRef.listAll().then((res)=>{
-            if(res.items.length){
-                let item = res.items[0]
-                item
-                .getDownloadURL()
-                .then(url => {
-                    profileImage.style.backgroundImage = `url('${url}')`
-                })
-                //pick the earliest url in the (???)
-            }else{
-                profileImage.style.backgroundImage = "url('https://vn112.com/wp-content/uploads/2018/01/1516131509lc4p8.jpg')"
+        const {email, photoURL} = user
+        userEmailHtml.innerHTML = email
+        //display profile image
+        if(photoURL==null){
+            profileIcon.style.display = "none"
+            profileImage.style.backgroundImage = "url('./js/assets/images/anonymous-icon.png')" 
+            profileImage.onmousemove = function(){
+                profileIcon.style.display = "block"
             }
-        })
+            profileImage.onmouseout = function(){
+                profileIcon.style.display = "none"
+            }
+        }else{
+            profileImage.style.backgroundImage = `url('${photoURL}')`
+        }
     },
-    validateEditPassword: () => {
+    
+    submitToValidate: () => {
         //get data
         let modalEditPassword = document.querySelector('.modal-edit-password')
         let formEditPassword = document.querySelector('.form-input-edit-password')
@@ -140,8 +151,6 @@ const userView = {
             modalEditPassword.style.display = "block"
         }
     },
-
-
     validate: (condition, queryError, messageError) => {    //validate input
         if(condition){
             userView.setText(queryError, '')

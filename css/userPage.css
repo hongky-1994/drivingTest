@@ -51,12 +51,14 @@ margin-top: 2vh;
 margin-bottom: 2vh;
 }
 .user-profile-icon{
+color: #a1a1a1;
+opacity: 1 !important;
 background: none;
 border: none;
 position: relative;
 }
 .user-image:hover{
-filter: brightness(90%);
+filter: brightness(60%);
 transition: .3s ease;
 }
 .far.fa-edit:hover{
@@ -130,19 +132,79 @@ color: white;
 .user-result{
 width: 88vw;
 padding-left: 10vw;
+
 }
 
-.user-pros, .user-cons{
-width: 23vw;
+@media all and (max-width: 1440px) {
+    .user-pros, .user-cons{
+        width: 23vw;
+    }
+
+    .user-pros-cons{
+        display: flex;
+        justify-content: space-between;
+
+    }
+
 }
+
+@media all and (max-width: 1300px) {
+    .user-pros, .user-cons{
+        width: 46vw;
+        margin-bottom: 4vh;
+    }
+    .user-pros-cons{
+        display: flex;
+        flex-direction: column;
+    }
+    .user-result{
+        width: fit-content;
+        margin-right: 2vw;
+
+    }
+}
+
+@media all and (max-width: 1100px) {
+    .user-pros, .user-cons{
+        width: 46vw;
+        margin-bottom: 4vh;
+    }
+    .user-content{
+        margin-top: 6rem;
+    }
+    .user-info{
+        width: 100%;
+    }
+    .user-image-container{
+        display: flex;
+        justify-content: center;
+    }
+    .user-content{
+        display: flex;
+        flex-direction: column;
+    }
+    .user-email{
+        display: flex;
+        justify-content: center;
+    }
+    .user-result{
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        padding: none;
+    }
+    .user-test-history,.user-pros, .user-cons{
+        width: 70vw;
+    }
+}
+
 
 .user-test-history{
-margin-bottom: 4vh;
+    margin-bottom: 4vh;
 }
-
 .user-pros-cons{
-display: flex;
-justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 
 .table-header>tr>th{

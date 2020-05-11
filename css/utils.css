@@ -16,6 +16,9 @@ a:hover{
   width: 100vw;
   overflow: hidden;
 }
+.app-container{
+  height: calc(100vh - 5.5rem);
+}
 
 .html{
   font-size: 16p;
