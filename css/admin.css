@@ -33,7 +33,7 @@
   max-height: 40rem;
   display: block;
 }
-.table__body tr, thead{
+.table__body tr, .table__body thead{
   table-layout: fixed;
   display: table;
 }

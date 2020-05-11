@@ -12,9 +12,9 @@ a:hover{
 }
 
 #app{
-  height: 100vh ;
-  width: 100vw;
-  overflow: hidden;
+  /* height: 100vh ; */
+  /* width: 100vw; */
+  /* overflow-x: hidden !important; */
 }
 .app-container{
   height: calc(100vh - 5.5rem);

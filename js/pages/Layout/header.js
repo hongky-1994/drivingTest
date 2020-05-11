@@ -35,7 +35,7 @@ const headerComponents = {
   <section class="header">
     <div class="bg--purple1 py-2"></div>
     <div class="bg--purple2 d-flex w-100 justify-content-between align-items-center py-2 px-lg-5 px-md-4 px-2">
-      <h1 class="color--white1 my-1 pointer pl-lg-5 pl-md-4 pl-2" onclick=" mainView.showScreen('main')">DRIVING TEST</h1>
+      <h1 class="color--white1 my-1 pointer pl-lg-5 pl-md-4 pl-2" onclick="push('main')">DRIVING TEST</h1>
       <div class="color--white1 d-flex align-items-center pr-lg-5 pr-md-4 pr-2">
         <div class="d-sm-flex d-none align-items-center pr-4">
           <div class="avata__container pointer">
@@ -67,7 +67,7 @@ const headerComponents = {
 
       <div class="header__item pl-4 py-3 color--grey3 h2 font-weight-lighter m-0 bg--white1 bg--hover--grey2 color--hover--purple2"
         onclick="push('admin'); layoutView.showNav()">
-        Trang quản lý câu hỏi của admin
+        Trang quản lý câu hỏi của admin (chỉ admin mới thẩy -- bổ sung sau)
       </div>
 
       <div class="header__item pl-4 py-3 text-danger h2 font-weight-lighter m-0 bg--white1 bg--hover--grey2 color--hover--red1"
