@@ -86,9 +86,11 @@ const userView = {
             }
             case 'history':{
                 app.innerHTML = userComponents.history;
+                
+
             }
             default : {return}
-        
+         
         }
     },
     

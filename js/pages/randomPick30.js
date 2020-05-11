@@ -58,19 +58,24 @@ const showQues =  () => {
 }
 
 const submitUserAns = () => {
+  //array of correct answer
   for (let question of list30Questions){
     listCorrectAns.push(question.correct)
   }
 
+  //scoring
   for (let ans of userAns){
       let correctAns = listCorrectAns[indexQues]
       if(JSON.stringify(ans)==JSON.stringify(correctAns) || JSON.stringify(ans.reverse())==JSON.stringify(correctAns)){
           correctCount++
+      }else{
+        console.log(list30Questions[indexQues])
       }
       indexQues++
   }
   // console.log('correct: ', correctCount)
-  score.innerHTML = `Correct: ${correctCount}`
+  score.innerHTML = `Correct: ${correctCount}/30`
+
 }
 
 // random question each category
