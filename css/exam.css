@@ -125,7 +125,7 @@
     text-align: center;
 }
 
-button {
+.exam-button {
     height: 3rem;
     border-radius: 10px;
     padding-left: 1.5rem;
