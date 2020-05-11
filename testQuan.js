@@ -68,18 +68,21 @@
 //     .then("quẩy như dự định") //resolved
 //     .catch("kế hoạch B")  //rejected
 
-let money = 999
-const iWillBuyCake = cakeType => {
-    return new Promise((resolve, reject ) =>{
-        setTimeout(() => {
-            if (money > 1000) {
-                resolve(cakeType)
-            } else {
-                reject("Không đủ tiền")
-            }
-        }, 1000)
-    })
+// let money = 999
+// const iWillBuyCake = cakeType => {
+//     return new Promise((resolve, reject ) =>{
+//         setTimeout(() => {
+//             if (money > 1000) {
+//                 resolve(cakeType)
+//             } else {
+//                 reject("Không đủ tiền")
+//             }
+//         }, 1000)
+//     })
+// }
+
+// add class trùng
+let questionContainer = document.querySelector(".question-container")
+for (let i =0; i < 5; i++) {
+    questionContainer.classList.add("hello")
 }
-
-
-

@@ -31,6 +31,7 @@ const examView = {
                         let testAnswerForm = document.querySelector(".test-answer-form")
                         testAnswerForm.addEventListener("change",() => {
                             examController.saveUserAnswerTo(examModel.thisQuestionName)
+                            examView.changeDoneQuestionBoxColor()
                         })
                     })
                     .catch(err => console.log(err))
@@ -39,11 +40,7 @@ const examView = {
 
 
 
-                // //disable all buttons
-                // let nodes = document.querySelector(".exam-left-column").getElementsByTagName('*');
-                //     for(let i = 0; i < nodes.length; i++){
-                //         nodes[i].disabled = true;
-                //     }
+
                 break
             }
         }
@@ -115,6 +112,19 @@ const examView = {
             element.classList.remove('current-question')
         })
         currentQuestionBox.classList.add('current-question')
+    },
+
+    changeDoneQuestionBoxColor: () => {
+        let list30Answer = examModel.list30Answer
+        list30Answer.forEach((element, index) => {
+            let userAnswer = list30Answer[index].userAnswer
+            let questionBox = document.querySelector(`#question-${index + 1}`)
+            if (userAnswer.length) {
+                questionBox.classList.add('done-question')
+            } else {
+                questionBox.classList.remove('done-question')
+            }
+        })
     },
 
     showFirstQuestion: (list30Question) => {

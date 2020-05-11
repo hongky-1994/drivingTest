@@ -141,6 +141,9 @@ button {
 }
 
 .current-question {
-    background-color: var(--colorPink1);
+    background-color: var(--colorPink1) !important;
 }
 
+.done-question {
+    background-color: var(--colorBlue1);
+}
