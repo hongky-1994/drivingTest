@@ -3,5 +3,8 @@ const examModel = {
     list30Question: [],
     list30Answer: [], 
     thisQuestionName: 1,
-    dataState: false
+    list30UserAnswerShorten: [],
+    list30CorrectAnswer: [],
+    correctAnswers: 30,
+    onclickEvent: null
 }

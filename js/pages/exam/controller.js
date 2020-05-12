@@ -35,15 +35,11 @@ const examController = {
 
     },
     getQuestionObject: async () => {
-        await examModel.list30Index.forEach((element) => {
-            firebase.firestore().doc(`tests/B2/question-list/question-${element}`)
-                .get()
-                .then((result) => {
-                    examModel.list30Question.push(result.data())
-                })
-                .catch((err) => console.log("Co loi:", err))
-        })
-        examModel.dataState = true
+
+        for (let index of examModel.list30Index) {
+            let result = await firebase.firestore().doc(`tests/B2/question-list/question-${index}`).get()
+            examModel.list30Question.push(result.data())
+        }
     },
     saveUserAnswerTo: (thisQuestionName) => {
         let checkedAnswers = document.querySelectorAll('input:checked')
@@ -67,6 +63,38 @@ const examController = {
                 userAnswer: [],
             }
         })
+    }, 
+    
+    scoreTest: () => {
+        let list30Answer = examModel.list30Answer
+        let list30Question = examModel.list30Question
+        let list30UserAnswerShorten = examModel.list30UserAnswerShorten
+        let list30CorrectAnswer = examModel.list30CorrectAnswer
+        let correctAnswers = examModel.correctAnswers
+        list30Answer.forEach((element) => {
+            list30UserAnswerShorten.push(JSON.stringify(element.userAnswer))
+        })
+        list30Question.forEach((element) => {
+            let correct = element.correct.filter((value) => value != null)
+            list30CorrectAnswer.push(JSON.stringify(correct))
+        })
+        for (let i = 0; i < 30; i++ ) {
+            if (list30CorrectAnswer[i] != list30UserAnswerShorten[i]) {
+                correctAnswers--
+            }
+        }
+    }, 
+
+    lockTestTypeButton: (testType) => {
+        let testTypeHTML = document.querySelector(testType)
+        examModel.onclickEvent = testTypeHTML.getAttribute("onclick")
+        testTypeHTML.removeAttribute("onclick")
+    },
+
+    openTestTypeButton: (testType) => {
+        let testTypeHTML = document.querySelector(testType) 
+        testTypeHTML.setAttribute("onclick", examModel.onclickEvent)
     }
+
 }
 

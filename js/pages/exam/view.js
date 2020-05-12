@@ -1,5 +1,5 @@
 const examView = {
-    showScreen:   (screen) => {
+    showScreen: async (screen) => {
         let app = document.querySelector('.app-container')
         switch (screen) {
             case 'testType': {
@@ -8,39 +8,21 @@ const examView = {
                 break
             }
             case 'structuredTest': {
-                let list30Index = examModel.list30Index
                 examController.getStructuredIndex()
-
-                const getQuestionObject = () => {
-                    return new Promise((resolve, reject) => {
-                        examController.getQuestionObject()
-                        if (examModel.dataState) {
-                            resolve(examModel.list30Question)
-                        } else {
-                            reject("có lỗi xảy ra")
-                        }
-                    })
-                }
-                let promise1 = getQuestionObject()
-                    .then(result => {
-                        app.innerHTML = examComponents.structuredTest
-                        examController.createList30Answer()
-                        examView.showQuestionBoxes()
-                        examView.showFirstQuestion(result)
-                        examView.setUpButtons(list30Index)
-                        let testAnswerForm = document.querySelector(".test-answer-form")
-                        testAnswerForm.addEventListener("change",() => {
-                            examController.saveUserAnswerTo(examModel.thisQuestionName)
-                            examView.changeDoneQuestionBoxColor()
-                        })
-                    })
-                    .catch(err => console.log(err))
-                console.log("promise1", promise1)
-
-
-
-
-
+                examController.lockTestTypeButton(".structured-test")
+                await examController.getQuestionObject()
+                examController.createList30Answer()
+                app.innerHTML = examComponents.structuredTest
+                examView.showQuestionBoxes()
+                examView.showFirstQuestion()
+                examView.setUpButtons()
+                let testAnswerForm = document.querySelector(".test-answer-form")
+                testAnswerForm.addEventListener("change", () => {
+                    examController.saveUserAnswerTo(examModel.thisQuestionName)
+                    examView.changeDoneQuestionBoxColor()
+                })
+                examView.timer.showRemainingTime()
+                examController.openTestTypeButton(".structured-test")
                 break
             }
         }
@@ -76,7 +58,8 @@ const examView = {
         }
     },
 
-    showQuestion: (index, list30Question) => {        
+    showQuestion: (index) => {
+        let list30Question = examModel.list30Question        
         let questionObject = list30Question[index]        
         let testQuestion = document.querySelector(".test-question")
         let testImage = document.querySelector(".test-image")
@@ -127,40 +110,31 @@ const examView = {
         })
     },
 
-    showFirstQuestion: (list30Question) => {
-        
-            examView.showQuestion(0, list30Question)
+    showFirstQuestion: () => {
+            examView.showQuestion(0)
             examView.changeCurrentQuestionBoxColor(document.getElementById('question-1'))
-        
     },
 
-    setUpButtons: (list30Index) => {
+    setUpButtons: () => {
+        let list30Index = examModel.list30Index
         list30Index.forEach((element, index) => {                 
             let questionBox = document.querySelector(`#question-${index + 1}`)
             questionBox.addEventListener("click", () => {
-                examView.showQuestion(index, examModel.list30Question)
+                examView.showQuestion(index)
                 examView.changeCurrentQuestionBoxColor(questionBox)
                 examController.saveThisQuestionName(index + 1)
             })
         })
     },
-    // khóa các nút chọn testtype trong lúc test load
-    loadTest: (testType, testSelector) => {
-        let structuredTest = document.querySelector(testSelector)
-        examView.showScreen(testType)
-        setTimeout(() => {
-            structuredTest.addEventListener("click", examView.showScreen(testType)) 
-            examView.timer.showRemainingTime()           
-        }, 2500)
-    },
 
     timer: {
-        endDate: new Date().getTime() + 20*60*1000,
+        endDate: null,
+        calculateEndDate: () => { examView.timer.endDate = new Date().getTime() + 20*60*1000},
         calculateRemainingTime: () => {
             let remainingTime 
             let remainingMins
             let remainingSecs
-            remainingTime = timer.endDate - new Date().getTime()
+            remainingTime = examView.timer.endDate - new Date().getTime()
             if( remainingTime > 0) {
                 remainingMins = Math.floor(remainingTime / (1000 * 60))
                 remainingSecs = Math.round((remainingTime - remainingMins * 60 *1000) / (1000)) 
@@ -168,22 +142,23 @@ const examView = {
             return [remainingMins, remainingSecs]
         },
         showRemainingTime: () => {
+            examView.timer.calculateEndDate()
             setInterval(() => {
                 let minute = document.querySelector("#minute")
                 let second = document.querySelector("#second")
                 minute.innerHTML = ""
                 second.innerHTML = ""
-                if (timer.calculateRemainingTime()[0] < 10) {
-                    minute.innerHTML += "0" + timer.calculateRemainingTime()[0]
+                if (examView.timer.calculateRemainingTime()[0] < 10) {
+                    minute.innerHTML += "0" + examView.timer.calculateRemainingTime()[0]
                 }
                 else {
-                    minute.innerHTML += timer.calculateRemainingTime()[0]
+                    minute.innerHTML += examView.timer.calculateRemainingTime()[0]
                 }
-                if (timer.calculateRemainingTime()[1] < 10) {
-                    second.innerHTML += "0" + timer.calculateRemainingTime()[1]
+                if (examView.timer.calculateRemainingTime()[1] < 10) {
+                    second.innerHTML += "0" + examView.timer.calculateRemainingTime()[1]
                 }
                 else {
-                    second.innerHTML += timer.calculateRemainingTime()[1]
+                    second.innerHTML += examView.timer.calculateRemainingTime()[1]
                 }
                 
                 }, 1000)
