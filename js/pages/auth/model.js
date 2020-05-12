@@ -1,3 +1,4 @@
 const authModel = {
-  user: {}
+  user: {},
+  pageToOpen: ''
 }

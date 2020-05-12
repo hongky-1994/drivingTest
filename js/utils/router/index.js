@@ -21,8 +21,13 @@ const push = (screen, historyMethod) => {
     case 'structuredTest':
       page = 'exam'
       break
+    
     case 'admin':
       page = 'admin'
+      break
+    
+    case 'main':
+      page = 'main'
       break
     default:
       page = 'user'
@@ -47,11 +52,14 @@ const push = (screen, historyMethod) => {
       common.changePageTitle('ADMIN PAGE')
       adminView.showScreen(screen)
       break
+    case 'main':
+      common.changePageTitle('Main Page')
+      mainView.showScreen(screen)
     default:
       authView.showScreen('signIn')
       break
   }
-
+ 
   // Lưu lịch sử nếu có.
   if(window.location.hash.slice(1) !== screen ) {
     switch (historyMethod) {

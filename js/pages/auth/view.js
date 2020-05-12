@@ -94,10 +94,10 @@ const authView = {
     }
   },
   
-  openModal: (open, title, icon, content) => {
+  openModal: (open, title, icon, content, pageOpenOnCloseModel ) => {
     const modal = document.querySelector(".modal__container")
     if (open) {
-      console.log("OPEN MODAL RUN")
+      if(pageOpenOnCloseModel == undefined) authModel.pageToOpen = pageOpenOnCloseModel
       modal.innerHTML = authComponents.modal
 
       // Pass data to modal
@@ -126,6 +126,7 @@ const authView = {
       document.body.style.width = '100vw';
       document.body.style.top = `-${window.scrollY}px`;
     } else {
+      !authModel.pageToOpen && push(authModel.pageToOpen)
       modal.innerHTML = ''
 
       // Keep position after close modal
@@ -133,6 +134,8 @@ const authView = {
       document.body.style.position = '';
       document.body.style.top = '';
       window.scrollTo(0, parseInt(scrollY || '0') * -1);
+
+      authModel.pageToOpen = ''
     }
   },
   
