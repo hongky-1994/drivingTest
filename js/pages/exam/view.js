@@ -10,25 +10,15 @@ const examView = {
             case 'structuredTest': {
                 examController.getStructuredIndex()
                 examController.lockTestTypeButton(".structured-test")
-                let promiseList = new Promise((resolve,reject) => {
-                    // examController.getQuestionObject()
-                    examModel.list30Index.forEach((index) => {
-                        firebase.firestore().doc(`tests/B2/question-list/question-${index}`)
-                            .get()
-                            .then(result => examModel.list30Question.push(result.data()))
-                        
-                    })
-                    resolve(examModel.list30Question)
-                })
                 Promise
-                    .all(promiseList)
-                    .then(_ => {
+                    .all(examController.getQuestionObject())
+                    .then(() => {
                         examController.createList30Answer()
                         app.innerHTML = examComponents.structuredTest
                         examView.showQuestionBoxes()
                         examView.showFirstQuestion()
                         examView.setUpButtons()
-                        let testAnswerForm = document.querySelector(".test-answer-form")
+                        const testAnswerForm = document.querySelector(".test-answer-form")
                         testAnswerForm.addEventListener("change", () => {
                             examController.saveUserAnswerTo(examModel.thisQuestionName)
                             examView.changeDoneQuestionBoxColor()

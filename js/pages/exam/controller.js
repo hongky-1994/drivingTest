@@ -34,12 +34,19 @@ const examController = {
         examModel.list30Index = list30Index
 
     },
-    getQuestionObject: async () => {
-
-        for (let index of examModel.list30Index) {
-            let result = await firebase.firestore().doc(`tests/B2/question-list/question-${index}`).get()
-            examModel.list30Question.push(result.data())
-        }
+    getQuestionObject: () => {
+        return examModel.list30Index.map((element) => {
+            return firebase.firestore().doc(`tests/B2/question-list/question-${element}`)
+                .get()
+                .then((result) => {
+                    examModel.list30Question.push(result.data())
+                })
+                .catch((err) => console.log("có lỗi ở controller", err))
+            })
+        // for (let index of examModel.list30Index) {
+        //     let result = await firebase.firestore().doc(`tests/B2/question-list/question-${index}`).get()
+        //     examModel.list30Question.push(result.data())
+        // }
     },
     saveUserAnswerTo: (thisQuestionName) => {
         let checkedAnswers = document.querySelectorAll('input:checked')
