@@ -4,7 +4,7 @@ const examComponents={
         <div class="test-type-title color--purple1">CHỌN HÌNH THỨC THI</div>
     </div>
     <section class="test-type-section">
-        <div class="test-type-container structured-test" onclick = "examView.showScreen('structuredTest')">
+        <div class="test-type-container structured-test" onclick = "examView.loadTest('structuredTest','.structured-test')">
             <div class="test-type bg--blue1 color--white1">
                 Cấu trúc
             </div>

@@ -43,10 +43,7 @@ const examController = {
                 })
                 .catch((err) => console.log("có lỗi ở controller", err))
             })
-        // for (let index of examModel.list30Index) {
-        //     let result = await firebase.firestore().doc(`tests/B2/question-list/question-${index}`).get()
-        //     examModel.list30Question.push(result.data())
-        // }
+
     },
     saveUserAnswerTo: (thisQuestionName) => {
         let checkedAnswers = document.querySelectorAll('input:checked')
@@ -91,17 +88,5 @@ const examController = {
             }
         }
     }, 
-
-    lockTestTypeButton: (testType) => {
-        let testTypeHTML = document.querySelector(testType)
-        examModel.onclickEvent = testTypeHTML.getAttribute("onclick")
-        testTypeHTML.removeAttribute("onclick")
-    },
-
-    openTestTypeButton: (testType) => {
-        let testTypeHTML = document.querySelector(testType) 
-        testTypeHTML.setAttribute("onclick", examModel.onclickEvent)
-    }
-
 }
 

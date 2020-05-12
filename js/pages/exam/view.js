@@ -4,12 +4,12 @@ const examView = {
         switch (screen) {
             case 'testType': {
                 app.innerHTML = examComponents.testType
-                layoutView.saveLocation('testType')
                 break
             }
             case 'structuredTest': {
+                examModel.list30Question = []
                 examController.getStructuredIndex()
-                examController.lockTestTypeButton(".structured-test")
+                loadingView.show()
                 Promise
                     .all(examController.getQuestionObject())
                     .then(() => {
@@ -24,7 +24,7 @@ const examView = {
                             examView.changeDoneQuestionBoxColor()
                         })
                         examView.timer.showRemainingTime()
-                        examController.openTestTypeButton(".structured-test")
+                        loadingView.hide()
                     }
                     )
                 
@@ -105,7 +105,7 @@ const examView = {
     changeDoneQuestionBoxColor: () => {
         let list30Answer = examModel.list30Answer
         list30Answer.forEach((element, index) => {
-            let userAnswer = list30Answer[index].userAnswer
+            let userAnswer = element.userAnswer
             let questionBox = document.querySelector(`#question-${index + 1}`)
             if (userAnswer.length) {
                 questionBox.classList.add('done-question')
@@ -143,6 +143,10 @@ const examView = {
             if( remainingTime > 0) {
                 remainingMins = Math.floor(remainingTime / (1000 * 60))
                 remainingSecs = Math.round((remainingTime - remainingMins * 60 *1000) / (1000)) 
+                if ( remainingSecs == 60 ) {
+                    remainingSecs = 0
+                    remainingMins += 1
+                }
             }        
             return [remainingMins, remainingSecs]
         },
@@ -159,6 +163,7 @@ const examView = {
                 else {
                     minute.innerHTML += examView.timer.calculateRemainingTime()[0]
                 }
+
                 if (examView.timer.calculateRemainingTime()[1] < 10) {
                     second.innerHTML += "0" + examView.timer.calculateRemainingTime()[1]
                 }
@@ -167,10 +172,16 @@ const examView = {
                 }
                 
                 }, 1000)
-        }
+        },
     },
-    
-    
-
-
+    loadTest: (testType, testSelector) => {
+        examView.showScreen(testType)
+        let structuredTest = document.querySelector(testSelector)
+            structuredTest.addEventListener("click", 
+                authView.openModal(true, 
+                    "Chuẩn bị làm bài",
+                    "success", 
+                    "Thời gian làm bài là 20 phút. Chúc bạn làm bài thật tốt.",
+                    testType))
+    },
 }

@@ -11,12 +11,14 @@ const userComponents = {
           </button>
         </div>
         <div class="btn-sign-out">Không phải tôi? Đăng xuất</div>
-        <div class="user-image">
-          <button class="user-profile-icon">
-            <i class="far fa-edit fa-3x"></i>
-            <input type="file" id="photo" class="custom-file-input">
-            <input type="submit" value="Submit" class="btn-submit-user-image">
-          </button>
+        <div class="user-image-container">
+          <div class="user-image">
+            <button class="user-profile-icon">
+              <i class="far fa-edit fa-3x"></i>
+              <input type="file" id="photo" class="custom-file-input">
+              <input type="submit" value="Submit" class="btn-submit-user-image">
+            </button>
+          </div>
         </div>
         <div class="user-email">
           <div class="user-email-html">Email: </div>
@@ -25,31 +27,6 @@ const userComponents = {
           </button>
         </div>
       </div>
-
-      <!-- modal edit password --> 
-      <div class="modal-edit-password">
-        <div class="modal-edit-password-container">
-          <form class="form-input-edit-password">
-            <span class="close-modal-edit-password">Cancel</span>
-            <button class="submit-modal-edit-password">Done</button>
-
-            <div class="input-wrapper-edit-password">
-              <input type="password" name="currentPassword" placeholder="Enter your current password">
-              <div id="input-current-password-error" class="message-error"></div>
-            </div>
-            <div class="input-wrapper-edit-password">
-              <input type="password" name="newPassword" placeholder="Enter your new password">
-              <div id="input-new-password-error" class="message-error"></div>
-            </div>
-            <div class="input-wrapper-edit-password">
-              <input type="password" name="confirmNewPassword" placeholder="Confirm your new password">
-              <div id="input-confirm-new-password-error" class="message-error"></div>
-            </div>
-
-          </form>
-        </div>
-      </div>
-
 
       <!-- user test result -->
       <div class="user-result">
@@ -139,7 +116,55 @@ const userComponents = {
         </div>
       </div>
     </div>
+
+    <!-- modal edit password --> 
+    <div class="modal-edit-password">
+      <div class="modal-edit-password-container">
+        <form class="form-input-edit-password">
+          <span class="close-modal-edit-password">Cancel</span>
+          <button class="submit-modal-edit-password">Done</button>
+
+          <div class="input-wrapper-edit-password">
+            <input type="password" name="currentPassword" placeholder="Enter your current password">
+            <div id="input-current-password-error" class="message-error"></div>
+          </div>
+          <div class="input-wrapper-edit-password">
+            <input type="password" name="newPassword" placeholder="Enter your new password">
+            <div id="input-new-password-error" class="message-error"></div>
+          </div>
+          <div class="input-wrapper-edit-password">
+            <input type="password" name="confirmNewPassword" placeholder="Confirm your new password">
+            <div id="input-confirm-new-password-error" class="message-error"></div>
+          </div>
+
+        </form>
+      </div>
+    </div>
   </section>
+    `,
+    modal:`
+    <div class="modal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-capitalize">Modal title</h5>
+            <button type="button" class="close" onclick="authView.openModal(false)">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body d-flex flex-column align-items-center">
+            <div class="modal-icon"></div>
+            <p class="text-capitalize"></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="authView.openModal(false)">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    `,
+    history: `
+    this is history
     `,
 
 }

@@ -8,19 +8,15 @@ const authView = {
     e.preventDefault()
     const email = e.target.email.value
     const password = e.target.password.value
-    if (authView.validateAuthentication('signIn', {
-        email,
-        password
-      })) {
+    if (authView.validateAuthentication('signIn', {email,password})) {
       loadingView.show()
       firebase
         .auth()
         .signInWithEmailAndPassword(email, password)
         .then(() => {
           authView.openModal(true, "Thông báo","success", "Đăng nhập thành công")
-          userView.showScreen("user")
-          console.log("Open user page")
-          layoutView.saveLocation("userPage")
+          // userView.showScreen("user", 'user')
+          push('user')
           loadingView.hide()
 
         })
@@ -98,10 +94,12 @@ const authView = {
     }
   },
   
-  openModal: (open, title, icon, content) => {
+  openModal: (open, title, icon, content, pageOpenOnCloseModel ) => {
     const modal = document.querySelector(".modal__container")
     if (open) {
-      console.log("OPEN MODAL RUN")
+      if(pageOpenOnCloseModel !== undefined) authModel.pageToOpen = pageOpenOnCloseModel
+      // console.log("pageOpenOnCloseModel", pageOpenOnCloseModel)
+      // console.log("auth Model ", authModel.pageToOpen)
       modal.innerHTML = authComponents.modal
 
       // Pass data to modal
@@ -130,6 +128,8 @@ const authView = {
       document.body.style.width = '100vw';
       document.body.style.top = `-${window.scrollY}px`;
     } else {
+      // console.log('Open page to Open', authModel.pageToOpen)
+      authModel.pageToOpen && push(authModel.pageToOpen)
       modal.innerHTML = ''
 
       // Keep position after close modal
@@ -137,6 +137,8 @@ const authView = {
       document.body.style.position = '';
       document.body.style.top = '';
       window.scrollTo(0, parseInt(scrollY || '0') * -1);
+
+      authModel.pageToOpen = ''
     }
   },
   
@@ -192,6 +194,6 @@ const authView = {
         }
     }
     return true
-}   
+  }   
 
 }
