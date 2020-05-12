@@ -10,19 +10,34 @@ const examView = {
             case 'structuredTest': {
                 examController.getStructuredIndex()
                 examController.lockTestTypeButton(".structured-test")
-                await examController.getQuestionObject()
-                examController.createList30Answer()
-                app.innerHTML = examComponents.structuredTest
-                examView.showQuestionBoxes()
-                examView.showFirstQuestion()
-                examView.setUpButtons()
-                let testAnswerForm = document.querySelector(".test-answer-form")
-                testAnswerForm.addEventListener("change", () => {
-                    examController.saveUserAnswerTo(examModel.thisQuestionName)
-                    examView.changeDoneQuestionBoxColor()
+                let promiseList = new Promise((resolve,reject) => {
+                    // examController.getQuestionObject()
+                    examModel.list30Index.forEach((index) => {
+                        firebase.firestore().doc(`tests/B2/question-list/question-${index}`)
+                            .get()
+                            .then(result => examModel.list30Question.push(result.data()))
+                        
+                    })
+                    resolve(examModel.list30Question)
                 })
-                examView.timer.showRemainingTime()
-                examController.openTestTypeButton(".structured-test")
+                Promise
+                    .all(promiseList)
+                    .then(_ => {
+                        examController.createList30Answer()
+                        app.innerHTML = examComponents.structuredTest
+                        examView.showQuestionBoxes()
+                        examView.showFirstQuestion()
+                        examView.setUpButtons()
+                        let testAnswerForm = document.querySelector(".test-answer-form")
+                        testAnswerForm.addEventListener("change", () => {
+                            examController.saveUserAnswerTo(examModel.thisQuestionName)
+                            examView.changeDoneQuestionBoxColor()
+                        })
+                        examView.timer.showRemainingTime()
+                        examController.openTestTypeButton(".structured-test")
+                    }
+                    )
+                
                 break
             }
         }
