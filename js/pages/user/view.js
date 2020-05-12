@@ -100,8 +100,11 @@ const userView = {
         let user = firebase.auth().currentUser
         let profileImage = document.querySelector('.user-image')
         let profileIcon = document.querySelector('.user-profile-icon')
+        let userNameHtml = document.querySelector('.user-greetings-content')
+        let userName = authModel.user.name
 
         const {email, photoURL} = user
+        userNameHtml.innerHTML += userName
         userEmailHtml.innerHTML = email
         //display profile image
         if(photoURL==null){
@@ -170,5 +173,7 @@ const userView = {
             }
         }
         return true
-    }   
+    },
+    
+    
 }

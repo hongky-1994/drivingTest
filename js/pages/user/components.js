@@ -5,7 +5,7 @@ const userComponents = {
       <!-- user info -->
       <div class="user-info">
         <div class="user-greetings">
-          <div>Xin chào, user</div>
+          <div class="user-greetings-content">Xin chào, </div>
           <button class="btn-edit-icon icon-greetings">
             <i class="far fa-edit fa-2x"></i>
           </button>
@@ -165,6 +165,15 @@ const userComponents = {
     `,
     history: `
     this is history
+    <button class="btn btn-primary">Get random index</button>
+
+    <div class="list__index">RANDOM TEST question</div>
+  
+    <button class="btn btn-success">Show random list question</button>
+    <div class="list__questions row">List question</div>
+  
+    <button class="btn btn-secondary">Submit answers</button>
+    <div class="user-score">User's answers</div>
     `,
 
 }
