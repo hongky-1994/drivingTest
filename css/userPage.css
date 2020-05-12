@@ -115,18 +115,16 @@ td:hover{
 
 .table-footer>td{
     padding-bottom: 1.5vh; 
-    padding-top: 1.5vh;
-    color: white;
-    text-align: center;
+    padding-top: 1.5vh; 
+    text-align: center; 
+    color: white; 
+    border-top: 1px solid #c4c4c4;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
-    border-bottom: none;
 }
 
-.test-history-see-all, .pros-see-all, .cons-see-all{
-background: none;
-border: none;
-color: white;
+.test-history-see-all:hover, .pros-see-all:hover, .cons-see-all:hover{
+    cursor: pointer;
 }
 
 .user-result{
@@ -215,6 +213,10 @@ padding-left: 10vw;
     border-bottom: 1px solid #c4c4c4;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+}
+
+.table-header{
+    display: contents;
 }
 
 .table-1-header-footer{
@@ -326,15 +328,7 @@ padding-left: 10vw;
     border-top: 1px solid #c4c4c4;
 }
 
-.table-footer>td{
-    padding-bottom: 1.5vh; 
-    padding-top: 1.5vh; 
-    text-align: center; 
-    color: white; 
-    border-top: 1px solid #c4c4c4;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-}
+
 
 .input-wrapper-edit-password>input{
 height: 2.25rem;

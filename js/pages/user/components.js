@@ -52,7 +52,7 @@ const userComponents = {
 
               <tr class="table-footer">
                 <td colspan="3" class="table-1-header-footer">
-                  <button class="test-history-see-all">Xem tất cả</button>
+                  <div class="test-history-see-all">Xem tất cả</div>
                 </td>
               </tr>
             </tbody>
@@ -80,7 +80,7 @@ const userComponents = {
   
                 <tr class="table-footer">
                   <td colspan="2" class="table-2-header-footer">
-                    <button class="pros-see-all">Xem tất cả</button>
+                    <div class="pros-see-all">Xem tất cả</div>
                   </td>
                 </tr>
               </tbody>
@@ -107,7 +107,7 @@ const userComponents = {
   
                 <tr class="table-footer">
                   <td colspan="2" class="table-3-header-footer">
-                    <button class="cons-see-all">Xem tất cả</button>
+                    <div class="cons-see-all">Xem tất cả</div>
                   </td>
                 </tr>
               </tbody>

@@ -18,6 +18,7 @@ a:hover{
 }
 .app-container{
   height: calc(100vh - 5.5rem);
+  overflow-y: scroll;
 }
 
 .html{
