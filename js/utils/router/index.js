@@ -34,6 +34,7 @@ const push = (screen, historyMethod) => {
       screen = 'user'
       break
   }
+  
   // Open screen 
   switch (page) {
     case 'auth': 
@@ -55,13 +56,13 @@ const push = (screen, historyMethod) => {
     case 'main':
       common.changePageTitle('Main Page')
       mainView.showScreen(screen)
+      break
     default:
       authView.showScreen('signIn')
       break
   }
  
   // Lưu lịch sử nếu có.
-  if(window.location.hash.slice(1) !== screen ) {
     switch (historyMethod) {
       case undefined:
       case 'push': 
@@ -73,7 +74,6 @@ const push = (screen, historyMethod) => {
       default:
         break
     } 
-  }
 }
 
 

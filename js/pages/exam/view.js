@@ -8,44 +8,15 @@ const examView = {
             }
             case 'structuredTest': {
                 examModel.list30Question = []
-                let list30Index = examModel.list30Index
                 examController.getStructuredIndex()
-                console.log('Array index', examModel.list30Index)
-
-                // const getQuestionObject = () => {
-                //     return new Promise((resolve, reject) => {
-                //         examController.getQuestionObject()
-                //         if (examModel.dataState) {
-                //             resolve(examModel.list30Question)
-                //         } else {const promise1 = 
-                //             reject("có lỗi xảy ra o exam view")
-                //         }
-                //     })
-                // }
-                // let promise1 = getQuestionObject()
-                    // .then(result => {
-                    //     app.innerHTML = examComponents.structuredTest
-                    //     examController.createList30Answer()
-                    //     examView.showQuestionBoxes()
-                    //     examView.showFirstQuestion(result)
-                    //     examView.setUpButtons(list30Index)
-                    //     let testAnswerForm = document.querySelector(".test-answer-form")
-                    //     testAnswerForm.addEventListener("change",() => {
-                    //         examController.saveUserAnswerTo(examModel.thisQuestionName)
-                    //         examView.changeDoneQuestionBoxColor()
-                    //     })
-                    // })
-                    // .catch(err => console.log(err))
-                
                 loadingView.show()
                 Promise.all( examController.getQuestionObject())
                 .then( () => {
-                    console.log('30 question', examModel.list30Question)
                     app.innerHTML = examComponents.structuredTest
                     examController.createList30Answer()
                     examView.showQuestionBoxes()
                     examView.showFirstQuestion(examModel.list30Question)
-                    examView.setUpButtons(list30Index)
+                    examView.setUpButtons(examModel.list30Index)
                     const testAnswerForm = document.querySelector(".test-answer-form")
                     testAnswerForm.addEventListener("change",() => {
                         examController.saveUserAnswerTo(examModel.thisQuestionName)
@@ -160,20 +131,14 @@ const examView = {
     // khóa các nút chọn testtype trong lúc test load
     loadTest: (testType, testSelector) => {
         let structuredTest = document.querySelector(testSelector)
-        console.log('testType',testType)
-        // examView.showScreen(testType)
-        // console.log('show ')
-        // setTimeout(() => {
-            structuredTest.addEventListener("click", 
-                authView.openModal(true, 
-                    "Chuẩn bị làm bài",
-                    "success", 
-                    "Thời gian làm bài là 20 phút. Chúc bạn làm bài thật tốt.",
-                    testType))
-                
-            // console.log('show again')          
-        // }, 2500)
-    },
+        
+        structuredTest.addEventListener("click", 
+            authView.openModal(true, 
+                "Chuẩn bị làm bài",
+                "success", 
+                "Thời gian làm bài là 20 phút. Chúc bạn làm bài thật tốt.",
+                testType))
+        },
 
 
 }

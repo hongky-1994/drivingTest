@@ -2,6 +2,7 @@ const adminView = {
   showScreen: (screen) => {
     const appContainer = document.querySelector(".app-container")
     appContainer.innerHTML = adminComponents[screen]
+    adminView.getData()
   },
   changeTab: (tabNo) => {
     const leftSideTabs = document.querySelectorAll('.left__item')
@@ -14,16 +15,22 @@ const adminView = {
     })
     leftSideTabs[tabNo].classList.add("active")
     manageTabs[tabNo].classList.add("active")
+    // if(tabNo === 0 ) {
+    //   loadingView.show()
+    //   loadingView.hide()
+    // }
   },
-  getData: () => {
+  getData: async () => {
     const tableBody = document.querySelector('.table__body')
     tableBody.innerHTML = ''
     const db = firebase.firestore()
-    db.collection('tests/B2/question-list')
+    loadingView.show()
+    await db.collection('tests/B2/question-list')
       .where('index','>=', 420)
       .limit(10)
       .get()
       .then(collection => {
+
         collection.forEach(item => {
           const doc = item.data()
           
@@ -43,14 +50,14 @@ const adminView = {
             <td class='text-wrap small'>${doc.category}</td>
             <td class='text-wrap small'>${doc.question}</td>
             <td class='text-wrap small'>${answers}</td>
-            <td class='text-wrap small'>
-              <button class='btn btn-info'>Chỉnh sửa</button>
-              <button class='btn btn-danger'>Xóa</button>
+            <td class='text-wrap small d-flex'>
+              <button class='btn btn-info'><i class="fas fa-tools"></i></button>
+              <button class='btn btn-danger'><i class="fas fa-trash-alt"></i></button>
             </td>
           </tr>
           `
         })
-    })
+    }).then(() => loadingView.hide())
   }
   
 }

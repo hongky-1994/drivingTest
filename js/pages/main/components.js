@@ -1,17 +1,7 @@
 const mainComponents = {
   main:`
   <div class="main">
-      <div class="container-fluid px-lg-5">
-        <div class="main__header py-5 d-flex justify-content-between align-self-center">
-          <h1>Xin chào người dùng</h1>
-          <div>
-            <button class="btn" onclick="userView.showScreen('user')">
-              <i class="far fa-user" style="font-size: 30px;"></i>
-            </button>
-            <button class="btn btn-danger" onclick="authView.signOut()">Đăng xuất</button>
-          </div>
-        </div>
-        <div class="main__body">
+      <div class="container-fluid px-lg-5 my-3">
           <div class="tests row bg-light">
             <div class="col-12 h2 pt-4 font-weight-bold text-primary">Bằng lái B2</div>
 
@@ -29,7 +19,6 @@ const mainComponents = {
             </div>
 
           </div>
-        </div>
         
       </div>
     </div>
