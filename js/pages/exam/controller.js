@@ -34,15 +34,16 @@ const examController = {
         examModel.list30Index = list30Index
 
     },
-    getQuestionObject:  () => {
-       return examModel.list30Index.map((element) => {
+    getQuestionObject: () => {
+        return examModel.list30Index.map((element) => {
             return firebase.firestore().doc(`tests/B2/question-list/question-${element}`)
                 .get()
                 .then((result) => {
                     examModel.list30Question.push(result.data())
                 })
-                .catch((err) => console.log("Co loi o controller:", err))
-        })
+                .catch((err) => console.log("có lỗi ở controller", err))
+            })
+
     },
     saveUserAnswerTo: (thisQuestionName) => {
         let checkedAnswers = document.querySelectorAll('input:checked')
@@ -66,6 +67,26 @@ const examController = {
                 userAnswer: [],
             }
         })
-    }
+    }, 
+    
+    scoreTest: () => {
+        let list30Answer = examModel.list30Answer
+        let list30Question = examModel.list30Question
+        let list30UserAnswerShorten = examModel.list30UserAnswerShorten
+        let list30CorrectAnswer = examModel.list30CorrectAnswer
+        let correctAnswers = examModel.correctAnswers
+        list30Answer.forEach((element) => {
+            list30UserAnswerShorten.push(JSON.stringify(element.userAnswer))
+        })
+        list30Question.forEach((element) => {
+            let correct = element.correct.filter((value) => value != null)
+            list30CorrectAnswer.push(JSON.stringify(correct))
+        })
+        for (let i = 0; i < 30; i++ ) {
+            if (list30CorrectAnswer[i] != list30UserAnswerShorten[i]) {
+                correctAnswers--
+            }
+        }
+    }, 
 }
 

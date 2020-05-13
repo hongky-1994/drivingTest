@@ -82,7 +82,28 @@
 // }
 
 // add class trùng
-let questionContainer = document.querySelector(".question-container")
-for (let i =0; i < 5; i++) {
-    questionContainer.classList.add("hello")
-}
+// let questionContainer = document.querySelector(".question-container")
+// for (let i =0; i < 5; i++) {
+//     questionContainer.classList.add("hello")
+// }
+
+//chấm điểm
+// let list30Answer = examModel.list30Answer
+// let list30Question = examModel.list30Question
+// let list30UserAnswerShorten = []
+// let list30CorrectAnswer = []
+// let correctAnswers = 30
+// list30Answer.forEach((element, index) => {
+//     list30UserAnswerShorten.push(element.userAnswer)
+// })
+// list30Question.forEach((element, index) => {
+//     let correct = element.correct.filter((value) => value != null)
+//     list30CorrectAnswer.push(correct)
+// })
+// for (let i = 0; i < 30; i++ ) {
+//     let list30UserAnswerShortenElement = JSON.stringify(list30UserAnswerShorten[i])
+//     let list30CorrectAnswerElement = JSON.stringify(list30CorrectAnswer[i])
+//     if (list30CorrectAnswerElement != list30UserAnswerShortenElement) {
+//         correctAnswers--
+//     }
+// }
