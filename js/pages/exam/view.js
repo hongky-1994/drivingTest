@@ -175,20 +175,8 @@ const examView = {
         },
     },
     loadTest: (testType, testSelector) => {
-        examView.showScreen(testType)
+        // examView.showScreen(testType) cái này sẽ bị load 2 lần. ( do cái authView.open Modal -- testType đã có showScreen rồi.)
         let structuredTest = document.querySelector(testSelector)
-<<<<<<< HEAD
-        
-        structuredTest.addEventListener("click", 
-            authView.openModal(true, 
-                "Chuẩn bị làm bài",
-                "success", 
-                "Thời gian làm bài là 20 phút. Chúc bạn làm bài thật tốt.",
-                testType))
-        },
-
-
-=======
             structuredTest.addEventListener("click", 
                 authView.openModal(true, 
                     "Chuẩn bị làm bài",
@@ -196,5 +184,4 @@ const examView = {
                     "Thời gian làm bài là 20 phút. Chúc bạn làm bài thật tốt.",
                     testType))
     },
->>>>>>> 3b6881b74b44cef9352767968faf0037f99e2ba4
 }
