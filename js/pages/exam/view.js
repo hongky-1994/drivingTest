@@ -1,5 +1,5 @@
 const examView = {
-    showScreen:   (screen) => {
+    showScreen: async (screen) => {
         let app = document.querySelector('.app-container')
         switch (screen) {
             case 'testType': {
@@ -10,21 +10,24 @@ const examView = {
                 examModel.list30Question = []
                 examController.getStructuredIndex()
                 loadingView.show()
-                Promise.all( examController.getQuestionObject())
-                .then( () => {
-                    app.innerHTML = examComponents.structuredTest
-                    examController.createList30Answer()
-                    examView.showQuestionBoxes()
-                    examView.showFirstQuestion(examModel.list30Question)
-                    examView.setUpButtons(examModel.list30Index)
-                    const testAnswerForm = document.querySelector(".test-answer-form")
-                    testAnswerForm.addEventListener("change",() => {
-                        examController.saveUserAnswerTo(examModel.thisQuestionName)
-                        examView.changeDoneQuestionBoxColor()
-                    })
-                    loadingView.hide()
-                })
-
+                Promise
+                    .all(examController.getQuestionObject())
+                    .then(() => {
+                        examController.createList30Answer()
+                        app.innerHTML = examComponents.structuredTest
+                        examView.showQuestionBoxes()
+                        examView.showFirstQuestion()
+                        examView.setUpButtons()
+                        const testAnswerForm = document.querySelector(".test-answer-form")
+                        testAnswerForm.addEventListener("change", () => {
+                            examController.saveUserAnswerTo(examModel.thisQuestionName)
+                            examView.changeDoneQuestionBoxColor()
+                        })
+                        examView.timer.showRemainingTime()
+                        loadingView.hide()
+                    }
+                    )
+                
                 break
             }
         }
@@ -60,7 +63,8 @@ const examView = {
         }
     },
 
-    showQuestion: (index, list30Question) => {        
+    showQuestion: (index) => {
+        let list30Question = examModel.list30Question        
         let questionObject = list30Question[index]        
         let testQuestion = document.querySelector(".test-question")
         let testImage = document.querySelector(".test-image")
@@ -111,26 +115,69 @@ const examView = {
         })
     },
 
-    showFirstQuestion: (list30Question) => {
-        
-            examView.showQuestion(0, list30Question)
+    showFirstQuestion: () => {
+            examView.showQuestion(0)
             examView.changeCurrentQuestionBoxColor(document.getElementById('question-1'))
-        
     },
 
-    setUpButtons: (list30Index) => {
+    setUpButtons: () => {
+        let list30Index = examModel.list30Index
         list30Index.forEach((element, index) => {                 
             let questionBox = document.querySelector(`#question-${index + 1}`)
             questionBox.addEventListener("click", () => {
-                examView.showQuestion(index, examModel.list30Question)
+                examView.showQuestion(index)
                 examView.changeCurrentQuestionBoxColor(questionBox)
                 examController.saveThisQuestionName(index + 1)
             })
         })
     },
-    // khóa các nút chọn testtype trong lúc test load
+
+    timer: {
+        endDate: null,
+        calculateEndDate: () => { examView.timer.endDate = new Date().getTime() + 20*60*1000},
+        calculateRemainingTime: () => {
+            let remainingTime 
+            let remainingMins
+            let remainingSecs
+            remainingTime = examView.timer.endDate - new Date().getTime()
+            if( remainingTime > 0) {
+                remainingMins = Math.floor(remainingTime / (1000 * 60))
+                remainingSecs = Math.round((remainingTime - remainingMins * 60 *1000) / (1000)) 
+                if ( remainingSecs == 60 ) {
+                    remainingSecs = 0
+                    remainingMins += 1
+                }
+            }        
+            return [remainingMins, remainingSecs]
+        },
+        showRemainingTime: () => {
+            examView.timer.calculateEndDate()
+            setInterval(() => {
+                let minute = document.querySelector("#minute")
+                let second = document.querySelector("#second")
+                minute.innerHTML = ""
+                second.innerHTML = ""
+                if (examView.timer.calculateRemainingTime()[0] < 10) {
+                    minute.innerHTML += "0" + examView.timer.calculateRemainingTime()[0]
+                }
+                else {
+                    minute.innerHTML += examView.timer.calculateRemainingTime()[0]
+                }
+
+                if (examView.timer.calculateRemainingTime()[1] < 10) {
+                    second.innerHTML += "0" + examView.timer.calculateRemainingTime()[1]
+                }
+                else {
+                    second.innerHTML += examView.timer.calculateRemainingTime()[1]
+                }
+                
+                }, 1000)
+        },
+    },
     loadTest: (testType, testSelector) => {
+        examView.showScreen(testType)
         let structuredTest = document.querySelector(testSelector)
+<<<<<<< HEAD
         
         structuredTest.addEventListener("click", 
             authView.openModal(true, 
@@ -141,4 +188,13 @@ const examView = {
         },
 
 
+=======
+            structuredTest.addEventListener("click", 
+                authView.openModal(true, 
+                    "Chuẩn bị làm bài",
+                    "success", 
+                    "Thời gian làm bài là 20 phút. Chúc bạn làm bài thật tốt.",
+                    testType))
+    },
+>>>>>>> 3b6881b74b44cef9352767968faf0037f99e2ba4
 }

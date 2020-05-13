@@ -4,7 +4,7 @@ const examComponents={
         <div class="test-type-title color--purple1">CHỌN HÌNH THỨC THI</div>
     </div>
     <section class="test-type-section">
-        <div class="test-type-container structured-test" onclick = "examView.loadTest('structuredTest', '.structured-test')">
+        <div class="test-type-container structured-test" onclick = "examView.loadTest('structuredTest','.structured-test')">
             <div class="test-type bg--blue1 color--white1">
                 Cấu trúc
             </div>
@@ -74,7 +74,7 @@ const examComponents={
             </label>-->
           </div>  
 
-          <button class="submit-answer p-3 bg--orange2 color--white1 border-0 rounded--10" type="submit">Nộp bài</button>
+          <button class="exam-button submit-answer" type="submit">Nộp bài</button>
         </form>
       </div>
     </div>
