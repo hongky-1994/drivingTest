@@ -1,4 +1,0 @@
-const authModel = {
-  user: {},
-  pageToOpen: ''
-}
