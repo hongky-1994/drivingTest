@@ -1,8 +1,7 @@
 const adminComponents = {
  admin: `
- <div class="row h-100">
-
-   <ul class="col-2 left__sidebar bg--purple1 pr-0">
+ <div class="h-100 w-100 d-flex">
+   <ul class='left__sidebar w-25 bg--purple1 bg--purple1 mb-0'>
      <li class="left__item pl-3 pr-2 py-3 active"
        onclick="adminView.changeTab(0)"
      >Danh sách câu hỏi</li>
@@ -14,11 +13,10 @@ const adminComponents = {
      >Phản hồi người dùng</li>
    </ul>
 
-   <div class="col-10 manage__container p-3">
+   <div class=" manage__container w-75">
       <div class="manage__tab active">
-        
-        <div class="row pr-4">
-          <div class='col-12 manage__search mb-3 d-flex input-group'>
+        <div>
+          <div class='manage__search mb-3 d-flex input-group'>
             <div class="input-group-prepend">
               <select class="btn btn-outline-secondary dropdown-toggle">
                 <option value="">Danh mục tìm kiếm</option>
@@ -32,7 +30,7 @@ const adminComponents = {
             </div>
           </div>
 
-          <table class="col-12 mr-3 table table-striped table-responsive question__table">
+          <table class="mr-3 table table-striped question__table">
             <thead>
               <tr>
                 <th><input type='checkbox'/></th>
@@ -50,10 +48,104 @@ const adminComponents = {
 
          </div>
        </div>
-       <div class="row manage__tab">
-         Import du lieu
+       <div class="manage__tab">
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
+         Import du lieu<br/>
        </div>
-       <div class="row manage__tab">
+       <div class="manage__tab scrollit">
          phản hồi của người dùng
        </div>
    </div>

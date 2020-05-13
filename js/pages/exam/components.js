@@ -40,7 +40,7 @@ const examComponents={
         <div class="timer-container bg--pink2">
           Thời gian còn lại<br>
           <div class="timer-time-container">
-            <span id="minute" class="timer-time"></span>:<span class="timer-time" id="second"></span>
+            <span id="minute" class="timer-time">20</span>:<span class="timer-time" id="second">00</span>
           </div>
         </div>
         <div class="question-container">
