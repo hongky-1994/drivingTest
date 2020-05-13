@@ -5,7 +5,7 @@ const userComponents = {
       <!-- user info -->
       <div class="user-info">
         <div class="user-greetings">
-          <div>Xin chào, user</div>
+          <div class="user-greetings-content">Xin chào, </div>
           <button class="btn-edit-icon icon-greetings">
             <i class="far fa-edit fa-2x"></i>
           </button>
