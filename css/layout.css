@@ -1,6 +1,12 @@
 .header{
-  position: relative;
+  position: fixed;
+  width: 100%;
+  top: 0;
   height: 5.5rem;
+  z-index: 100;
+}
+.header>*{
+  z-index: 100;
 }
 .header h1{
   font-weight: 600;
@@ -19,15 +25,17 @@
   top: 5.5rem;
   width: 100%;
   transition: ease-in 0.3s;
+  z-index: 120;
 }
 .header__nav--overlay{
   display: none;
-  height: 100vh;
+  height: calc(100vh - 5.5rem);
   overflow: hidden;
   position: absolute;
   top: 5.5rem;
   width: 100%;
   background-color: #363636b6;
+  z-index: 110;
 }
 .avata__container{
   height: 3rem;

@@ -1,10 +1,10 @@
-examComponents = {
+const examComponents={
     testType: `
     <div class="title-holder">
-        <div class="title color--purple1">CHỌN HÌNH THỨC THI</div>
+        <div class="test-type-title color--purple1">CHỌN HÌNH THỨC THI</div>
     </div>
     <section class="test-type-section">
-        <div class="test-type-container structured-test">
+        <div class="test-type-container structured-test" onclick = "examView.loadTest('structuredTest','.structured-test')">
             <div class="test-type bg--blue1 color--white1">
                 Cấu trúc
             </div>
@@ -23,7 +23,7 @@ examComponents = {
                 </p>                
             </div>
         </div>
-        <div class="test-type-container random-test">    
+        <div class="test-type-container random-test" onclick="examView.showScreen('randomTest')">    
             <div class="test-type bg--purple1 color--white1">
                 Tổng hợp
             </div>
@@ -34,6 +34,49 @@ examComponents = {
         </div>
     </section>
     `,
-    testQuestion: `
+    structuredTest: `
+    <div class="section-container">
+      <div class="exam-left-column">
+        <div class="timer-container bg--pink2">
+          Thời gian còn lại<br>
+          <div class="timer-time-container">
+            <span id="minute" class="timer-time">20</span>:<span class="timer-time" id="second">00</span>
+          </div>
+        </div>
+        <div class="question-container">
+        </div>
+      </div>
+      <div class="exam-right-column">
+        <p class="test-question"></p>
+        <div class="test-image"></div>
+        <form class="test-answer-form">
+          <div class="test-answer-container col-xl-6">
+            <!--<input type="checkbox" id="answer0" name="answer0" >
+            <label for="answer0" >
+            </label>-->
+          </div>
+
+          <div class="test-answer-container col-xl-6">
+            <!--<input type="checkbox" id="answer2" name="answer2">
+            <label for="answer2">
+            </label>-->
+          </div>
+
+          <div class="test-answer-container col-xl-6">
+            <!--<input type="checkbox" id="answer3" name="answer3">
+            <label for="answer3">
+            </label>-->
+          </div>
+
+          <div class="test-answer-container col-xl-6">
+            <!--<input type="checkbox" id="answer4" name="answer4">
+            <label for="answer4">
+            </label>-->
+          </div>  
+
+          <button class="exam-button submit-answer" type="submit">Nộp bài</button>
+        </form>
+      </div>
+    </div>
     `
 }

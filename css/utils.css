@@ -12,7 +12,13 @@ a:hover{
 }
 
 #app{
-  min-height: 100vh ;
+  /* height: 100vh ; */
+  /* width: 100vw; */
+  /* overflow-x: hidden !important; */
+}
+.app-container{
+  margin-top: 5.5rem;
+  height: calc(100vh - 5.5rem);
 }
 
 .html{
@@ -21,7 +27,9 @@ a:hover{
 
 /* Media query */
 @media (max-width: 575.98px) { 
-
+  html{
+    font-size: 6px;
+  }
 }
 
 @media (max-width: 767.98px) { 

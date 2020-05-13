@@ -5,50 +5,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DRIVING TEST RANKING</title>
+  <link rel="icon" href ="./js/assets/images/favicon.svg" type = "image/svg"> 
   <!-- Bootstrap 4.4, fontawesome 5.5  -->
-  <link rel="stylesheet" href="./library/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="./library/fontawesome/css/all.min.css" > 
+        <link rel="stylesheet" href="./library/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./library/fontawesome/css/all.min.css" > 
   <!-- Font: Open Sans -->
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
-  <!-- Custom CSS for pages -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">  <!-- Custom CSS for pages -->
   <link rel="stylesheet" href="./css/utils.css">
   <link rel="stylesheet" href="./css/colors.css">
   <link rel="stylesheet" href="./css/auth.css">
   <link rel="stylesheet" href="./css/userPage.css">
   <link rel="stylesheet" href="./css/layout.css">
   <link rel="stylesheet" href="./css/exam.css">
+  <link rel="stylesheet" href="./css/admin.css">
 </head>
 
 
 <body>
-
-
-
-
-  <!-- ---------------------------------------------- -->
-  <!-- ---------------------------------------------- -->
-  <!-- -------------------WARNING-------------------- -->
-  <!-- ---------------------------------------------- -->
-  <!-- --------THIS SECTION IS RENDER TO APP -------- -->
-  <!-- ---------------------------------------------- -->
-  <!-- ---------------------------------------------- -->
   <div id="app" class="d-flex flex-column justify-content-start align-items-center min-vh-100">
     <div class="header w-100"></div>
     <div class="app-container w-100"></div>
   </div>
   <div class="modal__container"></div>
-  <div class="loader"></div>
-  
-  <!-- ---------------------------------------------- -->
-  <!-- ---------------------------------------------- -->
-  <!-- ---------------------------------------------- -->
-  <!-- ---------------------------------------------- -->
-  <!-- ---------------------------------------------- -->
-  <!-- ---------------------------------------------- -->
-
-
-
-
+  <div class="loader">
+    <div class="loading__container"><div class="loading"></div></div>
+  </div>
+ 
 
 
 
@@ -74,16 +56,21 @@
 
 
   <!-- PAGES JS FILE-->
+  <script src="./js/utils/router/index.js"></script>
+  <script src="./js/utils/common/index.js"></script>
+
   <script src="./js/pages/auth/components.js"></script>
   <script src="./js/pages/main/components.js"></script>
   <script src="./js/pages/user/components.js"></script>
   <script src="./js/pages/exam/components.js"></script>
+  <script src="./js/pages/admin/components.js"></script>
 
   <script src="./js/pages/auth/model.js"></script>
   <script src="./js/pages/main/model.js"></script>
   <script src="./js/pages/user/model.js"></script>
   <script src="./js/pages/exam/model.js"></script>
-
+  <script src="./js/pages/admin/model.js"></script>
+  
   <script src="./js/pages/auth/controller.js"></script>
   <script src="./js/pages/main/controller.js"></script>
   <script src="./js/pages/user/controller.js"></script>
@@ -95,9 +82,10 @@
   <script src="./js/pages/main/view.js"></script>
   <script src="./js/pages/user/view.js"></script>
   <script src="./js/pages/exam/view.js"></script>
-  <script src="./js/pages/index.js"></script>
+  <script src='./js/pages/admin/view.js'></script>
   
-  <script src="./js/pages/randomPick30.js"></script>
+  <script src="./js/pages/index.js"></script>
+
 </body>
 
 </html>
