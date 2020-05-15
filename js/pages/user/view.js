@@ -1,17 +1,16 @@
 const userView = {
     showScreen: (screen) => {
         let app = document.querySelector('.app-container')
-
+        userController.addNewUser()
         switch (screen) {
             case 'user':{
                 app.innerHTML = userComponents.user
-
                 userView.showCurrentUserInfo()
 
                 //su kien: sign-out
                 let btnSignOut = document.querySelector('.btn-sign-out')
                 btnSignOut.onclick = function(){
-                    userController.signOut()
+                    authView.signOut()
                 } 
 
                 //su kien: load test history from firestore -> display
@@ -85,7 +84,7 @@ const userView = {
             }
             case 'history':{
                 app.innerHTML = userComponents.history;
-                
+                // userController.uploadTestToFirebase();
 
             }
             default : {return}
@@ -100,9 +99,11 @@ const userView = {
         let user = firebase.auth().currentUser
         let profileImage = document.querySelector('.user-image')
         let profileIcon = document.querySelector('.user-profile-icon')
+        let userNameHtml = document.querySelector('.user-greetings-content')
 
-        const {email, photoURL} = user
+        const {email, name, photoURL} = user
         userEmailHtml.innerHTML = email
+        userNameHtml.innerHTML += name
         //display profile image
         if(photoURL==null){
             profileIcon.style.display = "none"
@@ -170,5 +171,7 @@ const userView = {
             }
         }
         return true
-    }   
+    },
+    
+    
 }
