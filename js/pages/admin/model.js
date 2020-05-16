@@ -1,3 +1,4 @@
 adminModel = {
-  question: []
+  question: [],
+  sideBarIsOpen: true,
 }
