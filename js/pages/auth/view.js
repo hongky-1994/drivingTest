@@ -98,8 +98,6 @@ const authView = {
     const modal = document.querySelector(".modal__container")
     if (open) {
       if(pageOpenOnCloseModel !== undefined) authModel.pageToOpen = pageOpenOnCloseModel
-      // console.log("pageOpenOnCloseModel", pageOpenOnCloseModel)
-      // console.log("auth Model ", authModel.pageToOpen)
       modal.innerHTML = authComponents.modal
 
       // Pass data to modal
@@ -128,7 +126,6 @@ const authView = {
       document.body.style.width = '100vw';
       document.body.style.top = `-${window.scrollY}px`;
     } else {
-      // console.log('Open page to Open', authModel.pageToOpen)
       authModel.pageToOpen && push(authModel.pageToOpen)
       modal.innerHTML = ''
 
