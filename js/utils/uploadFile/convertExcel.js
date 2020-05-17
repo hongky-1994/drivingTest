@@ -23,7 +23,7 @@ inputFile.addEventListener('change', (e) => {
       newData = [...rowObject]
       
       newData.forEach(async (item, index) => {
-        const gsReference = storage.refFromURL(`gs://driving-test-exam.appspot.com/B2/${item.index}-1.jpg`)
+        const gsReference = storage.refFromURL(`gs://driving-test-exam.appspot.com/B2/${item.index}`)
         let img = ''
         await gsReference.getDownloadURL().then(url => img = url).catch(error => img = null)
         newData[index].images = img
@@ -41,12 +41,12 @@ btnfire.addEventListener('click', () => {
   !collection.value === "" && alert("Chưa điền đường link collection kìa ?")
   
   // covert location to url
-  newData.forEach(item => {
-      const gsReference = storage.refFromURL(`gs://driving-test-exam.appspot.com/B2/${item.index}-1.jpg`)
-      let img = ''
-      gsReference.getDownloadURL().then(url => img = url).catch(error => img = null)
-      item = {...item, img}
-  })
+  // newData.forEach(item => {
+  //     const gsReference = storage.refFromURL(`gs://driving-test-exam.appspot.com/B2/${item.index}`)
+  //     let img = ''
+  //     gsReference.getDownloadURL().then(url => img = url).catch(error => img = null)
+  //     item = {...item, img}
+  // })
 
   let size = 0
   collection.value 
