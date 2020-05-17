@@ -2,7 +2,7 @@ const adminView = {
   showScreen: (screen) => {
     const appContainer = document.querySelector(".app-container")
     appContainer.innerHTML = adminComponents[screen]
-    adminController.getData()
+    adminController.changePage(1)
   },
   changeTab: (tabNo) => {
     const leftSideTabs = document.querySelectorAll('.left__item')
@@ -56,14 +56,35 @@ const adminView = {
     const modalTitle = document.querySelector(".modal-title")
     const modalContent = document.querySelector('.modal-body>.edit')
     const modalFooter = document.querySelector('.modal-footer')
-
+    // get question data.
+    const currentQues = adminModel.question.find(item => item.index === index)
     // pass Data
     if(open) {
       // modal.innerHTML = "OPEN ROI NE`"
       modalTitle.innerHTML = `CHỈNH SỬA CÂU HỎI SỐ ${index}`
+      adminModel.currentQuesIndex = index
       modalContent.innerHTML = adminComponents.modalEdit
       modalFooter.innerHTML = ''
       modalFooter.style.padding = '0'
+
+         // question
+      adminController.fillInputValueWithData('#question__container','value', currentQues.question)
+      adminController.fillInputValueWithData('#category__container','value', currentQues.category)
+      adminController.fillInputValueWithData('#answer1','value', currentQues.answers[0].value)
+      adminController.fillInputValueWithData('#answer2','value', currentQues.answers[1].value)
+      adminController.fillInputValueWithData('#answer3','value', currentQues.answers[2].value)
+      adminController.fillInputValueWithData('#answer4','value', currentQues.answers[3].value)
+      adminController.fillInputValueWithData('#correct1', 'checked', currentQues.correct.includes(1))
+      adminController.fillInputValueWithData('#correct2', 'checked', currentQues.correct.includes(2))
+      adminController.fillInputValueWithData('#correct3', 'checked', currentQues.correct.includes(3))
+      adminController.fillInputValueWithData('#correct4', 'checked', currentQues.correct.includes(4))
+      
+      adminController.fillInputValueWithData('#noImage', 'checked',Boolean(currentQues.images))
+      if (currentQues.images) {
+        adminController.fillInputValueWithData('#output_image','src', currentQues.images)
+      } else {
+        adminController.imgChooseCheckbox()
+      }
        
       // No scroll white open modal
        document.body.style.position = 'fixed';
@@ -80,12 +101,12 @@ const adminView = {
     }
   },
   previewImage: (event) =>  {
-   var reader = new FileReader();
-   reader.onload = function()
-   {
-    var output = document.getElementById('output_image');
-    output.src = reader.result;
-   }
-   reader.readAsDataURL(event.target.files[0]);
+    var reader = new FileReader()
+    reader.onload = () => {
+      var output = document.getElementById('output_image')
+      output.src = reader.result || '../../../js/assets/images/no-image.png';
+    }
+    event.target.files.length > 0 && 
+    reader.readAsDataURL(event.target.files[0])
   }
 }

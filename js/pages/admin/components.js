@@ -1,6 +1,6 @@
 const adminComponents = {
  admin: `
- <div class="h-100 w-100 d-flex">
+ <div class="h-100 w-100">
  <ul class='left__sidebar bg--purple1 bg--purple1 mb-0 w-open '>
     <li class="left__controll px-3 py-3 color--white1 w-100 bg--grey3 d-flex justify-content-end"
     onclick="adminView.openSideBar()">
@@ -41,13 +41,23 @@ const adminComponents = {
                 <th>Mã</th>
                 <th>Phân loại</th>
                 <th>Câu hỏi</th>
-                <th>Đáp án</th>
                 <th>Chỉnh sửa</th>
               </tr>
             </thead>
-            <tbody class='table__body'>
-
-            </tbody>
+            <tbody class='table__body'></tbody>
+            <tfoot class='table__footer'>
+              <tr>
+                <td colspan="5">
+                  <button class="admin__pagination--item btn btn-info" onclick="adminController.changePage(1)"><i class="fas fa-angle-double-left"></i></button>
+                  <button class="admin__pagination--item btn btn-info" onclick="adminController.changePage(null, -1)"><i class="fas fa-angle-left"></i></button>
+                  <input class="admin__pagination--input btn bg--white1 border" type="number" max="45" onchange="adminController.inputChange(event)">
+                  <button class="admin__pagination--item btn btn-info" onclick="adminController.changePage(null, 1)"><i class="fas fa-angle-right"></i></button>
+                  <button class="admin__pagination--item btn btn-info" onclick="adminController.changePage(45)"><i class="fas fa-angle-double-right"></i></button>
+                  <button class="btn btn-success" onclick="adminController.changePage()">Đi đến</button>
+                  
+                </td>
+              </tr>
+            </tfoot>
           </table>
 
          </div>
@@ -158,12 +168,12 @@ const adminComponents = {
  modalEdit: `
  <form>
   <div class="form-group">
-    <label>Câu hỏi</label>
-    <input type="text" class="form-control" id="question__container" placeholder="Câu hỏi">
+    <label>Câu hỏi<span class='color--red1'>*</span></label>
+    <textarea row='2' type="text" class="form-control" id="question__container" placeholder="Câu hỏi"></textarea>
   </div>
   <div class="form-group">
-  <label>Phân loại</label>
-  <select type="text" class="form-control" id="question__container" placeholder="Phân loại">
+  <label>Phân loại<span class='color--red1'>*</span></label>
+  <select type="text" class="form-control" id="category__container" placeholder="Phân loại">
     <option value="">----Chọn phân loại câu hỏi----</option>
     <option value="Khái niệm">Khái niệm</option>
     <option value="Quy tắc">Quy tắc</option>
@@ -177,38 +187,41 @@ const adminComponents = {
   </select>
 </div>
   <div class="form-group">
-    <label>Câu trả lời</label>
+    <label>Câu trả lời<span class='color--red1'>*</span></label>
     <input type="text" class="form-control" id="answer1" placeholder="Đáp án thứ 1">
     <input type="text" class="form-control" id="answer2" placeholder="Đáp án thứ 2">
     <input type="text" class="form-control" id="answer3" placeholder="Đáp án thứ 3">
     <input type="text" class="form-control" id="answer4" placeholder="Đáp án thứ 4">
   </div>
   <div class="form-group">
-    <label>Đáp án đúng</label>
+    <label class="form__check__answer mr-3">Đáp án đúng <span class='color--red1'>*</span></label>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="correct1" value="1">
+      <input class="form-check-input" type="checkbox" name='corrects' id="correct1" value="1">
       <label class="form-check-label" for="correct1">1</label>
     </div>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="correct2" value="2">
+      <input class="form-check-input" type="checkbox" name='corrects' id="correct2" value="2">
       <label class="form-check-label" for="correct2">2</label>
     </div>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="correct3" value="3">
+      <input class="form-check-input" type="checkbox" name='corrects' id="correct3" value="3">
       <label class="form-check-label" for="correct3">3</label>
     </div>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="correct4" value="4">
+      <input class="form-check-input" type="checkbox" name='corrects' id="correct4" value="4">
       <label class="form-check-label" for="correct4">4</label>
     </div>
   </div>
-  <div class="form-group-inline">
-    <label>Hình ảnh đính kèm</label>
+  <div class="form-group-inline image__div">
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" name='noImage' id="noImage" onchange="adminController.imgChooseCheckbox()">
+      <label>Hình ảnh đính kèm</label>
+    </div>
     <input type="file" class="form-control-file" id="image" onchange="adminView.previewImage(event)">
-    <image id="output_image" class="image__preview"/>
+    <image id="output_image" class="image__preview my-3"/>
   </div>
   
-    <button type="submit" class="btn btn-primary mt-3">Cập nhật</button>
+    <button type="submit" class="btn btn-primary mt-3" onclick="adminController.submitUpdate(event)">Cập nhật</button>
 </form>
 `
 }
