@@ -133,7 +133,7 @@ padding-left: 10vw;
 
 }
 
-@media all and (max-width: 1440px) {
+@media all and (min-width: 1440px) {
     .user-pros, .user-cons{
         width: 23vw;
     }

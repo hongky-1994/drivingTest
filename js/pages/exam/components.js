@@ -74,7 +74,7 @@ const examComponents={
             </label>-->
           </div>  
 
-          <button class="exam-button submit-answer" type="submit">Nộp bài</button>
+          <button class="exam-button submit-answer" type="button">Nộp bài</button>
         </form>
       </div>
     </div>

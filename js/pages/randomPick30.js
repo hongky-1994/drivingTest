@@ -8,15 +8,6 @@ const btnSubmitUserAns = document.querySelector('.btn.btn-secondary')
 let list30Index = []
 let list30Questions =[]
 
-//get userAns from firebase
-let userAns = [[1, null],[1, null],[1, null],[1, null],[1, null],
-                [1, null],[1, null],[1, null],[1, null],[1, null],
-                [1, null],[1, null],[1, null],[1, null],[1, null],
-                [1, null],[1, null],[1, null],[1, null],[1, null],
-                [1, null],[1, null],[1, null],[1, null],[1, null],
-                [1, null],[1, null],[1, null],[1, null],[1, null],]
-
-
 let listCorrectAns = []
 let indexQues = 0
 let correctCount = 0
