@@ -97,7 +97,9 @@ const authView = {
   openModal: (open, title, icon, content, pageOpenOnCloseModel ) => {
     const modal = document.querySelector(".modal__container")
     if (open) {
-      if(pageOpenOnCloseModel !== undefined) authModel.pageToOpen = pageOpenOnCloseModel
+      if(pageOpenOnCloseModel !== undefined) {
+        authModel.pageToOpen = pageOpenOnCloseModel
+      }
       // console.log("pageOpenOnCloseModel", pageOpenOnCloseModel)
       // console.log("auth Model ", authModel.pageToOpen)
       modal.innerHTML = authComponents.modal

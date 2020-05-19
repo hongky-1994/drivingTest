@@ -18,9 +18,11 @@ const push = (screen, historyMethod) => {
       break
 
     case 'testType':
-    case 'structuredTest':
-      page = 'exam'
-      break
+      case 'structuredTest':
+        case 'randomTest': // có thể đang gây lỗi cho phần khác
+        page = 'exam'
+        break
+      
     
     case 'admin':
       page = 'admin'
@@ -46,7 +48,7 @@ const push = (screen, historyMethod) => {
       userView.showScreen(screen)
       break
     case 'exam':
-      common.changePageTitle('Doing some test')
+      common.changePageTitle('Driving exam')
       examView.showScreen(screen)
       break
     case 'admin':
