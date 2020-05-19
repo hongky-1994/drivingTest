@@ -54,6 +54,8 @@ const examView = {
                         loadingView.hide()
                     }
                     )
+
+                break
             }
             case 'testResult': {
                 examModel.currentPage = 'testResult' 
@@ -123,21 +125,22 @@ const examView = {
                         questionAnwerContainers[index].innerHTML = `
                             <input type="checkbox" id="answer-${index + 1}" name="answer-${index + 1}" >
                             <label for="answer-${index + 1}">
-                                ${questionObject.answers[index].value}
+                                ${questionObject.answers[index].no + ". " + questionObject.answers[index].value}
                             </label>
                         `
+                        console.log("questionObject.answers[index].no", questionObject.answers[index].no)
                     case 'randomTest':
                         questionAnwerContainers[index].innerHTML = `
                             <input type="checkbox" id="answer-${index + 1}" name="answer-${index + 1}" >
                             <label for="answer-${index + 1}">
-                                ${questionObject.answers[index].value}
+                                ${questionObject.answers[index].no + ". " + questionObject.answers[index].value}
                             </label>
                         `
                         break
                     case 'resultDetail': // các case result sẽ để là div
                         questionAnwerContainers[index].innerHTML = `
                             <div class"result-detail-answer" id="answer-${index + 1}">
-                                ${questionObject.answers[index].value}
+                                ${questionObject.answers[index].no + ". " + questionObject.answers[index].value}
                             </div>
                         `
                     
