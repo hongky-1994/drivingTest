@@ -37,7 +37,6 @@ const examView = {
                 examModel.list30Question = []
                 examController.getRandomIndex()
                 loadingView.show()
-<<<<<<< HEAD
                 Promise.all( examController.getQuestionObject())
                 .then( () => {
                     console.log('30 question', examModel.list30Question)
@@ -60,25 +59,6 @@ const examView = {
                         userController.uploadTestToFirebase();                    
                     }
                 })
-=======
-                Promise
-                    .all(examController.getQuestionObject())
-                    .then(() => {
-                        examController.createList30Answer()
-                        app.innerHTML = examComponents.test
-                        examView.showQuestionBoxes()
-                        examView.showFirstQuestion()
-                        examView.setUpButtons()
-                        const testAnswerForm = document.querySelector(".test-answer-form")
-                        testAnswerForm.addEventListener("change", () => {
-                            examController.saveUserAnswerTo(examModel.thisQuestionName)
-                            examView.changeDoneQuestionBoxColor()
-                        })
-                        examView.timer.showRemainingTime()
-                        loadingView.hide()
-                    }
-                    )
->>>>>>> 526ce2bb9730badd58625d7fa9f8581852216c84
 
                 break
             }
