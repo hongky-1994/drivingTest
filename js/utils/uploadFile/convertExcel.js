@@ -55,7 +55,7 @@ btnfire.addEventListener('click', () => {
     .then(col => {size = col.size})
     .then(() => {
 
-       if (actionType.value === "update" && size === 0 ){
+      if (actionType.value === "update" && size === 0 ){
         console.log("collection.value",collection.value)
         alert("Collection không tồn tại để cập nhật")
       } else {

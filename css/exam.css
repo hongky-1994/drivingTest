@@ -133,6 +133,7 @@
     color: var(--colorWhite1);
     border: 0;
     box-shadow: 0px 5px 5px var(--colorGrey3);
+    font-size: 1.5rem;
 }
 
 .submit-answer {
@@ -147,3 +148,45 @@
 .done-question {
     background-color: var(--colorBlue1);
 }
+
+/* test result page */
+.result-button {
+    background-color: var(--colorPurple3);
+    margin: 2rem;
+}
+
+.result-section-container {
+    text-align: center;
+}
+
+.test-result-title {
+    font-size: 4rem;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.test-total-time {
+    font-size: 2rem;
+    color: var(--colorGrey3);
+}
+
+.correct-answer {
+    color: var(--colorGreen1);
+}
+
+.wrong-answer {
+    color: var(--colorRed1);
+}
+
+/* .result-detail-answer {
+    color: red !important;
+} */
+
+.wrong-question-box {
+    background-color: var(--colorRed1);
+}
+
+.correct-question-box {
+    background: var(--colorGreen1);
+}
+

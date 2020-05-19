@@ -5,6 +5,8 @@ const examModel = {
     thisQuestionName: 1,
     list30UserAnswerShorten: [],
     list30CorrectAnswer: [],
-    correctAnswers: 30,
-    onclickEvent: null
+    correctAnswers: 0,
+    testTotalTime: [],
+    currentPage: null,
+    answerNotCorrect: [],
 }

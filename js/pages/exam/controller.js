@@ -34,6 +34,32 @@ const examController = {
         examModel.list30Index = list30Index
 
     },
+    getRandomIndex: () => {
+        let list30Index = []
+        const getRandomInt = (max) => {
+            return Math.floor(Math.random() * Math.floor(max));
+        }
+    
+        const randomNumber = (startNumber, queryLength) => {
+            return startNumber + getRandomInt(queryLength)
+        }
+
+        const randomSelectCategory = (numberOfQuestion, startQuestion, queryLength, arrayList ) => {
+            let index = 0
+            while (index < numberOfQuestion) {
+                let question = randomNumber(startQuestion,queryLength)
+                if(!arrayList.includes(question)) {
+                    arrayList.push(question)
+                    index ++
+                }
+            }
+            return arrayList
+        }
+
+        list30Index = randomSelectCategory(30, 1, 450, list30Index)
+
+        examModel.list30Index = list30Index
+    },
     getQuestionObject: () => {
         return examModel.list30Index.map((element) => {
             return firebase.firestore().doc(`tests/B2/question-list/question-${element}`)
@@ -51,7 +77,7 @@ const examController = {
         checkedAnswers.forEach(element => {
             let answerId = element.id
             let answerIdShorten = answerId.replace("answer-", "")
-            userAnswerNotSaved.push(answerIdShorten)
+            userAnswerNotSaved.push(Number(answerIdShorten))
         })
         userAnswerNotSaved.sort((a, b) => a - b)
         examModel.list30Answer[thisQuestionName - 1].userAnswer = userAnswerNotSaved        
@@ -70,23 +96,40 @@ const examController = {
     }, 
     
     scoreTest: () => {
+        examController.createListAnswerState()
         let list30Answer = examModel.list30Answer
         let list30Question = examModel.list30Question
         let list30UserAnswerShorten = examModel.list30UserAnswerShorten
         let list30CorrectAnswer = examModel.list30CorrectAnswer
-        let correctAnswers = examModel.correctAnswers
+        examModel.correctAnswers = 0
         list30Answer.forEach((element) => {
             list30UserAnswerShorten.push(JSON.stringify(element.userAnswer))
         })
         list30Question.forEach((element) => {
             let correct = element.correct.filter((value) => value != null)
+            
             list30CorrectAnswer.push(JSON.stringify(correct))
         })
+        
         for (let i = 0; i < 30; i++ ) {
-            if (list30CorrectAnswer[i] != list30UserAnswerShorten[i]) {
-                correctAnswers--
+            if (JSON.stringify(list30CorrectAnswer[i]) == JSON.stringify(list30UserAnswerShorten[i])) {
+                examModel.correctAnswers++
+            } else {
+                examModel.answerNotCorrect[i] = true
             }
         }
+        let testScore = document.querySelector(".test-score")
+        let minute = document.querySelector(".total-minute")
+        let second = document.querySelector(".total-second")
+        testScore.innerHTML = examModel.correctAnswers
+        minute.innerHTML = examModel.testTotalTime[0]
+        second.innerHTML = examModel.testTotalTime[1]
+        
+        
     }, 
+
+    createListAnswerState: () => {
+        examModel.answerNotCorrect = [...Array(30)].map(() => {false})
+    }
 }
 
