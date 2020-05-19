@@ -96,8 +96,9 @@ const userController = {
         console.log('test history goes here')
         let email = firebase.auth().currentUser.email
         let listUserAns = examModel.list30Answer
-        
-        // let list30Question = examModel.list30Question    
+        let listWrongQues = examModel.answerNotCorrect
+        let testTotalTime = examModel.testTotalTime
+        let list30Index = examModel.list30Index    
         let now = new Date().toISOString()
         // let userId = userModel.currentUserId
 
@@ -105,8 +106,10 @@ const userController = {
         // console.log(userId);
 
         let newTest = {
-            // list30Question: list30Question,
+            list30Index: list30Index,
             listUserAns: listUserAns,
+            listWrongQues: listWrongQues,
+            testTotalTime: testTotalTime,
             submitAt: now,
         }
         console.log(newTest)
