@@ -236,15 +236,28 @@ const examView = {
                     else {
                         minute.innerHTML += examView.timer.calculateRemainingTime()[0]
                     }
-                    examModel.testTotalTime[0] = minute.innerHTML 
-
                     if (examView.timer.calculateRemainingTime()[1] < 10) {
                         second.innerHTML += "0" + examView.timer.calculateRemainingTime()[1]
                     }
                     else {
                         second.innerHTML += examView.timer.calculateRemainingTime()[1]
                     }
-                    examModel.testTotalTime[1] = second.innerHTML 
+                    let totalRemainingTime = Number(minute.innerHTML) * 60 + Number(second.innerHTML)
+                    let testTotalTime = (20 * 60) - totalRemainingTime
+                    //tính ra giá trị giây
+                    examModel.testTotalTime[0] = Math.floor(testTotalTime / 60)
+                    //thêm 0 nếu số nhỏ hơn 10
+                    examModel.testTotalTime[0] = (examModel.testTotalTime[0] > 10) ?
+                        examModel.testTotalTime[0]
+                        :
+                        "0" + examModel.testTotalTime[0] 
+                    //tính ra giá trị giây
+                    examModel.testTotalTime[1] = Math.round(testTotalTime - examModel.testTotalTime[0]*60)
+                    //thêm 0 nếu số nhỏ hơn 10
+                    examModel.testTotalTime[1] = (examModel.testTotalTime[1] > 10) ?
+                    examModel.testTotalTime[1]
+                    :
+                    "0" + examModel.testTotalTime[1]   
                 }
                 }, 1000)
         },

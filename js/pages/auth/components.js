@@ -126,6 +126,7 @@ const authComponents = {
         <div class="modal-body d-flex flex-column align-items-center">
           <div class="modal-icon"></div>
           <p class="text-capitalize"></p>
+          <div class="edit w-100"></div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" onclick="authView.openModal(false)">Close</button>
