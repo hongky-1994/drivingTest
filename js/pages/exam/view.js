@@ -36,7 +36,7 @@ const examView = {
                     examController.createList30Answer()
                     examView.showQuestionBoxes()
                     examView.showFirstQuestion(examModel.list30Question)
-                    examView.setUpButtons(list30Index)
+                    examView.setUpButtons()
                     const testAnswerForm = document.querySelector(".test-answer-form")
                     testAnswerForm.addEventListener("change",() => {
                         examController.saveUserAnswerTo(examModel.thisQuestionName)
@@ -45,7 +45,11 @@ const examView = {
                     loadingView.hide()
                     
                     //upload test to firebase
-                    userController.uploadTestToFirebase();
+                    let submitUserAnswer = document.querySelector(".submit-answer")
+                    submitUserAnswer.onclick = function(){
+                        // console.log(examModel.list30Answer)
+                        userController.uploadTestToFirebase();                    
+                    }
                 })
 
                 break
