@@ -74,10 +74,7 @@ const examComponents={
             </label>-->
           </div>  
 
-<<<<<<< HEAD
-          <button class="exam-button submit-answer" type="button">Nộp bài</button>
-=======
-          <button class="exam-button submit-answer" type="submit" onclick="examView.showScreen('testResult')">Nộp bài</button>
+          <button class="exam-button submit-answer" type="button" onclick="examView.showScreen('testResult')">Nộp bài</button>
         </form>
       </div>
     </div>
@@ -125,7 +122,6 @@ const examComponents={
             <label for="answer4">
             </label>-->
           </div>  
->>>>>>> 526ce2bb9730badd58625d7fa9f8581852216c84
         </form>
       </div>
     </div>
