@@ -1,7 +1,6 @@
 const userController = {
     addNewUser: async()=> {
-    if(userModel.currentUserId==null)
-        {             
+        if(userModel.currentUserId==null){             
             userModel.currentUser = firebase.auth().currentUser
             console.log(userModel);
 
@@ -116,5 +115,18 @@ const userController = {
             .update({
                 submissions:firebase.firestore.FieldValue.arrayUnion(newTest)
             })
+    },
+    openHistory: async()=>{
+        let email = firebase.auth().currentUser.email
+        let userData = await firebase.firestore()
+            .collection('users')
+            .doc(`${email}`)
+            .get()
+            .then((doc)=>{
+                return doc.data()
+            })
+
+        console.log(userData)
+        // authView.openModal(true, "Thông báo","success", `${userData.user}`)
     },
 }

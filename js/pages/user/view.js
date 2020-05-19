@@ -77,15 +77,10 @@ const userView = {
                 ////////see history///////
                 let seeHistory = document.querySelector('.test-history-see-all')
                 seeHistory.onclick = function(){
-                    userView.showScreen('history')
+                    userController.openHistory();
                 }
 
                 break;
-            }
-            case 'history':{
-                app.innerHTML = userComponents.history;
-                // userController.uploadTestToFirebase();
-
             }
             default : {return}
          

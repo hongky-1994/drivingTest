@@ -23,7 +23,7 @@ const examComponents={
                 </p>                
             </div>
         </div>
-        <div class="test-type-container random-test" onclick="examView.showScreen('randomTest')">    
+        <div class="test-type-container random-test" onclick="examView.loadTest('randomTest','.random-test')">    
             <div class="test-type bg--purple1 color--white1">
                 Tổng hợp
             </div>
@@ -34,7 +34,7 @@ const examComponents={
         </div>
     </section>
     `,
-    structuredTest: `
+    test: `
     <div class="section-container">
       <div class="exam-left-column">
         <div class="timer-container bg--pink2">
@@ -74,7 +74,55 @@ const examComponents={
             </label>-->
           </div>  
 
-          <button class="exam-button submit-answer" type="button">Nộp bài</button>
+          <button class="exam-button submit-answer" type="button" onclick="examView.showScreen('testResult')">Nộp bài</button>
+        </form>
+      </div>
+    </div>
+    `,
+    testResult: `
+    <div class="result-section-container">
+      <div class="test-result-title">BẠN ĐÃ ĐẠT ĐƯỢC <span class="test-score"></span>/30</div>
+      <div class="test-total-time">TỔNG THỜI GIAN: <span class="total-minute"></span>:<span class="total-second"></span></div>
+      <div class="result-buttons-container">
+        <button class="exam-button result-button" onclick="examView.showScreen('resultDetail')">Chi tiết</button>
+        <button class="exam-button result-button" onclick="examView.showScreen('testType')">Thi tiếp</button>
+      </div>
+    </div>
+    `,
+    resultDetail: `
+    <div class="section-container">
+      <div class="exam-left-column">
+        <div class="question-container">
+        </div>
+      </div>
+      <div class="exam-right-column">
+        <p class="test-question"></p>
+        <div class="test-image"></div>
+        <form class="test-answer-form">
+          <div class="test-answer-container col-xl-6">
+            <!--<input type="checkbox" id="answer0" name="answer0" >
+            <label for="answer0" >
+            </label>-->
+          </div>
+
+          <div class="test-answer-container col-xl-6">
+            <!--<input type="checkbox" id="answer2" name="answer2">
+            <label for="answer2">
+            </label>-->
+          </div>
+
+          <div class="test-answer-container col-xl-6">
+            <!--<input type="checkbox" id="answer3" name="answer3">
+            <label for="answer3">
+            </label>-->
+          </div>
+
+          <div class="test-answer-container col-xl-6">
+            <!--<input type="checkbox" id="answer4" name="answer4">
+            <label for="answer4">
+            </label>-->
+          </div>  
+
         </form>
       </div>
     </div>

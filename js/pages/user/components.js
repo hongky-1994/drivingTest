@@ -163,17 +163,26 @@ const userComponents = {
       </div>
     </div>
     `,
-    history: `
-    this is history
-    <button class="btn btn-primary">Get random index</button>
-
-    <div class="list__index">RANDOM TEST question</div>
-  
-    <button class="btn btn-success">Show random list question</button>
-    <div class="list__questions row">List question</div>
-  
-    <button class="btn btn-secondary">Submit answers</button>
-    <div class="user-score">User's answers</div>
+    modalHistory: `
+    <div class="modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-capitalize">Modal title</h5>
+          <button type="button" class="close" onclick="authView.openModal(false)">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body d-flex flex-column align-items-center">
+          <div class="modal-icon"></div>
+          <p class="text-capitalize"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="authView.openModal(false)">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
     `,
 
 }
