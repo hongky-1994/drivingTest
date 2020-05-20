@@ -1,11 +1,12 @@
 const userView = {
-    showScreen: (screen) => {
+    showScreen: async (screen) => {
         let app = document.querySelector('.app-container')
         switch (screen) {
             case 'user':{
                 app.innerHTML = userComponents.user
                 userView.showCurrentUserInfo()
-
+                await userController.getTestFromFirebase()
+                userView.showShortenHistory()
                 let email = firebase.auth().currentUser.email
                 userController.addNewUser(email)
                 //su kien: sign-out
@@ -80,13 +81,8 @@ const userView = {
                 let seeHistory = document.querySelector('.test-history-see-all')
                 seeHistory.onclick = function(){
                     modalHistory.style.display = "block"
-                    userController.getTestFromFirebase()
-                    .then(() => {
                         userView.displayHistory()
-                        userController.addHistoryElementEvent()
-                    })
-                    
-                    
+                        userController.addHistoryElementEvent()   
                 }
 
                 break
@@ -216,6 +212,20 @@ const userView = {
     closeModal: (selector) => {
         let modal = document.querySelector(selector)
         modal.style.display = "none"
+    },
+    showShortenHistory: () => {
+        let t1r2c1 =  document.querySelector('.table-1-row-2-col-1')
+        let t1r2c2 =  document.querySelector('.table-1-row-2-col-2')
+        let t1r2c3 =  document.querySelector('.table-1-row-2-col-3')
+        let t1r3c1 =  document.querySelector('.table-1-row-3-col-1')
+        let t1r3c2 =  document.querySelector('.table-1-row-3-col-2')
+        let t1r3c3 =  document.querySelector('.table-1-row-3-col-3')
+        t1r2c1.innerHTML = userModel.testData[0].testType
+        t1r3c1.innerHTML = userModel.testData[1].testType
+        t1r2c2.innerHTML = userModel.testData[0].correctAnswers + '/30'
+        t1r3c2.innerHTML = userModel.testData[1].correctAnswers + '/30'
+        t1r2c3.innerHTML = moment.utc(userModel.testData[0].submitAt).local().format('HH:mm:ss - DD/MM/YYYY')
+        t1r3c3.innerHTML = moment.utc(userModel.testData[1].submitAt).local().format('HH:mm:ss - DD/MM/YYYY')
     }
     
 }

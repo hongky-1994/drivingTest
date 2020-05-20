@@ -40,14 +40,14 @@ const userComponents = {
 
             <tbody>
               <tr>
-                <td class="table-1-row-2-col-1">Tổng hợp</td>
-                <td class="table-1-row-2-col-2">30/30</td>
-                <td class="table-1-row-2-col-3">12:00:00 - 29/04/2020</td>
+                <td class="table-1-row-2-col-1"></td>
+                <td class="table-1-row-2-col-2"></td>
+                <td class="table-1-row-2-col-3"></td>
               </tr>
               <tr>
-                <td class="table-1-row-3-col-1">Cấu trúc</td>
-                <td class="table-1-row-3-col-2">29/30</td>
-                <td class="table-1-row-3-col-3">12:00:00 - 30/04/2020</td>
+                <td class="table-1-row-3-col-1"></td>
+                <td class="table-1-row-3-col-2"></td>
+                <td class="table-1-row-3-col-3"></td>
               </tr>
 
               <tr class="table-footer">
