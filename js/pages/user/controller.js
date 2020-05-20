@@ -1,7 +1,8 @@
 const userController = {
     addNewUser: async()=> {
-    if(userModel.currentUserId==null)
+    if(userModel.currentUserId == null)
         {             
+            
             userModel.currentUser = firebase.auth().currentUser
             console.log(userModel);
 
@@ -93,26 +94,22 @@ const userController = {
         
     },
     uploadTestToFirebase: async() => {
-        console.log('test history goes here')
         let email = firebase.auth().currentUser.email
-        let listUserAns = examModel.list30Answer
-        let listWrongQues = examModel.answerNotCorrect
+        let list30Answer = examModel.list30Answer
+        let answerNotCorrect = examModel.answerNotCorrect
         let testTotalTime = examModel.testTotalTime
         let list30Index = examModel.list30Index    
         let now = new Date().toISOString()
         // let userId = userModel.currentUserId
-
-        console.log(listUserAns)
         // console.log(userId);
 
         let newTest = {
             list30Index: list30Index,
-            listUserAns: listUserAns,
-            listWrongQues: listWrongQues,
+            list30Answer: list30Answer,
+            answerNotCorrect: answerNotCorrect,
             testTotalTime: testTotalTime,
             submitAt: now,
         }
-        console.log(newTest)
         await firebase.firestore()
             .collection('users')
             .doc(`${email}`)
@@ -120,4 +117,16 @@ const userController = {
                 submissions:firebase.firestore.FieldValue.arrayUnion(newTest)
             })
     },
+    getTestFromFirebaseToExamModel: async (index) => {
+        let email = firebase.auth().currentUser.email
+        let testData = await firebase.firestore()
+            .collection('users')
+            .doc(`${email}`)
+            .get()
+            .then(doc => doc.data().submissions[index])
+        examModel.list30Index = testData.list30Index
+        examModel.list30Answer = testData.list30Answer
+        examModel.answerNotCorrect = testData.answerNotCorrect
+        examModel.testTotalTime = testData.testTotalTime
+    }
 }

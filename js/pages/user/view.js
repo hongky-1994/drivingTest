@@ -1,7 +1,7 @@
 const userView = {
     showScreen: (screen) => {
         let app = document.querySelector('.app-container')
-        userController.addNewUser()
+        // userController.addNewUser()
         switch (screen) {
             case 'user':{
                 app.innerHTML = userComponents.user
@@ -80,15 +80,36 @@ const userView = {
                     userView.showScreen('history')
                 }
 
-                break;
+                break
             }
-            case 'history':{
-                app.innerHTML = userComponents.history;
+            case 'dang test' /*'history'*/:{
+                app.innerHTML = userComponents.history
                 // userController.uploadTestToFirebase();
-
+                break
             }
+            case 'history': {
+                console.log("đang ở trang history")
+                examModel.currentPage = "resultDetail"
+                examModel.list30Question = [] 
+                userController.getTestFromFirebaseToExamModel(0/*index*/) //sẽ add event vào button chọn test
+                .then(() => {
+                    Promise.all(examController.getQuestionObject())
+                    .then(() => {
+                        app.innerHTML = examComponents.resultDetail
+                        examView.showQuestionBoxes() // không phụ thuộc
+                        examView.showFirstQuestion() 
+                        //showQuestion //phải lấy list30Question done
+                        //changeCurrentQuestionBoxColor 
+                        //changeCorrectAndWrongAnswerColor // phải cập nhật thisQuestionName (lấy từ examController), phải có list30Question và list30Answer
+                        //changeCorrectAndWrongQuestionBoxColor // phải cập nhật answerNotCorrect
+                        examView.setUpButtons()
+                        //có hàm Savethisquestionname   
+                    })
+                })  
+                break
+            }
+
             default : {return}
-         
         }
     },
     

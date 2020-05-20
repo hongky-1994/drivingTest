@@ -49,9 +49,7 @@ const push = (screen, historyMethod) => {
       break
     case 'exam':
       common.changePageTitle('Driving exam')
-      examView.showScreen(screen)
-      console.log("scren", screen)
-      
+      examView.showScreen(screen)      
       break
     case 'admin':
       common.changePageTitle('ADMIN PAGE')
