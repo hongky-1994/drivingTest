@@ -8,6 +8,7 @@ const examView = {
                 break
             }
             case 'structuredTest': {
+                examModel.testType = 'Cấu trúc'
                 examModel.currentPage = 'structuredTest' 
                 examModel.list30Question = []
                 examController.getStructuredIndex()
@@ -34,6 +35,7 @@ const examView = {
                 break
             }
             case 'randomTest': {
+                examModel.testType = 'Tổng hợp'
                 examModel.currentPage = 'randomTest' 
                 examModel.list30Question = []
                 examController.getRandomIndex()

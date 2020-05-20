@@ -9,4 +9,5 @@ const examModel = {
     testTotalTime: [],
     currentPage: null,
     answerNotCorrect: [],
+    testType: null
 }

@@ -145,7 +145,7 @@ const userComponents = {
     <div class="modal-show-history">
       <div class="history-header">Lịch sử</div>
       <div class="history-content"></div>
-      <div class="history-footer">Đóng</div>
+      <div class="history-footer" onclick ="userView.closeModal('.modal-show-history')">Đóng</div>
     </div>
   </section>
     `,

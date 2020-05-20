@@ -107,12 +107,6 @@ overflow: hidden;
 text-overflow: ellipsis;
 }
 
-td:hover{
-    cursor: pointer;
-    text-decoration: underline;
-    text-decoration-color: #122ee0;
-}
-
 .table-footer>td{
     padding-bottom: 1.5vh; 
     padding-top: 1.5vh; 
@@ -392,9 +386,9 @@ border-color: rgb(197, 193, 193);
 /* modal hitory */
 .modal-show-history{
     position: fixed;
-    /* display: block; */
+    top: 0;
     z-index: 1; /* Sit on top */
-    overflow: auto;
+    display: none;
     width: 70vw;
     height: 50vh;
     margin-left: 15vw;
@@ -404,11 +398,13 @@ border-color: rgb(197, 193, 193);
 
 .history-header, .history-footer{
     width: 100%;
-    height: 10%;
-    background: #122ee0;
+    height: 3rem;
+    background: var(--colorBlue1);
     color: #ffffff;
-    font-size: 2rem;   
+    font-size: 1.5rem;   
     text-align: center;
+    line-height: 3rem;
+
 }
 
 .history-header{
@@ -419,10 +415,42 @@ border-color: rgb(197, 193, 193);
 .history-footer{
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
+    cursor: pointer;
 }
 
 .history-content{
     width: 100%;
     height: 80%;
-    background: #888;
+    background: #ffffff;
+    overflow-y: auto;
+    border: 0.25px solid var(--colorGrey2);
+}
+
+.history-tests {
+    display: flex;
+    font-size: 1.5rem;
+    padding: 0.75rem;
+    border: 0.25px solid var(--colorGrey2);
+    cursor: pointer;
+}
+
+.history-tests:hover {
+    background-color: var(--colorGrey2);
+}
+
+.history-test-type {
+    margin-left: 2.5rem;
+    width: 15%;
+}
+
+.history-test-score {
+    margin-left: 2.5rem;
+}
+
+.history-submit-at {
+    margin-left: 2.5rem;
+}
+
+.history-test-total-time {
+    margin-left: 2.5rem;
 }
