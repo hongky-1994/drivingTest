@@ -17,6 +17,7 @@ a:hover{
   /* overflow-x: hidden !important; */
 /* } */
 .app-container{
+  display: block;
   margin-top: 5.5rem;
   height: calc(100vh - 5.5rem);
   overflow-y: scroll;
