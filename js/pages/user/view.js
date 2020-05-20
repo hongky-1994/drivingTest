@@ -92,6 +92,7 @@ const userView = {
                 examModel.currentPage = "resultDetail"
                 examModel.list30Question = [] 
                 userController.getTestFromFirebaseToExamModel(0/*index*/) //sẽ add event vào button chọn test
+                .then(console.log("đã lấy đủ data về"))
                 .then(() => {
                     Promise.all(examController.getQuestionObject())
                     .then(() => {

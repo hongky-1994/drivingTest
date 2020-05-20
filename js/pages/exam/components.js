@@ -122,7 +122,7 @@ const examComponents={
             <label for="answer4">
             </label>-->
           </div>  
-          <button class="exam-button" onclick="userView.showScreen('history')">Test</button>
+          <div class="exam-button" onclick="userView.showScreen('history')">Test</div>
         </form>
       </div>
     </div>
