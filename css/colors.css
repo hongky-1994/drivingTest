@@ -34,21 +34,21 @@
 .color--white2{color: var(--colorWhite2)}
 
 /* background color */
-.bg--purple1{background-color: var(--colorPurple1)}
-.bg--purple2{background-color: var(--colorPurple2)}
-.bg--purple3{background-color: var(--colorPurple3)}
-.bg--blue1{background-color: var(--colorBlue1)}
-.bg--orange1{background-color: var(--colorOrange1)}
-.bg--orange2{background-color: var(--colorOrange2)}
-.bg--pink1{background-color: var(--colorPink1)}
-.bg--pink2{background-color: var(--colorPink2)}
-.bg--red1{background-color: var(--colorRed1)}
-.bg--green1{background-color: var(--colorGreen1    )}
-.bg--grey1 {background-color: var(--colorGrey1 )}
-.bg--grey2{background-color: var(--colorGrey2)}
-.bg--grey3{background-color: var(--colorGrey3)}
-.bg--white1{background-color: var(--colorWhite1)}
-.bg--white2{background-color: var(--colorWhite2)}
+.bg--purple1{background-color: var(--colorPurple1) !important}
+.bg--purple2{background-color: var(--colorPurple2) !important}
+.bg--purple3{background-color: var(--colorPurple3) !important}
+.bg--blue1{background-color: var(--colorBlue1) !important}
+.bg--orange1{background-color: var(--colorOrange1) !important}
+.bg--orange2{background-color: var(--colorOrange2) !important}
+.bg--pink1{background-color: var(--colorPink1) !important}
+.bg--pink2{background-color: var(--colorPink2) !important}
+.bg--red1{background-color: var(--colorRed1) !important}
+.bg--green1{background-color: var(--colorGreen1    ) !important}
+.bg--grey1 {background-color: var(--colorGrey1 ) !important}
+.bg--grey2{background-color: var(--colorGrey2) !important}
+.bg--grey3{background-color: var(--colorGrey3) !important}
+.bg--white1{background-color: var(--colorWhite1) !important}
+.bg--white2{background-color: var(--colorWhite2) !important}
 
  /* text hover */
 .color--hover--purple1:hover{color: var(--colorPurple1)}

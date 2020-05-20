@@ -56,7 +56,7 @@ const headerComponents = {
       </div>
 
       <div class="header__item pl-4 py-3 color--grey3 h2 font-weight-lighter m-0 bg--white1 bg--hover--grey2 color--hover--purple2"
-        onclick="layoutView.showNav()">
+        onclick="push('library'); layoutView.showNav()">
         Thư viện đề thi
       </div>
 

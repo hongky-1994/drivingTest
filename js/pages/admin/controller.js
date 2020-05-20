@@ -3,14 +3,28 @@ const adminController = {
     const tableBody = document.querySelector('.table__body')
     tableBody.innerHTML = ''
     const db = firebase.firestore()
+    const condition = document.querySelector('#search__condition').value
+    const valueSearch = document.querySelector('#searchInput').value
+    console.log("valueSearch", valueSearch)
+    console.log('condition', condition)
+
     loadingView.show()
-    await db.collection('tests/B2/question-list')
+    let ref
+    if(condition) {
+      ref = db.collection('tests/B2/question-list')
+      .orderBy('index')
+      .where(condition, '==', valueSearch)
+      .limit(10)
+      .startAfter((page - 1)*10)
+    } else {
+      ref = db.collection('tests/B2/question-list')
       .orderBy('index')
       .limit(10)
       .startAfter((page - 1)*10)
-      .get()
+    }
+      
+    await ref.get()
       .then(collection => {
-
         collection.forEach(item => {
           const doc = item.data()
           adminModel.question.push(doc)

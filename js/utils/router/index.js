@@ -31,6 +31,9 @@ const push = (screen, historyMethod) => {
     case 'main':
       page = 'main'
       break
+    case 'library':
+      page = 'library'
+      break
     default:
       page = 'user'
       screen = 'user'
@@ -60,6 +63,10 @@ const push = (screen, historyMethod) => {
     case 'main':
       common.changePageTitle('Main Page')
       mainView.showScreen(screen)
+      break
+    case 'library':
+      common.changePageTitle('Library')
+      libraryView.showScreen(screen)
       break
     default:
       authView.showScreen('signIn')
