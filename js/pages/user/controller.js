@@ -1,7 +1,12 @@
 const userController = {
-    addNewUser: async()=> {
-    if(userModel.currentUserId==null)
-        {             
+    addNewUser: async(email)=> {
+        let userDoc = await firebase.firestore()
+            .collection('users')
+            .doc(email)
+            .get()
+            .then(doc=> {return doc.data()})
+        
+        if(!userDoc){
             userModel.currentUser = firebase.auth().currentUser
             console.log(userModel);
 
@@ -17,12 +22,6 @@ const userController = {
             userModel.currentUserId = email
             userModel.saveUserId(email)
         }
-        // else{
-        //     userModel.currentUser = firebase.auth().currentUser
-        //     await firebase.firestore()
-        //         .collection('users')
-        //         .doc(userModel.currentUserId)
-        // }
     },
     //still need to change a little bit
     editPassword: async(currentPassword, newPassword) => {
@@ -119,5 +118,18 @@ const userController = {
             .update({
                 submissions:firebase.firestore.FieldValue.arrayUnion(newTest)
             })
+    },
+    openHistory: async()=>{
+        let email = firebase.auth().currentUser.email
+        let userData = await firebase.firestore()
+            .collection('users')
+            .doc(`${email}`)
+            .get()
+            .then((doc)=>{
+                return doc.data()
+            })
+
+        console.log(userData)
+        // authView.openModal(true, "Thông báo","success", `${userData.user}`)
     },
 }

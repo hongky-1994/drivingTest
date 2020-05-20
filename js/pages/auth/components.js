@@ -133,5 +133,5 @@ const authComponents = {
         </div>
       </div>
     </div>
-  </div>`
+  </div>`,
 }

@@ -1,12 +1,14 @@
 const userView = {
     showScreen: (screen) => {
         let app = document.querySelector('.app-container')
-        userController.addNewUser()
+
         switch (screen) {
             case 'user':{
                 app.innerHTML = userComponents.user
                 userView.showCurrentUserInfo()
 
+                let email = firebase.auth().currentUser.email
+                userController.addNewUser(email)
                 //su kien: sign-out
                 let btnSignOut = document.querySelector('.btn-sign-out')
                 btnSignOut.onclick = function(){
@@ -75,17 +77,15 @@ const userView = {
 
 
                 ////////see history///////
+                let modalHistory = document.querySelector('.modal-show-history')
                 let seeHistory = document.querySelector('.test-history-see-all')
                 seeHistory.onclick = function(){
-                    userView.showScreen('history')
+                    modalHistory.style.display = "block"
+                    userController.openHistory();
+                    
                 }
 
                 break;
-            }
-            case 'history':{
-                app.innerHTML = userComponents.history;
-                // userController.uploadTestToFirebase();
-
             }
             default : {return}
          

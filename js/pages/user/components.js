@@ -140,6 +140,13 @@ const userComponents = {
         </form>
       </div>
     </div>
+
+    <!-- modal history -->
+    <div class="modal-show-history">
+      <div class="history-header">Lịch sử</div>
+      <div class="history-content"></div>
+      <div class="history-footer">Đóng</div>
+    </div>
   </section>
     `,
     modal:`
@@ -162,18 +169,6 @@ const userComponents = {
         </div>
       </div>
     </div>
-    `,
-    history: `
-    this is history
-    <button class="btn btn-primary">Get random index</button>
-
-    <div class="list__index">RANDOM TEST question</div>
-  
-    <button class="btn btn-success">Show random list question</button>
-    <div class="list__questions row">List question</div>
-  
-    <button class="btn btn-secondary">Submit answers</button>
-    <div class="user-score">User's answers</div>
     `,
 
 }
