@@ -27,6 +27,7 @@ const examView = {
                         })
                         examView.timer.showRemainingTime()
                         loadingView.hide()
+                        examView.addSubmitEvent()
                     }
                     )
                 
@@ -37,6 +38,7 @@ const examView = {
                 examModel.list30Question = []
                 examController.getRandomIndex()
                 loadingView.show()
+<<<<<<< HEAD
                 Promise.all( examController.getQuestionObject())
                 .then( () => {
                     console.log('30 question', examModel.list30Question)
@@ -59,6 +61,26 @@ const examView = {
                         userController.uploadTestToFirebase();                    
                     }
                 })
+=======
+                Promise
+                    .all(examController.getQuestionObject())
+                    .then(() => {
+                        examController.createList30Answer()
+                        app.innerHTML = examComponents.test
+                        examView.showQuestionBoxes()
+                        examView.showFirstQuestion()
+                        examView.setUpButtons()
+                        const testAnswerForm = document.querySelector(".test-answer-form")
+                        testAnswerForm.addEventListener("change", () => {
+                            examController.saveUserAnswerTo(examModel.thisQuestionName)
+                            examView.changeDoneQuestionBoxColor()
+                        })
+                        examView.timer.showRemainingTime()
+                        loadingView.hide()
+                        examView.addSubmitEvent()
+                    }
+                    )
+>>>>>>> f371242a734adf82df76cb3469ec6ddd70baec95
 
                 break
             }
@@ -133,7 +155,6 @@ const examView = {
                                 ${questionObject.answers[index].no + ". " + questionObject.answers[index].value}
                             </label>
                         `
-                        console.log("questionObject.answers[index].no", questionObject.answers[index].no)
                     case 'randomTest':
                         questionAnwerContainers[index].innerHTML = `
                             <input type="checkbox" id="answer-${index + 1}" name="answer-${index + 1}" >
@@ -291,14 +312,11 @@ const examView = {
             let userAnswer = examModel.list30Answer[thisQuestionIndex].userAnswer
             element.classList.remove('correct-answer')
             element.classList.remove('wrong-answer')
-            // examModel.answerNotCorrect[thisQuestionIndex] = false
             if (correctAnswers.includes(index + 1)) {
                 element.classList.add('correct-answer')
             } else if (!(correctAnswers.includes(index + 1)) && userAnswer.includes(index + 1) ){ 
                 element.classList.add('wrong-answer')
-                // examModel.answerNotCorrect[thisQuestionName] = true
             } else if (userAnswer.length == 0) {
-                // examModel.answerNotCorrect[thisQuestionName] = true
             }
         } )
     },
@@ -317,4 +335,11 @@ const examView = {
             }
         })
     },
+
+    addSubmitEvent: () => {
+        let submitUserAnswer = document.querySelector(".submit-answer")
+            submitUserAnswer.addEventListener("click",() => {
+                userController.uploadTestToFirebase()                    
+            })
+    }
 }

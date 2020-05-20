@@ -1,7 +1,12 @@
 const userController = {
-    addNewUser: async()=> {
-    if(userModel.currentUserId==null)
-        {             
+    addNewUser: async(email)=> {
+        let userDoc = await firebase.firestore()
+            .collection('users')
+            .doc(email)
+            .get()
+            .then(doc=> {return doc.data()})
+        
+        if(!userDoc){
             userModel.currentUser = firebase.auth().currentUser
             console.log(userModel);
 
@@ -17,12 +22,6 @@ const userController = {
             userModel.currentUserId = email
             userModel.saveUserId(email)
         }
-        // else{
-        //     userModel.currentUser = firebase.auth().currentUser
-        //     await firebase.firestore()
-        //         .collection('users')
-        //         .doc(userModel.currentUserId)
-        // }
     },
     //still need to change a little bit
     editPassword: async(currentPassword, newPassword) => {
@@ -96,8 +95,9 @@ const userController = {
         console.log('test history goes here')
         let email = firebase.auth().currentUser.email
         let listUserAns = examModel.list30Answer
-        
-        // let list30Question = examModel.list30Question    
+        let listWrongQues = examModel.answerNotCorrect
+        let testTotalTime = examModel.testTotalTime
+        let list30Index = examModel.list30Index    
         let now = new Date().toISOString()
         // let userId = userModel.currentUserId
 
@@ -105,8 +105,10 @@ const userController = {
         // console.log(userId);
 
         let newTest = {
-            // list30Question: list30Question,
+            list30Index: list30Index,
             listUserAns: listUserAns,
+            listWrongQues: listWrongQues,
+            testTotalTime: testTotalTime,
             submitAt: now,
         }
         console.log(newTest)
@@ -116,5 +118,18 @@ const userController = {
             .update({
                 submissions:firebase.firestore.FieldValue.arrayUnion(newTest)
             })
+    },
+    openHistory: async()=>{
+        let email = firebase.auth().currentUser.email
+        let userData = await firebase.firestore()
+            .collection('users')
+            .doc(`${email}`)
+            .get()
+            .then((doc)=>{
+                return doc.data()
+            })
+
+        console.log(userData)
+        // authView.openModal(true, "Thông báo","success", `${userData.user}`)
     },
 }

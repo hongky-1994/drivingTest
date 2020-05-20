@@ -388,3 +388,41 @@ border-color: rgb(197, 193, 193);
     margin: none;
     text-align: center;
 }
+
+/* modal hitory */
+.modal-show-history{
+    position: fixed;
+    /* display: block; */
+    z-index: 1; /* Sit on top */
+    overflow: auto;
+    width: 70vw;
+    height: 50vh;
+    margin-left: 15vw;
+    margin-top: 15vh;
+    padding: 1rem;
+}
+
+.history-header, .history-footer{
+    width: 100%;
+    height: 10%;
+    background: #122ee0;
+    color: #ffffff;
+    font-size: 2rem;   
+    text-align: center;
+}
+
+.history-header{
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+.history-footer{
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+.history-content{
+    width: 100%;
+    height: 80%;
+    background: #888;
+}
