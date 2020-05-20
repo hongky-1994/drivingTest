@@ -1,12 +1,13 @@
 const userView = {
     showScreen: (screen) => {
         let app = document.querySelector('.app-container')
-        // userController.addNewUser()
         switch (screen) {
             case 'user':{
                 app.innerHTML = userComponents.user
                 userView.showCurrentUserInfo()
 
+                let email = firebase.auth().currentUser.email
+                userController.addNewUser(email)
                 //su kien: sign-out
                 let btnSignOut = document.querySelector('.btn-sign-out')
                 btnSignOut.onclick = function(){
@@ -75,9 +76,17 @@ const userView = {
 
 
                 ////////see history///////
+                let modalHistory = document.querySelector('.modal-show-history')
                 let seeHistory = document.querySelector('.test-history-see-all')
                 seeHistory.onclick = function(){
-                    userView.showScreen('history')
+                    modalHistory.style.display = "block"
+                    userController.getTestFromFirebase()
+                    .then(() => {
+                        userView.displayHistory()
+                        userController.addHistoryElementEvent()
+                    })
+                    
+                    
                 }
 
                 break
@@ -88,25 +97,16 @@ const userView = {
                 break
             }
             case 'history': {
-                console.log("đang ở trang history")
                 examModel.currentPage = "resultDetail"
                 examModel.list30Question = [] 
-                userController.getTestFromFirebaseToExamModel(0/*index*/) //sẽ add event vào button chọn test
-                .then(console.log("đã lấy đủ data về"))
+                Promise.all(examController.getQuestionObject())
                 .then(() => {
-                    Promise.all(examController.getQuestionObject())
-                    .then(() => {
-                        app.innerHTML = examComponents.resultDetail
-                        examView.showQuestionBoxes() // không phụ thuộc
-                        examView.showFirstQuestion() 
-                        //showQuestion //phải lấy list30Question done
-                        //changeCurrentQuestionBoxColor 
-                        //changeCorrectAndWrongAnswerColor // phải cập nhật thisQuestionName (lấy từ examController), phải có list30Question và list30Answer
-                        //changeCorrectAndWrongQuestionBoxColor // phải cập nhật answerNotCorrect
-                        examView.setUpButtons()
-                        //có hàm Savethisquestionname   
-                    })
-                })  
+                    app.innerHTML = examComponents.resultDetail
+                    examView.showQuestionBoxes() 
+                    examView.showFirstQuestion() 
+                    examView.setUpButtons()
+                })
+                
                 break
             }
 
@@ -194,6 +194,28 @@ const userView = {
         }
         return true
     },
-    
+    displayHistory: () => {
+        let historyContent = document.querySelector(".history-content")
+        historyContent.innerHTML = ''
+        userModel.testData.forEach((element, index) => {
+            historyContent.innerHTML += `
+                <div class = "history-tests history-${index}">
+                    <div class= "history-test-type">${element.testType}</div>
+                    <div class= "history-test-score">Điểm số: ${element.correctAnswers}/30</div>
+                    <div class= "history-test-total-time">Tổng thời gian: ${element.testTotalTime[0] + ':' + element.testTotalTime[1] }</div>
+                    <div class= "history-submit-at">Nộp lúc: ${moment.utc(element.submitAt).local().format('HH:mm:ss - DD/MM/YYYY')}</div>
+                </div>
+            `
+            // let historyElement = document.querySelector(`.history-${index}`)
+            // historyElement.addEventListener("click",() => {
+            //     userController.getSelectedTest(index)
+            //     userView.showScreen('history')
+            // }) 
+        })
+    },
+    closeModal: (selector) => {
+        let modal = document.querySelector(selector)
+        modal.style.display = "none"
+    }
     
 }

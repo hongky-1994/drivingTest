@@ -1,8 +1,12 @@
 const userController = {
-    addNewUser: async()=> {
-    if(userModel.currentUserId == null)
-        {             
-            
+    addNewUser: async(email)=> {
+        let userDoc = await firebase.firestore()
+            .collection('users')
+            .doc(email)
+            .get()
+            .then(doc=> {return doc.data()})
+        
+        if(!userDoc){
             userModel.currentUser = firebase.auth().currentUser
             console.log(userModel);
 
@@ -18,12 +22,6 @@ const userController = {
             userModel.currentUserId = email
             userModel.saveUserId(email)
         }
-        // else{
-        //     userModel.currentUser = firebase.auth().currentUser
-        //     await firebase.firestore()
-        //         .collection('users')
-        //         .doc(userModel.currentUserId)
-        // }
     },
     //still need to change a little bit
     editPassword: async(currentPassword, newPassword) => {
@@ -98,7 +96,9 @@ const userController = {
         let list30Answer = examModel.list30Answer
         let answerNotCorrect = examModel.answerNotCorrect
         let testTotalTime = examModel.testTotalTime
-        let list30Index = examModel.list30Index    
+        let list30Index = examModel.list30Index   
+        let testType = examModel.testType 
+        let correctAnswers = examModel.correctAnswers
         let now = new Date().toISOString()
         // let userId = userModel.currentUserId
         // console.log(userId);
@@ -108,6 +108,8 @@ const userController = {
             list30Answer: list30Answer,
             answerNotCorrect: answerNotCorrect,
             testTotalTime: testTotalTime,
+            testType: testType,
+            correctAnswers: correctAnswers,
             submitAt: now,
         }
         await firebase.firestore()
@@ -117,16 +119,26 @@ const userController = {
                 submissions:firebase.firestore.FieldValue.arrayUnion(newTest)
             })
     },
-    getTestFromFirebaseToExamModel: async (index) => {
+    getTestFromFirebase: async () => {
         let email = firebase.auth().currentUser.email
-        let testData = await firebase.firestore()
+        userModel.testData = await firebase.firestore()
             .collection('users')
             .doc(`${email}`)
             .get()
-            .then(doc => doc.data().submissions[index])
-        examModel.list30Index = testData.list30Index
-        examModel.list30Answer = testData.list30Answer
-        examModel.answerNotCorrect = testData.answerNotCorrect
-        examModel.testTotalTime = testData.testTotalTime
+            .then(doc => doc.data().submissions)
+    },
+    getSelectedTest: (index) => {
+        examModel.list30Index = userModel.testData[index].list30Index
+        examModel.list30Answer = userModel.testData[index].list30Answer
+        examModel.answerNotCorrect = userModel.testData[index].answerNotCorrect
+    }, 
+    addHistoryElementEvent: () => {
+        for(let i = 0; i < 30; i++) {
+            let historyElement = document.querySelector(`.history-${i}`)
+            historyElement.addEventListener("click",() => {
+                userController.getSelectedTest(i)
+                userView.showScreen('history')
+            })
+        }
     }
 }
