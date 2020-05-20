@@ -140,6 +140,13 @@ const userComponents = {
         </form>
       </div>
     </div>
+
+    <!-- modal history -->
+    <div class="modal-show-history">
+      <div class="history-header">Lịch sử</div>
+      <div class="history-content"></div>
+      <div class="history-footer">Đóng</div>
+    </div>
   </section>
     `,
     modal:`
@@ -162,27 +169,6 @@ const userComponents = {
         </div>
       </div>
     </div>
-    `,
-    modalHistory: `
-    <div class="modal">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title text-capitalize">Modal title</h5>
-          <button type="button" class="close" onclick="authView.openModal(false)">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body d-flex flex-column align-items-center">
-          <div class="modal-icon"></div>
-          <p class="text-capitalize"></p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" onclick="authView.openModal(false)">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
     `,
 
 }
