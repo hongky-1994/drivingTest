@@ -8,6 +8,7 @@ const examView = {
                 break
             }
             case 'structuredTest': {
+                examModel.testType = 'Cấu trúc'
                 examModel.currentPage = 'structuredTest' 
                 examModel.list30Question = []
                 examController.getStructuredIndex()
@@ -34,6 +35,7 @@ const examView = {
                 break
             }
             case 'randomTest': {
+                examModel.testType = 'Tổng hợp'
                 examModel.currentPage = 'randomTest' 
                 examModel.list30Question = []
                 examController.getRandomIndex()
@@ -67,14 +69,11 @@ const examView = {
             }
             case 'resultDetail': {
                 examModel.currentPage = 'resultDetail' 
-                if (examModel.currentPage = 'resultDetail') {
-                    console.log("đang ở trang resultDetail")
-                }
                 app.innerHTML = examComponents.resultDetail
-                // examController.createListAnswerState()
                 examView.showQuestionBoxes()
                 examView.showFirstQuestion()
                 examView.setUpButtons()
+                break
             }
         }
     },
@@ -130,6 +129,7 @@ const examView = {
                                 ${questionObject.answers[index].no + ". " + questionObject.answers[index].value}
                             </label>
                         `
+                        break
                     case 'randomTest':
                         questionAnwerContainers[index].innerHTML = `
                             <input type="checkbox" id="answer-${index + 1}" name="answer-${index + 1}" >
@@ -144,6 +144,7 @@ const examView = {
                                 ${questionObject.answers[index].no + ". " + questionObject.answers[index].value}
                             </div>
                         `
+                        break
                     
                 }
             } else if (questionObject.answers[index].value == null) {

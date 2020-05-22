@@ -1,12 +1,12 @@
 const userView = {
-    showScreen: (screen) => {
+    showScreen: async (screen) => {
         let app = document.querySelector('.app-container')
-
         switch (screen) {
             case 'user':{
                 app.innerHTML = userComponents.user
                 userView.showCurrentUserInfo()
-
+                await userController.getTestFromFirebase()
+                userView.showShortenHistory()
                 let email = firebase.auth().currentUser.email
                 userController.addNewUser(email)
                 //su kien: sign-out
@@ -81,14 +81,32 @@ const userView = {
                 let seeHistory = document.querySelector('.test-history-see-all')
                 seeHistory.onclick = function(){
                     modalHistory.style.display = "block"
-                    userController.openHistory();
-                    
+                        userView.displayHistory()
+                        userController.addHistoryElementEvent()   
                 }
 
-                break;
+                break
             }
+            case 'dang test' /*'history'*/:{
+                app.innerHTML = userComponents.history
+                // userController.uploadTestToFirebase();
+                break
+            }
+            case 'history': {
+                examModel.currentPage = "resultDetail"
+                examModel.list30Question = [] 
+                Promise.all(examController.getQuestionObject())
+                .then(() => {
+                    app.innerHTML = examComponents.resultDetail
+                    examView.showQuestionBoxes() 
+                    examView.showFirstQuestion() 
+                    examView.setUpButtons()
+                })
+                
+                break
+            }
+
             default : {return}
-         
         }
     },
     
@@ -172,6 +190,42 @@ const userView = {
         }
         return true
     },
-    
+    displayHistory: () => {
+        let historyContent = document.querySelector(".history-content")
+        historyContent.innerHTML = ''
+        userModel.testData.forEach((element, index) => {
+            historyContent.innerHTML += `
+                <div class = "history-tests history-${index}">
+                    <div class= "history-test-type">${element.testType}</div>
+                    <div class= "history-test-score">Điểm số: ${element.correctAnswers}/30</div>
+                    <div class= "history-test-total-time">Tổng thời gian: ${element.testTotalTime[0] + ':' + element.testTotalTime[1] }</div>
+                    <div class= "history-submit-at">Nộp lúc: ${moment.utc(element.submitAt).local().format('HH:mm:ss - DD/MM/YYYY')}</div>
+                </div>
+            `
+            // let historyElement = document.querySelector(`.history-${index}`)
+            // historyElement.addEventListener("click",() => {
+            //     userController.getSelectedTest(index)
+            //     userView.showScreen('history')
+            // }) 
+        })
+    },
+    closeModal: (selector) => {
+        let modal = document.querySelector(selector)
+        modal.style.display = "none"
+    },
+    showShortenHistory: () => {
+        let t1r2c1 =  document.querySelector('.table-1-row-2-col-1')
+        let t1r2c2 =  document.querySelector('.table-1-row-2-col-2')
+        let t1r2c3 =  document.querySelector('.table-1-row-2-col-3')
+        let t1r3c1 =  document.querySelector('.table-1-row-3-col-1')
+        let t1r3c2 =  document.querySelector('.table-1-row-3-col-2')
+        let t1r3c3 =  document.querySelector('.table-1-row-3-col-3')
+        t1r2c1.innerHTML = userModel.testData[0].testType
+        t1r3c1.innerHTML = userModel.testData[1].testType
+        t1r2c2.innerHTML = userModel.testData[0].correctAnswers + '/30'
+        t1r3c2.innerHTML = userModel.testData[1].correctAnswers + '/30'
+        t1r2c3.innerHTML = moment.utc(userModel.testData[0].submitAt).local().format('HH:mm:ss - DD/MM/YYYY')
+        t1r3c3.innerHTML = moment.utc(userModel.testData[1].submitAt).local().format('HH:mm:ss - DD/MM/YYYY')
+    }
     
 }

@@ -92,26 +92,26 @@ const userController = {
         
     },
     uploadTestToFirebase: async() => {
-        console.log('test history goes here')
         let email = firebase.auth().currentUser.email
-        let listUserAns = examModel.list30Answer
-        let listWrongQues = examModel.answerNotCorrect
+        let list30Answer = examModel.list30Answer
+        let answerNotCorrect = examModel.answerNotCorrect
         let testTotalTime = examModel.testTotalTime
-        let list30Index = examModel.list30Index    
+        let list30Index = examModel.list30Index   
+        let testType = examModel.testType 
+        let correctAnswers = examModel.correctAnswers
         let now = new Date().toISOString()
         // let userId = userModel.currentUserId
-
-        console.log(listUserAns)
         // console.log(userId);
 
         let newTest = {
             list30Index: list30Index,
-            listUserAns: listUserAns,
-            listWrongQues: listWrongQues,
+            list30Answer: list30Answer,
+            answerNotCorrect: answerNotCorrect,
             testTotalTime: testTotalTime,
+            testType: testType,
+            correctAnswers: correctAnswers,
             submitAt: now,
         }
-        console.log(newTest)
         await firebase.firestore()
             .collection('users')
             .doc(`${email}`)
@@ -119,17 +119,26 @@ const userController = {
                 submissions:firebase.firestore.FieldValue.arrayUnion(newTest)
             })
     },
-    openHistory: async()=>{
+    getTestFromFirebase: async () => {
         let email = firebase.auth().currentUser.email
-        let userData = await firebase.firestore()
+        userModel.testData = await firebase.firestore()
             .collection('users')
             .doc(`${email}`)
             .get()
-            .then((doc)=>{
-                return doc.data()
-            })
-
-        console.log(userData)
-        // authView.openModal(true, "Thông báo","success", `${userData.user}`)
+            .then(doc => doc.data().submissions)
     },
+    getSelectedTest: (index) => {
+        examModel.list30Index = userModel.testData[index].list30Index
+        examModel.list30Answer = userModel.testData[index].list30Answer
+        examModel.answerNotCorrect = userModel.testData[index].answerNotCorrect
+    }, 
+    addHistoryElementEvent: () => {
+        for(let i = 0; i < 30; i++) {
+            let historyElement = document.querySelector(`.history-${i}`)
+            historyElement.addEventListener("click",() => {
+                userController.getSelectedTest(i)
+                userView.showScreen('history')
+            })
+        }
+    }
 }
