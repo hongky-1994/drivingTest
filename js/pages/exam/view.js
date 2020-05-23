@@ -40,30 +40,6 @@ const examView = {
                 examModel.list30Question = []
                 examController.getRandomIndex()
                 loadingView.show()
-<<<<<<< HEAD
-                Promise.all( examController.getQuestionObject())
-                .then( () => {
-                    console.log('30 question', examModel.list30Question)
-                    app.innerHTML = examComponents.structuredTest
-                    examController.createList30Answer()
-                    examView.showQuestionBoxes()
-                    examView.showFirstQuestion(examModel.list30Question)
-                    examView.setUpButtons()
-                    const testAnswerForm = document.querySelector(".test-answer-form")
-                    testAnswerForm.addEventListener("change",() => {
-                        examController.saveUserAnswerTo(examModel.thisQuestionName)
-                        examView.changeDoneQuestionBoxColor()
-                    })
-                    loadingView.hide()
-                    
-                    //upload test to firebase
-                    let submitUserAnswer = document.querySelector(".submit-answer")
-                    submitUserAnswer.onclick = function(){
-                        // console.log(examModel.list30Answer)
-                        userController.uploadTestToFirebase();                    
-                    }
-                })
-=======
                 Promise
                     .all(examController.getQuestionObject())
                     .then(() => {
@@ -82,7 +58,6 @@ const examView = {
                         examView.addSubmitEvent()
                     }
                     )
->>>>>>> f371242a734adf82df76cb3469ec6ddd70baec95
 
                 break
             }
@@ -139,10 +114,10 @@ const examView = {
         let testQuestion = document.querySelector(".test-question")
         let testImage = document.querySelector(".test-image")
         testQuestion.innerHTML = questionObject.question
-        testImage.innerHTML = (questionObject.images) ?
-            (`<img src=${questionObject.images}>`) 
-            : 
-            ('')
+        testImage.innerHTML = (questionObject.images) 
+            ? (`<img class="ques__image__holder">`) 
+            : ('')
+        loadingView.imgLoading('.ques__image__holder', questionObject.images)
         let questionAnwerContainers = document.querySelectorAll(".test-answer-container")
         questionObject.answers.forEach( (element,index) => { // hiển thị câu trả lời
             if (questionObject.answers[index].value) { // check giá trị của câu trả lời cho khác null

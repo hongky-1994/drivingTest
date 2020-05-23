@@ -71,6 +71,21 @@ const push = (screen, historyMethod) => {
       break
   }
  
+  // load admin page with admin user
+
+  if (authModel.user.email === 'admin@gmail.com' && document.querySelector("#admin_auth") === null) {
+    const header = document.querySelector('.header__nav')
+    header.innerHTML = `
+    <div class="header__item pl-4 py-3 color--grey3 h2 font-weight-lighter m-0 bg--white1 bg--hover--grey2 color--hover--purple2"
+      id="admin_auth"  
+      onclick="push('admin'); layoutView.showNav()">
+        Trang quản lý câu hỏi của admin (chỉ admin mới thẩy -- bổ sung sau)
+      </div>
+      ` + header.innerHTML
+  }
+
+
+
   // Lưu lịch sử nếu có.
     switch (historyMethod) {
       case undefined:

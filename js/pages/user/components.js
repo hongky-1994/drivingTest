@@ -1,174 +1,190 @@
 const userComponents = {
-    user: `
-    <section class="user-container">
-    <div class="user-content">
-      <!-- user info -->
-      <div class="user-info">
-        <div class="user-greetings">
-          <div class="user-greetings-content">Xin chào, </div>
-          <button class="btn-edit-icon icon-greetings">
-            <i class="far fa-edit fa-2x"></i>
-          </button>
-        </div>
-        <div class="btn-sign-out">Không phải tôi? Đăng xuất</div>
-        <div class="user-image-container">
-          <div class="user-image">
-            <button class="user-profile-icon">
-              <i class="far fa-edit fa-3x"></i>
-              <input type="file" id="photo" class="custom-file-input">
-              <input type="submit" value="Submit" class="btn-submit-user-image">
+  user: `
+    <section class="user-container ">
+      <div class="p-5 row m-0">
+        <!-- user info -->
+        <div class="user-info col-12 col-lg-5">
+          <div class="user-greetings d-flex justify-content-between">
+            <div class="user-greetings-content h2 font-weight-bold">Xin chào, </div>
+            <button class="btn-edit-icon icon-greetings" onclick="userView.openModalUpdateOption(true)">
+              <i class="far fa-edit fa-2x"></i>
             </button>
           </div>
+          <div class="btn-sign-out pointer" onclick="authView.signOut()"><u>Không phải tôi? Đăng xuất</u></div>
+          <div class="user-image-container my-3">
+            <div class="image__overlay w-100 h-100 rounded-circle"></div>
+            <i class="far fa-edit fa-3x icon__edit"></i>
+            <input type="file" id="photo" class="custom-file-input pointer" onchange="userController.editProfileImage(event)">
+            <image class="image_holder w-100 h-100" />
+          </div>
+          <div class="user-email mb-4">
+            <div class="user-email-html h4 font-weight-bold text-center">Email: </div>
+          </div>
         </div>
-        <div class="user-email">
-          <div class="user-email-html">Email: </div>
-          <button class="btn-edit-icon icon-password">
-            <i class="far fa-edit fa-2x"></i>
+
+        <!-- user test result -->
+        <div class="user-result col-12 col-lg-7">
+          <div class='row'>
+            <div class="user-test-history col-12 mb-4">
+              <table class="user__table rounded--20">
+                <thead>
+                  <tr class="">
+                    <th colspan="3" class="bg--blue1 py-3 color--white1 text-center">Lịch sử làm bài</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Test 1</td>
+                    <td>12/30</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="3" class="bg--blue1 py-3 color--white1 text-center">
+                      <div class="test-history-see-all pointer" onclick="userView.openModalHistory(true)">Xem tất cả</div>
+                    </td>
+                  </tr>
+              </tfoot>
+              </table>
+            </div>
+
+            <div class="user-pros col-12 col-lg-6 mb-4">
+              <table class="user__table rounded--20">
+                <thead>
+                  <tr class="">
+                    <th colspan="2" class="bg--green1 py-2  color--white1 text-center">Đạt yêu cầu</th>
+                  </tr>
+                </thead>
+    
+                <tbody>
+                  <tr>
+                    <td>Khái niệm và quy tắc giao thông</td>
+                    <td>11/12</td>
+                  </tr>
+                  <tr>
+                    <td>Nghiệp vụ vận tải</td>
+                    <td>9/10</td>
+                  </tr>
+    
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="2" class="bg--green1 py-2  color--white1 text-center">
+                        <div class="pros-see-all pointer">Xem tất cả</div>
+                      </td>
+                    </tr>
+                  </tfoot>
+              </table>
+            </div>
+        
+            <div class="user-cons col-12 col-lg-6 mb-4">
+              <table class="user__table rounded--20">
+                <thead>
+                  <tr class="">
+                    <th colspan="2" class="bg--orange2 py-3 color--white1 text-center">Cần luyện thêm</th>
+                  </tr>
+                </thead>
+    
+                <tbody>
+                  <tr>
+                    <td>Giải các thế sa hình</td>
+                    <td>1/12</td>
+                  </tr>
+                  <tr>
+                    <td>Kỹ thuật lái ôtô</td>
+                    <td>3/10</td>
+                  </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="2" class="bg--orange2 py-3 color--white1 text-center">
+                        <div class="cons-see-all pointer">Xem tất cả</div>
+                      </td>
+                    </tr>
+                  </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    `,
+  modal:`
+  <div class="modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title text-capitalize">Cập nhật thông tin</h5>
+          <button type="button" class="close" onclick="userView.openModalUpdateOption(false)">
+            <span aria-hidden="true">&times;</span>
           </button>
         </div>
-      </div>
-
-      <!-- user test result -->
-      <div class="user-result">
-        <div class="user-test-history">
-          <table class="table-test-history">
-            <thead class="table-header">
-              <tr>
-                <th colspan="3" class="table-1-header-footer">Lịch sử làm bài</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <td class="table-1-row-2-col-1"></td>
-                <td class="table-1-row-2-col-2"></td>
-                <td class="table-1-row-2-col-3"></td>
-              </tr>
-              <tr>
-                <td class="table-1-row-3-col-1"></td>
-                <td class="table-1-row-3-col-2"></td>
-                <td class="table-1-row-3-col-3"></td>
-              </tr>
-
-              <tr class="table-footer">
-                <td colspan="3" class="table-1-header-footer">
-                  <div class="test-history-see-all">Xem tất cả</div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="modal-body">
+            <div class="modal__option p-3 rounded pointer" 
+              onclick="userView.openModalUpdateOption(false)">
+              Thông tin cá nhân
+            </div>
+            <div class="modal__option p-3 rounded pointer" 
+              onclick="userView.openModalEditPassword(true)">
+              Thay đổi mật khẩu
+            </div>
         </div>
 
-        <div class="user-pros-cons">
-          <div class="user-pros">
-            <table class="table-test-pros">
-              <thead class="table-header">
-                <tr>
-                  <th colspan="2" class="table-2-header-footer">Đạt yêu cầu</th>
-                </tr>
-              </thead>
-  
-              <tbody>
-                <tr>
-                  <td class="table-2-row-2-col-1">Khái niệm và quy tắc giao thông</td>
-                  <td class="table-2-row-2-col-2">11/12</td>
-                </tr>
-                <tr>
-                  <td class="table-2-row-3-col-1">Nghiệp vụ vận tải</td>
-                  <td class="table-2-row-3-col-2">9/10</td>
-                </tr>
-  
-                <tr class="table-footer">
-                  <td colspan="2" class="table-2-header-footer">
-                    <div class="pros-see-all">Xem tất cả</div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-      
-          <div class="user-cons">
-            <table class="table-test-cons">
-              <thead class="table-header">
-                <tr>
-                  <th colspan="2" class="table-3-header-footer">Cần luyện thêm</th>
-                </tr>
-              </thead>
-  
-              <tbody>
-                <tr>
-                  <td class="table-3-row-2-col-1">Giải các thế sa hình</td>
-                  <td class="table-3-row-2-col-2">1/12</td>
-                </tr>
-                <tr>
-                  <td class="table-3-row-3-col-1">Kỹ thuật lái ôtô</td>
-                  <td class="table-3-row-3-col-2">3/10</td>
-                </tr>
-  
-                <tr class="table-footer">
-                  <td colspan="2" class="table-3-header-footer">
-                    <div class="cons-see-all">Xem tất cả</div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
       </div>
     </div>
-
-    <!-- modal edit password --> 
+  </div>
+    `,
+  modelEditPassword: `
     <div class="modal-edit-password">
       <div class="modal-edit-password-container">
-        <form class="form-input-edit-password">
-          <span class="close-modal-edit-password">Cancel</span>
-          <button class="submit-modal-edit-password">Done</button>
+        <form class="form-input-edit-password" onsubmit="userController.submitChangePassword(event)">
+          <div class='d-flex justify-content-between'>
+            <button class="password-edit-button" onclick="userView.openModalEditPassword(false)">Cancel</button>
+            <button class="password-edit-button" type="submit">Done</button>
+          </div>
 
-          <div class="input-wrapper-edit-password">
-            <input type="password" name="currentPassword" placeholder="Enter your current password">
+          <div class="input-wrapper-edit-password my-3">
+            <input class="form-control" type="password" name="currentPassword" placeholder="Enter your current password">
             <div id="input-current-password-error" class="message-error"></div>
           </div>
-          <div class="input-wrapper-edit-password">
-            <input type="password" name="newPassword" placeholder="Enter your new password">
+          <div class="input-wrapper-edit-password my-3">
+            <input class="form-control" type="password" name="newPassword" placeholder="Enter your new password">
             <div id="input-new-password-error" class="message-error"></div>
           </div>
-          <div class="input-wrapper-edit-password">
-            <input type="password" name="confirmNewPassword" placeholder="Confirm your new password">
+          <div class="input-wrapper-edit-password my-3">
+            <input class="form-control" type="password" name="confirmNewPassword" placeholder="Confirm your new password">
             <div id="input-confirm-new-password-error" class="message-error"></div>
           </div>
 
         </form>
       </div>
     </div>
+  `,
+  modelHistory: `
+  <!-- modal history -->
+  <div class="modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content modal-show-history">
 
-    <!-- modal history -->
-    <div class="modal-show-history">
-      <div class="history-header">Lịch sử</div>
-      <div class="history-content"></div>
-      <div class="history-footer" onclick ="userView.closeModal('.modal-show-history')">Đóng</div>
-    </div>
-  </section>
-    `,
-    modal:`
-    <div class="modal">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title text-capitalize">Modal title</h5>
-            <button type="button" class="close" onclick="authView.openModal(false)">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body d-flex flex-column align-items-center">
-            <div class="modal-icon"></div>
-            <p class="text-capitalize"></p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" onclick="authView.openModal(false)">Close</button>
-          </div>
+        <div class="modal-header bg--purple1">
+          <h5 class="modal-title text-capitalize font-weight-bold color--white1">Lịch sử</h5>
+          <button type="button" class="close" onclick="userView.openModalUpdateOption(false)">
+            <span aria-hidden="true" class="color--white1">&times;</span>
+          </button>
         </div>
+        <div class="modal-body history-content">
+            
+        </div>
+
+        <div class="modal-footer bg--purple1 py-1">
+          <button type="button" class="btn btn-light" onclick="userView.openModalHistory(false)">Đóng</button>
+        </div>
+
       </div>
     </div>
-    `,
-
+  </div>
+`,
 }

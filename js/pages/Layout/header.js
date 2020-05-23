@@ -4,7 +4,7 @@ const layoutView = {
     div.innerHTML = headerComponents[screen.replace(".","")]
     
     // change avata
-    document.querySelector(".avata__img").src = authModel.user.photoUrl
+    document.querySelector(".avata__img").src = authModel.user.photoURL
     document.querySelector(".header__welcome").innerText = ((authModel.user.name === null || authModel.user.name === undefined) ? "Người lạ" : authModel.user.name)
   },
   hide: (screen) => {
@@ -63,11 +63,6 @@ const headerComponents = {
       <div class="header__item pl-4 py-3 color--grey3 h2 font-weight-lighter m-0 bg--white1 bg--hover--grey2 color--hover--purple2"
         onclick="push('user'); layoutView.showNav()">
         Thông tin cá nhân
-      </div>
-
-      <div class="header__item pl-4 py-3 color--grey3 h2 font-weight-lighter m-0 bg--white1 bg--hover--grey2 color--hover--purple2"
-        onclick="push('admin'); layoutView.showNav()">
-        Trang quản lý câu hỏi của admin (chỉ admin mới thẩy -- bổ sung sau)
       </div>
 
       <div class="header__item pl-4 py-3 text-danger h2 font-weight-lighter m-0 bg--white1 bg--hover--grey2 color--hover--red1"
