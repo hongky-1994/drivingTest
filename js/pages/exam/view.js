@@ -114,10 +114,10 @@ const examView = {
         let testQuestion = document.querySelector(".test-question")
         let testImage = document.querySelector(".test-image")
         testQuestion.innerHTML = questionObject.question
-        testImage.innerHTML = (questionObject.images) ?
-            (`<img src=${questionObject.images}>`) 
-            : 
-            ('')
+        testImage.innerHTML = (questionObject.images) 
+            ? (`<img class="ques__image__holder">`) 
+            : ('')
+        loadingView.imgLoading('.ques__image__holder', questionObject.images)
         let questionAnwerContainers = document.querySelectorAll(".test-answer-container")
         questionObject.answers.forEach( (element,index) => { // hiển thị câu trả lời
             if (questionObject.answers[index].value) { // check giá trị của câu trả lời cho khác null

@@ -5,7 +5,7 @@ window.addEventListener('load' ,function(event) {
       authModel.user = {
         name: user.displayName || authModel.user.name,
         email: user.email || null,
-        photoUrl: user.photoURL || "./js/assets/images/anonymous-icon.png",
+        photoURL: user.photoURL || "./js/assets/images/anonymous-icon.png",
         emailVerified: user.emailVerified,
         uid: user.uid,
         isAnonymous: user.isAnonymous

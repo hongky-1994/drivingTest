@@ -23,73 +23,66 @@ const userController = {
             userModel.saveUserId(email)
         }
     },
-    //still need to change a little bit
     editPassword: async(currentPassword, newPassword) => {
-        let user = firebase.auth().currentUser
-        let currentEmail = firebase.auth().currentUser.email
-        let modalEditPassword = document.querySelector('.modal-edit-password')
+        loadingView.show()
+        const user = firebase.auth().currentUser
+        const currentEmail = user.email
+        
         //reauthenticate user
-        let credential = firebase.auth.EmailAuthProvider.credential(
+        const credential = firebase.auth.EmailAuthProvider.credential(
             currentEmail,
             currentPassword,
         )
-        console.log('credential', credential);
         
-        let reauthenticatedTrue = true
-        await user.reauthenticateWithCredential(credential).then(()=>{
-            reauthenticatedTrue = true
-        }).catch((error)=>{
-            let messageError = error.code
-            userView.setText('#input-current-password-error', messageError)
-            reauthenticatedTrue = false
-            modalEditPassword.style.display = "block"
+        let reauthenticatedTrue;
+        await user.reauthenticateWithCredential(credential)
+            .then(()=>{
+                reauthenticatedTrue = true
+            }).catch( error =>{
+                const messageError = error.code
+                document.querySelector('#input-current-password-error').innerHTML = "Mật khẩu hiện tại sai."
+                reauthenticatedTrue = false
+            })
+
+        if(reauthenticatedTrue === true){
+            await user.updatePassword(newPassword)
+            .then(() => {
+                userView.openModalEditPassword(false)
+                authView.openModal(true, '', 'success', "Thay đổi mật khẩu thành công.")
+            }).catch(error => {
+                console.log('error', error);  
+                document.querySelector('#input-new-password-error').innerHTML = "Độ dài mật khẩu cần lớn hơn 6 ký tự"
+            })
+        }
+        loadingView.hide()
+
+    },
+    editProfileImage: async (file) => {
+        const user = firebase.auth().currentUser
+        const ref = firebase.storage().refFromURL(`gs://driving-test-exam.appspot.com/user-image/${authModel.user.email}`)
+        const name = authModel.user.email + '-' + file.name + '-' + new Date()
+        const metadata = {contentType: file.type}
+        
+        loadingView.show()
+
+        // upload to fireStorage
+        await ref.child(name)
+        .put(file, metadata)
+        .then(snapshot => snapshot.ref.getDownloadURL())
+        .then(url => {
+            authModel.user.photoURL = url
         })
 
-        // console.log(newPassword)
-        if(reauthenticatedTrue == true){
-            await user.updatePassword(newPassword).then(() => {
-                console.log('update password successfully');
-                
-            }).catch((error)=> {
-                console.log('error', error);    
-            })
-        }
-    },
-    editProfileImage: (file) => {
-        console.log("user's profile image")
-        let email = firebase.auth().currentUser.email
-        const ref = firebase.storage().refFromURL(`gs://driving-test-exam.appspot.com/user-image/${email}`)
+        // update to userInfo fireauth
+        await user.updateProfile({photoURL: authModel.user.photoURL})
         
-        const name = email + '-' + file.name + '-' + new Date()
-        // const name = new Date()
-        const metadata = {
-            contentType: file.type,
-        }
+        // Cập nhật luôn url đã lấy vào các ô ảnh
+        loadingView.imgLoading('.image_holder', authModel.user.photoURL)
+        // document.querySelector('.user-image__container').src = authModel.user.photoURL
+        document.querySelector(".avata__img").src = authModel.user.photoURL
+        authView.openModal(true, "Thông báo","success", "Update succesfully")
         
-        const task = ref.child(name).put(file, metadata)
-        task
-            .then(snapshot => snapshot.ref.getDownloadURL())
-            .then(url => {
-                let user = firebase.auth().currentUser
-                let profileImage = document.querySelector('.user-image')
-                let btnSubmitProfileImage = document.querySelector('.btn-submit-user-image')
-            
-                user.updateProfile({
-                    photoURL: url
-                }).then(()=>{
-                    authModel.user.photoURL = url
-                    console.log('updated photo');
-                    authView.openModal(true, "Thông báo","success", "Update succesfully")
-                    console.log(authModel.user, user);
-                    
-                })
-                // console.log(url);
-                console.log('upload successful');
-
-                profileImage.style.backgroundImage = `url('${url}')`
-                btnSubmitProfileImage.style.display = "none"
-            })
-        
+        loadingView.hide()
     },
     uploadTestToFirebase: async() => {
         let email = firebase.auth().currentUser.email
@@ -140,5 +133,42 @@ const userController = {
                 userView.showScreen('history')
             })
         }
-    }
+    },
+
+
+    submitChangePassword: (event) => {
+        event.preventDefault()
+        // validate password changeer
+        const formEditPassword = event.target
+        
+        // password object
+        const inputInfo = {
+            currentPassword: formEditPassword.currentPassword.value,
+            newPassword: formEditPassword.newPassword.value,
+            confirmNewPassword: formEditPassword.confirmNewPassword.value,
+        }
+        console.log("inputInfo", inputInfo)
+        
+        //validate data
+        const validateResult = [
+            userController.validate(inputInfo.currentPassword, '#input-current-password-error', "Mật khẩu hiện tại bị bỏ trống."),
+            userController.validate(inputInfo.newPassword, '#input-new-password-error', "Chưa nhập mật khẩu mới"),
+            userController.validate(inputInfo.currentPassword !== inputInfo.newPassword, '#input-new-password-error', "Mật khẩu mới bị trùng mật khẩu cũ."),
+            userController.validate(inputInfo.confirmNewPassword === inputInfo.newPassword, '#input-confirm-new-password-error', "Chưa khớp với mật khẩu mới")
+        ]
+
+        //submit data and close model
+        if(!validateResult.includes(false)){
+            userController.editPassword(inputInfo.currentPassword ,inputInfo.newPassword)
+        }
+    },
+    validate: (condition, queryError, messageError) => {
+        if(condition){
+            userView.setText(queryError, '')
+            return true
+        }else{
+            userView.setText(queryError, messageError)
+            return false
+        }
+    },
 }
