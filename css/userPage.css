@@ -109,41 +109,48 @@
 }
 
 /* modal hitory */
-
+.history__modal{
+    max-width: 50rem;
+    margin: auto;
+    padding: 1.75rem 3rem;
+    border-radius: 50px !important;
+    overflow: hidden;
+}
+.history__modal .modal-content{
+    border-radius: 30px !important;
+    overflow: hidden;
+}
 .history-content{
-    /* width: 100%; */
-    /* height: 80%; */
     background: #ffffff;
     overflow-y: auto;
-    /* border: 0.25px solid var(--colorGrey2); */
+    border-top: 1px solid;
+}
+.history-content td{
+    font-weight: normal ;
 }
 
-.history-tests {
-    display: flex;
-    font-size: 1.5rem;
-    padding: 0.75rem;
-    border: 0.25px solid var(--colorGrey2);
+.test__record {
     cursor: pointer;
 }
 
-.history-tests:hover {
+.test__record:hover {
     background-color: var(--colorGrey2);
 }
 
-.history-test-type {
+.test__record-type {
     margin-left: 2.5rem;
     width: 15%;
 }
 
-.history-test-score {
+.test__record-score {
     margin-left: 2.5rem;
 }
 
-.history-submit-at {
+.test__record-time {
     margin-left: 2.5rem;
 }
 
-.history-test-total-time {
+.test__record-total-time {
     margin-left: 2.5rem;
 }
 

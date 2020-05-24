@@ -1,13 +1,10 @@
 const examController = {
     getStructuredIndex: () => {
+        console.log('examController.getStructuredIndex')
         let list30Index = []
-        const getRandomInt = (max) => {
-            return Math.floor(Math.random() * Math.floor(max));
-        }
+        const getRandomInt = (max) => (Math.floor(Math.random() * Math.floor(max)))
     
-        const randomNumber = (startNumber, queryLength) => {
-            return startNumber + getRandomInt(queryLength)
-        }
+        const randomNumber = (startNumber, queryLength) => (startNumber + getRandomInt(queryLength))
 
         const randomSelectCategory = (numberOfQuestion, startQuestion, queryLength, arrayList ) => {
             let index = 0
@@ -35,14 +32,11 @@ const examController = {
 
     },
     getRandomIndex: () => {
+        console.log('examController.getRandomIndex')
         let list30Index = []
-        const getRandomInt = (max) => {
-            return Math.floor(Math.random() * Math.floor(max));
-        }
-    
-        const randomNumber = (startNumber, queryLength) => {
-            return startNumber + getRandomInt(queryLength)
-        }
+        const getRandomInt = (max) => (Math.floor(Math.random() * Math.floor(max)))
+            
+        const randomNumber = (startNumber, queryLength) => (startNumber + getRandomInt(queryLength))
 
         const randomSelectCategory = (numberOfQuestion, startQuestion, queryLength, arrayList ) => {
             let index = 0
@@ -71,21 +65,6 @@ const examController = {
             })
 
     },
-    saveUserAnswerTo: (thisQuestionName) => {
-        let checkedAnswers = document.querySelectorAll('input:checked')
-        let userAnswerNotSaved = []
-        checkedAnswers.forEach(element => {
-            let answerId = element.id
-            let answerIdShorten = answerId.replace("answer-", "")
-            userAnswerNotSaved.push(Number(answerIdShorten))
-        })
-        userAnswerNotSaved.sort((a, b) => a - b)
-        examModel.list30Answer[thisQuestionName - 1].userAnswer = userAnswerNotSaved        
-    },
-    saveThisQuestionName: (thisQuestionName) => {
-        examModel.thisQuestionName = thisQuestionName
-    },
-
     createList30Answer: () => {
         examModel.list30Answer = [...Array(30)].map((value, index) => {
             return {
@@ -94,42 +73,35 @@ const examController = {
             }
         })
     }, 
-    
-    scoreTest: () => {
-        examController.createListAnswerState()
+    saveUserAnswerTo: (questionIndex) => {
+        const checkedAnswers = document.querySelectorAll('input:checked')
+        const userAnswerNotSaved = []
+        checkedAnswers.forEach(element => {
+            let answerIdShorten = element.id.replace("answer-", "")
+            userAnswerNotSaved.push(Number(answerIdShorten))
+        })
+        examModel.list30Answer[questionIndex].userAnswer = userAnswerNotSaved    
+        console.log("save answer to question", questionIndex, userAnswerNotSaved)
+
+    },
+    showScoreTest: () => {
         let list30Answer = examModel.list30Answer
         let list30Question = examModel.list30Question
-        let list30UserAnswerShorten = examModel.list30UserAnswerShorten
-        let list30CorrectAnswer = examModel.list30CorrectAnswer
-        examModel.correctAnswers = 0
-        list30Answer.forEach((element) => {
-            list30UserAnswerShorten.push(JSON.stringify(element.userAnswer))
-        })
-        list30Question.forEach((element) => {
-            let correct = element.correct.filter((value) => value != null)
-            
-            list30CorrectAnswer.push(JSON.stringify(correct))
-        })
+
+        examModel.answerResult = [...Array(30)].map(() => false)
+
+        const userAnswers = list30Answer.map( element => element.userAnswer.sort((a, b) => a - b))
+        const correctAnswers = list30Question.map(element => element.correct.filter((value) => value !== null))
         
         for (let i = 0; i < 30; i++ ) {
-            if (JSON.stringify(list30CorrectAnswer[i]) == JSON.stringify(list30UserAnswerShorten[i])) {
-                examModel.correctAnswers++
-            } else {
-                examModel.answerNotCorrect[i] = true
-            }
+            if (JSON.stringify(userAnswers[i]) === JSON.stringify(correctAnswers[i])) examModel.answerResult[i] = true 
         }
-        let testScore = document.querySelector(".test-score")
-        let minute = document.querySelector(".total-minute")
-        let second = document.querySelector(".total-second")
-        testScore.innerHTML = examModel.correctAnswers
+        const testScore = document.querySelector(".test-score")
+        const minute = document.querySelector(".total-minute")
+        const second = document.querySelector(".total-second")
+        testScore.innerHTML = examModel.answerResult.filter(v=>v).length
         minute.innerHTML = examModel.testTotalTime[0]
         second.innerHTML = examModel.testTotalTime[1]
-        
-        
     }, 
-
-    createListAnswerState: () => {
-        examModel.answerNotCorrect = [...Array(30)].map(() => {false})
-    }
 }
 

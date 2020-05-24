@@ -17,7 +17,7 @@ const userController = {
             await firebase.firestore()
                 .collection('users')
                 .doc(`${email}`)
-                .set({user})
+                .set({user, submissions: []})
 
             userModel.currentUserId = email
             userModel.saveUserId(email)
@@ -65,7 +65,7 @@ const userController = {
         
         loadingView.show()
 
-        // upload to fireStorage
+        // upload images to fireStorage
         await ref.child(name)
         .put(file, metadata)
         .then(snapshot => snapshot.ref.getDownloadURL())
@@ -78,32 +78,35 @@ const userController = {
         
         // Cập nhật luôn url đã lấy vào các ô ảnh
         loadingView.imgLoading('.image_holder', authModel.user.photoURL)
-        // document.querySelector('.user-image__container').src = authModel.user.photoURL
         document.querySelector(".avata__img").src = authModel.user.photoURL
         authView.openModal(true, "Thông báo","success", "Update succesfully")
         
         loadingView.hide()
     },
-    uploadTestToFirebase: async() => {
-        let email = firebase.auth().currentUser.email
-        let list30Answer = examModel.list30Answer
-        let answerNotCorrect = examModel.answerNotCorrect
-        let testTotalTime = examModel.testTotalTime
-        let list30Index = examModel.list30Index   
-        let testType = examModel.testType 
-        let correctAnswers = examModel.correctAnswers
-        let now = new Date().toISOString()
+    uploadTestToFirebase: async(event) => {
+        console.log("uploadTestToFirebase")
+        examView.showScreen('testResult')
+        event.preventDefault()
+        const email = authModel.user.email
+        const list30Index = examModel.list30Index 
+        const list30Question = examModel.list30Question  
+        const list30Answer = examModel.list30Answer
+        const answerResult = examModel.answerResult
+        const testTotalTime = examModel.testTotalTime
+        const testType = examModel.testType 
+        const submitAt = new Date().toISOString()
+        // let correctAnswers = examModel.correcztAnswers
         // let userId = userModel.currentUserId
         // console.log(userId);
 
-        let newTest = {
-            list30Index: list30Index,
-            list30Answer: list30Answer,
-            answerNotCorrect: answerNotCorrect,
-            testTotalTime: testTotalTime,
-            testType: testType,
-            correctAnswers: correctAnswers,
-            submitAt: now,
+        const newTest = {
+            list30Index,
+            list30Question,
+            list30Answer,
+            answerResult,
+            testTotalTime,
+            testType,
+            submitAt,
         }
         await firebase.firestore()
             .collection('users')
@@ -160,6 +163,38 @@ const userController = {
         //submit data and close model
         if(!validateResult.includes(false)){
             userController.editPassword(inputInfo.currentPassword ,inputInfo.newPassword)
+        }
+    },
+    submitUserProfile: async (event) => {
+        console.log('UPDATE HERE')
+        event.preventDefault()
+        const newName = event.target.displayName.value
+        const newPhotoURL = event.target.photoURL.value
+
+        const validateResult = [
+            userController.validate(newName, '#input-displayName-error', "Tên bị bỏ trống"),
+            userController.validate(newPhotoURL, '#input-photoURL-error', "Url ảnh bị bỏ trống"),
+        ]
+        
+        if(!validateResult.includes(false)){
+            loadingView.show()
+            await firebase
+            .auth()
+            .currentUser
+            .updateProfile({
+              displayName: newName,
+              photoURL: newPhotoURL
+            })
+            .then(() => {
+                authModel.user.name = newName
+                authModel.user.photoURL = newPhotoURL
+                userView.showCurrentUserInfo()})
+            .catch(error => {
+              authView.openModal(true, error.code, "error", error.message)
+            })
+            
+            authView.openModal(true, "Thông báo", "success", "Cập nhật thông tin thành công")
+            loadingView.hide()
         }
     },
     validate: (condition, queryError, messageError) => {

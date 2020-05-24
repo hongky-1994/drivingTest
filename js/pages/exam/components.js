@@ -35,21 +35,26 @@ const examComponents={
     </section>
     `,
     test: `
-    <div class="section-container">
-      <div class="exam-left-column">
-        <div class="timer-container bg--pink2">
-          Thời gian còn lại<br>
+    <div class="section-container__exam d-flex flex-column flex-lg-row">
+
+
+      <div class="exam-left-column pl-5 pr-3">
+        
+        <div class="timer-container bg--pink2 text-center p-2 mb-3">
+          <h3 class="mr-3">Thời gian còn lại</h3>
           <div class="timer-time-container">
             <span id="minute" class="timer-time">20</span>:<span class="timer-time" id="second">00</span>
           </div>
         </div>
-        <div class="question-container">
-        </div>
+        <div class="question-container"></div>
+        
       </div>
-      <div class="exam-right-column">
+
+
+      <div class="exam-right-column pl-3 pr-5">
         <p class="test-question"></p>
         <div class="test-image"></div>
-        <form class="test-answer-form">
+        <form class="test-answer-form row" onsubmit="userController.uploadTestToFirebase(event)">
           <div class="test-answer-container col-xl-6">
             <!--<input type="checkbox" id="answer0" name="answer0" >
             <label for="answer0" >
@@ -73,8 +78,15 @@ const examComponents={
             <label for="answer4">
             </label>-->
           </div>  
-
-          <button class="exam-button submit-answer" type="button" onclick="examView.showScreen('testResult')">Nộp bài</button>
+          <div class="exam ">
+            <button class="exam-button prev__ques bg--blue1 mr-3" type="button"
+              onclick="examView.question.showQuestion(examModel.currentQues - 1)"
+              >Câu trước</button>
+            <button class="exam-button next__ques bg--green1 mr-3" type="button"
+              onclick="examView.question.showQuestion(examModel.currentQues + 1)"
+              >Câu sau</button>
+            <button class="exam-button submit-answer" type="submit">Nộp bài</button>
+          </div>
         </form>
       </div>
     </div>
@@ -90,38 +102,19 @@ const examComponents={
     </div>
     `,
     resultDetail: `
-    <div class="section-container">
-      <div class="exam-left-column">
+    <div class="section-container__exam  ">
+      <div class="exam-left-column pl-5 pr-3">
         <div class="question-container">
         </div>
       </div>
-      <div class="exam-right-column">
+      <div class="exam-right-column pl-3 pr-5">
         <p class="test-question"></p>
         <div class="test-image"></div>
-        <form class="test-answer-form">
-          <div class="test-answer-container col-xl-6">
-            <!--<input type="checkbox" id="answer0" name="answer0" >
-            <label for="answer0" >
-            </label>-->
-          </div>
-
-          <div class="test-answer-container col-xl-6">
-            <!--<input type="checkbox" id="answer2" name="answer2">
-            <label for="answer2">
-            </label>-->
-          </div>
-
-          <div class="test-answer-container col-xl-6">
-            <!--<input type="checkbox" id="answer3" name="answer3">
-            <label for="answer3">
-            </label>-->
-          </div>
-
-          <div class="test-answer-container col-xl-6">
-            <!--<input type="checkbox" id="answer4" name="answer4">
-            <label for="answer4">
-            </label>-->
-          </div>  
+        <form class="test-answer-form row">
+          <div class="test-answer-container col-xl-6"></div>
+          <div class="test-answer-container col-xl-6"></div>
+          <div class="test-answer-container col-xl-6"></div>
+          <div class="test-answer-container col-xl-6"></div>
         </form>
       </div>
     </div>

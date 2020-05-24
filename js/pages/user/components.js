@@ -1,7 +1,7 @@
 const userComponents = {
   user: `
     <section class="user-container ">
-      <div class="p-5 row m-0">
+      <div class="px-5 pt-5 pb-3 row m-0">
         <!-- user info -->
         <div class="user-info col-12 col-lg-5">
           <div class="user-greetings d-flex justify-content-between">
@@ -29,20 +29,15 @@ const userComponents = {
               <table class="user__table rounded--20">
                 <thead>
                   <tr class="">
-                    <th colspan="3" class="bg--blue1 py-3 color--white1 text-center">Lịch sử làm bài</th>
+                    <th colspan="4" class="bg--blue1 py-3 color--white1 text-center">Lịch sử làm bài</th>
                   </tr>
                 </thead>
 
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Test 1</td>
-                    <td>12/30</td>
-                  </tr>
                 </tbody>
                 <tfoot>
                   <tr>
-                    <td colspan="3" class="bg--blue1 py-3 color--white1 text-center">
+                    <td colspan="4" class="bg--blue1 py-3 color--white1 text-center">
                       <div class="test-history-see-all pointer" onclick="userView.openModalHistory(true)">Xem tất cả</div>
                     </td>
                   </tr>
@@ -54,7 +49,7 @@ const userComponents = {
               <table class="user__table rounded--20">
                 <thead>
                   <tr class="">
-                    <th colspan="2" class="bg--green1 py-2  color--white1 text-center">Đạt yêu cầu</th>
+                    <th colspan="2" class="bg--green1 py-3  color--white1 text-center">Đạt yêu cầu</th>
                   </tr>
                 </thead>
     
@@ -71,7 +66,7 @@ const userComponents = {
                   </tbody>
                   <tfoot>
                     <tr>
-                      <td colspan="2" class="bg--green1 py-2  color--white1 text-center">
+                      <td colspan="2" class="bg--green1 py-3  color--white1 text-center">
                         <div class="pros-see-all pointer">Xem tất cả</div>
                       </td>
                     </tr>
@@ -124,7 +119,7 @@ const userComponents = {
         </div>
         <div class="modal-body">
             <div class="modal__option p-3 rounded pointer" 
-              onclick="userView.openModalUpdateOption(false)">
+              onclick="userView.openModalEditProfile(true)">
               Thông tin cá nhân
             </div>
             <div class="modal__option p-3 rounded pointer" 
@@ -163,11 +158,33 @@ const userComponents = {
       </div>
     </div>
   `,
+  modelEditProfile: `
+    <div class="modal-edit-password">
+      <div class="modal-edit-password-container">
+        <form class="form-input-edit-password" onsubmit="userController.submitUserProfile(event)">
+          <div class='d-flex justify-content-between'>
+            <button class="password-edit-button" onclick="userView.openModalEditProfile(false)">Cancel</button>
+            <button class="password-edit-button" type="submit">Done</button>
+          </div>
+
+          <div class="input-wrapper-edit-password my-3">
+            <input class="form-control input__displayName" type="text" name="displayName" placeholder="Enter your name">
+            <div id="input-displayName-error" class="message-error"></div>
+          </div>
+          <div class="input-wrapper-edit-password my-3">
+            <input class="form-control input__photoURL" type="text" name="photoURL" placeholder="Change your profile URL">
+            <div id="input-photoURL-error" class="message-error"></div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  `,
   modelHistory: `
   <!-- modal history -->
   <div class="modal">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content modal-show-history">
+    <div class="history__modal" role="document">
+      <div class="modal-content">
 
         <div class="modal-header bg--purple1">
           <h5 class="modal-title text-capitalize font-weight-bold color--white1">Lịch sử</h5>
@@ -175,8 +192,19 @@ const userComponents = {
             <span aria-hidden="true" class="color--white1">&times;</span>
           </button>
         </div>
-        <div class="modal-body history-content">
-            
+        <div class="modal-body p-0">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Ngày làm</th>
+                  <th>Loại đề</th>
+                  <th>Điểm số</th>
+                  <th>Thời gian làm</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody class="history-content"></tbody>
+            </table>
         </div>
 
         <div class="modal-footer bg--purple1 py-1">

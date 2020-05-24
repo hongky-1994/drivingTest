@@ -29,7 +29,7 @@ const authView = {
     }
   },
   
-  signUp: (e) => {
+  signUp: async (e) => {
     e.preventDefault();
     const email = e.target.email.value
     const name = e.target.name.value
@@ -43,15 +43,30 @@ const authView = {
         password,
         rePassword
       })) {
-      firebase
+      loadingView.show()
+      await firebase
         .auth()
         .createUserWithEmailAndPassword(email, password)
-        .then(() => {
-          authView.openModal(true, "Thông báo", "success", "Đăng ký thành công")
+        .then(() => {})
+        .catch(error => {
+          authView.openModal(true, error.code, "error", error.message)
         })
-        .catch(error => authView.openModal(true, error.code, "error", error.message))
-    
+        
+      await firebase
+        .auth()
+        .currentUser
+        .updateProfile({
+          displayName: name
+        })
+        .then(() => console.log("Update image"))
+        .catch(error => {
+          authView.openModal(true, error.code, "error", error.message)
+        })
+
+        authView.openModal(true, "Thông báo", "success", "Đăng ký thành công")
+        loadingView.hide()
     }
+
   },
   
   signAnonymouse: () => {

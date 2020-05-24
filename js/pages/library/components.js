@@ -60,7 +60,7 @@ const libraryComponents = {
         </ul>
       </div>
     
-      <div class="right__library p-5">
+      <div class="right__library pl-0 pr-3">
         <p class="title__category">CATEGORY</p>
 
         <div class="library__question">

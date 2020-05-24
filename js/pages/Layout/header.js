@@ -24,7 +24,7 @@ const layoutView = {
       navbarOverlay.style.display = "none"
       app.style.height = ""
     }
-  }
+  },
 }
 
 
@@ -33,9 +33,9 @@ const layoutView = {
 const headerComponents = {
   header: `
   <section class="header">
-    <div class="bg--purple1 py-2"></div>
-    <div class="bg--purple2 d-flex w-100 justify-content-between align-items-center py-2 px-lg-5 px-md-4 px-2">
-      <h1 class="color--white1 my-1 pointer pl-lg-5 pl-md-4 pl-2" onclick="push('main')">DRIVING TEST</h1>
+    <div class="bg--purple1 header__responsice py-2"></div>
+    <div class="bg--purple2 header__responsice d-flex w-100 justify-content-between align-items-center py-2 px-lg-5 px-md-4 px-2">
+      <h1 class="color--white1 my-1 pointer pl-lg-5 pl-md-4 pl-2" onclick="push('user')">DRIVING TEST</h1>
       <div class="color--white1 d-flex align-items-center pr-lg-5 pr-md-4 pr-2">
         <div class="d-sm-flex d-none align-items-center pr-4">
           <div class="avata__container pointer">
