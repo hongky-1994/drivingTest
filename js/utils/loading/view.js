@@ -9,10 +9,7 @@ const loadingView = {
   },
   imgLoading: (query, src) => {
     const imageContainer = document.querySelector(query)
-    console.log("query", query)
-    console.log("imageContainer", imageContainer)
 
-    console.log('loading img src', src)
     if (imageContainer) {imageContainer.src = '../../js/assets/images/loading.gif'
       const newImg = new Image()
       newImg.src = src

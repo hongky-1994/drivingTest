@@ -5,10 +5,10 @@ const userView = {
             case 'user':{
                 app.innerHTML = userComponents.user
                 userView.showCurrentUserInfo()
+                const email = firebase.auth().currentUser.email
+                await userController.addNewUser(email)
                 await userController.getTestFromFirebase()
                 userView.showShortenHistory()
-                const email = firebase.auth().currentUser.email
-                userController.addNewUser(email)
 
                 // listen to UPDATE IMAGE 
                 const btnEditProfileImage = document.querySelector('.custom-file-input')
@@ -52,65 +52,94 @@ const userView = {
         userEmailHtml.innerHTML = `Email: ${email|| "Chưa cập nhật email"}` 
         userNameHtml.innerHTML = `Xin chào, ${name || "Người lạ"}`
     },
-    
-   
     setText: (query, text) => {
         document.querySelector(query).innerHTML = text
     },
-   
+    
+    //HIstory table
+    showShortenHistory: () => {
+        //get all DOM
+        tableHistory = document.querySelector(".user-test-history table tbody")
+        if (!userModel.testData) userModel.testData = []
+        tableHistory.innerHTML = ""
+        for (let index = 0; index <= 5; index++) {
+            const item = userModel.testData[index];
+            if (item) tableHistory.innerHTML +=   `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${item.submitAt.substring(0, 10)}</td>
+                    <td>${item.testType}</td>
+                    <td>${item.answerResult.filter(v=>v).length}/30</td>
+                </tr>
+            `
+        }
+        if (!userModel.testData.length) tableHistory.innerHTML = `
+        <tr>
+            <td span="4" class='text-center color--grey3'>Chưa có dữ liệu bài thi</td>
+        </tr>`
+
+    },
     displayHistory: () => {
         let historyContent = document.querySelector(".history-content")
         historyContent.innerHTML = ''
         userModel.testData.forEach((element, index) => {
             historyContent.innerHTML += `
-                <div class = "history-tests history-${index}">
-                    <div class= "history-test-type">${element.testType}</div>
-                    <div class= "history-test-score">Điểm số: ${element.correctAnswers}/30</div>
-                    <div class= "history-test-total-time">Tổng thời gian: ${element.testTotalTime[0] + ':' + element.testTotalTime[1] }</div>
-                    <div class= "history-submit-at">Nộp lúc: ${moment.utc(element.submitAt).local().format('HH:mm:ss - DD/MM/YYYY')}</div>
-                </div>
+                <tr class = "test__record">
+                    <td class="small test__record-time">${moment.utc(element.submitAt).local().format('DD/MM/YYYY - HH:mm')}</td>
+                    <td class="small test__record-type">${element.testType}</td>
+                    <td class="small test__record-score">${element.answerResult.filter(v=>v).length}/30</td>
+                    <td class="small test__record-total-time">${element.testTotalTime[0] + ':' + element.testTotalTime[1] }</td>
+                    <td class="small test__recode-action color--blue1 color--hover--purple1"
+                        onclick="userView.showDetailHistoryRecord(${index})"
+                    >Xem chi tiết</td>
+                </tr>
             `
-            // let historyElement = document.querySelector(`.history-${index}`)
-            // historyElement.addEventListener("click",() => {
-            //     userController.getSelectedTest(index)
-            //     userView.showScreen('history')
-            // }) 
         })
     },
-    showShortenHistory: () => {
-        let t1r2c1 =  document.querySelector('.table-1-row-2-col-1')
-        let t1r2c2 =  document.querySelector('.table-1-row-2-col-2')
-        let t1r2c3 =  document.querySelector('.table-1-row-2-col-3')
-        let t1r3c1 =  document.querySelector('.table-1-row-3-col-1')
-        let t1r3c2 =  document.querySelector('.table-1-row-3-col-2')
-        let t1r3c3 =  document.querySelector('.table-1-row-3-col-3')
-        // t1r2c1.innerHTML = userModel.testData[0].testType
-        // t1r3c1.innerHTML = userModel.testData[1].testType
-        // t1r2c2.innerHTML = userModel.testData[0].correctAnswers + '/30'
-        // t1r3c2.innerHTML = userModel.testData[1].correctAnswers + '/30'
-        // t1r2c3.innerHTML = moment.utc(userModel.testData[0].submitAt).local().format('HH:mm:ss - DD/MM/YYYY')
-        // t1r3c3.innerHTML = moment.utc(userModel.testData[1].submitAt).local().format('HH:mm:ss - DD/MM/YYYY')
+    showDetailHistoryRecord: (index) => {
+        // prepair data to show detail
+        examModel.answerResult = userModel.testData[index].answerResult,
+        examModel.list30Answer = userModel.testData[index].list30Answer,
+        examModel.list30Index = userModel.testData[index].list30Index,
+        examModel.list30Question = userModel.testData[index].list30Question,
+        examModel.submitAt = userModel.testData[index].submitAt,
+        examModel.testTotalTime = userModel.testData[index].testTotalTime,
+        examModel.testType = userModel.testData[index].testType,
+
+        // Show detail and close modal
+        userView.openModalHistory(false)
+        examView.showScreen('resultDetail')
+
     },
 
-
-
     //Modal edit các thể loại 
+    openModalUpdateOption: (open) => {
+        const modal = document.querySelector(".modal__container")
+        modal.innerHTML = open ? userComponents.modal : ""
+    },
     openModalEditPassword: (open) => {
         // get DOM
         const modal = document.querySelector(".modal__container")
         // pass Data
         modal.innerHTML = open ? userComponents.modelEditPassword : ""
     },
-    openModalUpdateOption: (open) => {
+    openModalEditProfile: (opem) => {
+        //get DOM
         const modal = document.querySelector(".modal__container")
-        modal.innerHTML = open ? userComponents.modal : ""
+        //pass Data
+        modal.innerHTML = open ? userComponents.modelEditProfile : ""
+        if( open ) {
+            document.querySelector('.input__displayName').defaultValue = authModel.user.name
+            document.querySelector('.input__photoURL').defaultValue = authModel.user.photoURL
+        }
     },
-    
     openModalHistory: (open) => {
         //get DOM
         const modal = document.querySelector(".modal__container")
         //pass Data
         modal.innerHTML = open ? userComponents.modelHistory : ""
-        console.log(modal.innerHTML)
+        open && userView.displayHistory()
     }
 }
+
+ 
