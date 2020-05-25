@@ -27,9 +27,9 @@ const examView = {
                     examView.timer.showRemainingTime()
                     loadingView.hide()
                 })
-                window.addEventListener("beforeunload", (event) => {
-                    event.returnValue = "Bạn sẽ mất hết dữ liệu bài thi hiện tại. Bạn có muốn rời trang."
-                })
+                // window.addEventListener("beforeunload", (event) => {
+                //     event.returnValue = "Bạn sẽ mất hết dữ liệu bài thi hiện tại. Bạn có muốn rời trang."
+                // })
                 break
             }
             case 'randomTest': {

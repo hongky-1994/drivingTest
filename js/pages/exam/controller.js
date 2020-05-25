@@ -99,7 +99,8 @@ const examController = {
         const testScore = document.querySelector(".test-score")
         const minute = document.querySelector(".total-minute")
         const second = document.querySelector(".total-second")
-        testScore.innerHTML = examModel.answerResult.filter(v=>v).length
+        examModel.testScore = examModel.answerResult.filter(v=>v).length
+        testScore.innerHTML = examModel.testScore
         minute.innerHTML = examModel.testTotalTime[0]
         second.innerHTML = examModel.testTotalTime[1]
     }, 

@@ -4,4 +4,6 @@ const userModel = {
         userModel.currentUserId = userId
     },
     testData: null,
+    calculateResult: [],
+    sumUp: {}
 }
