@@ -95,6 +95,7 @@ const userController = {
         const testTotalTime = examModel.testTotalTime
         const testType = examModel.testType 
         const submitAt = new Date().toISOString()
+        const testScore = examModel.testScore
         // let correctAnswers = examModel.correcztAnswers
         // let userId = userModel.currentUserId
         // console.log(userId);
@@ -107,6 +108,7 @@ const userController = {
             testTotalTime,
             testType,
             submitAt,
+            testScore
         }
         await firebase.firestore()
             .collection('users')

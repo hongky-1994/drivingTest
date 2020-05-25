@@ -34,6 +34,12 @@ const userComponents = {
                 </thead>
 
                 <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>...</td>
+                    <td>...</td>
+                    <td>...</td>
+                  </tr>
                 </tbody>
                 <tfoot>
                   <tr>
@@ -49,28 +55,22 @@ const userComponents = {
               <table class="user__table rounded--20">
                 <thead>
                   <tr class="">
-                    <th colspan="2" class="bg--green1 py-3  color--white1 text-center">Đạt yêu cầu</th>
+                    <th colspan="2" class="bg--green1 py-3  color--white1 text-center">Thành tích nổi bật</th>
                   </tr>
                 </thead>
-    
                 <tbody>
                   <tr>
-                    <td>Khái niệm và quy tắc giao thông</td>
-                    <td>11/12</td>
+                      <td>...</td>
+                      <td>...</td>
                   </tr>
+                </tbody>
+                <tfoot>
                   <tr>
-                    <td>Nghiệp vụ vận tải</td>
-                    <td>9/10</td>
+                    <td colspan="2" class="bg--green1 py-3  color--white1 text-center">
+                      <div class="pros-see-all pointer" onclick="userView.openModelSumUp(true)">Xem tất cả</div>
+                    </td>
                   </tr>
-    
-                  </tbody>
-                  <tfoot>
-                    <tr>
-                      <td colspan="2" class="bg--green1 py-3  color--white1 text-center">
-                        <div class="pros-see-all pointer">Xem tất cả</div>
-                      </td>
-                    </tr>
-                  </tfoot>
+                </tfoot>
               </table>
             </div>
         
@@ -84,21 +84,17 @@ const userComponents = {
     
                 <tbody>
                   <tr>
-                    <td>Giải các thế sa hình</td>
-                    <td>1/12</td>
+                    <td>...</td>
+                    <td>...</td>
                   </tr>
+                </tbody>
+                <tfoot>
                   <tr>
-                    <td>Kỹ thuật lái ôtô</td>
-                    <td>3/10</td>
+                    <td colspan="2" class="bg--orange2 py-3 color--white1 text-center">
+                      <div class="cons-see-all pointer" onclick="userView.openNeedPractise(true)">Xem tất cả</div>
+                    </td>
                   </tr>
-                  </tbody>
-                  <tfoot>
-                    <tr>
-                      <td colspan="2" class="bg--orange2 py-3 color--white1 text-center">
-                        <div class="cons-see-all pointer">Xem tất cả</div>
-                      </td>
-                    </tr>
-                  </tfoot>
+                </tfoot>
               </table>
             </div>
           </div>
@@ -208,6 +204,66 @@ const userComponents = {
         </div>
 
         <div class="modal-footer bg--purple1 py-1">
+          <button type="button" class="btn btn-light" onclick="userView.openModalHistory(false)">Đóng</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+`,
+  modelSumUp: `
+  <div class="modal">
+    <div class="history__modal" role="document">
+      <div class="modal-content">
+
+        <div class="modal-header bg--green1">
+          <h5 class="modal-title text-capitalize font-weight-bold color--white1">Thành tích nổi bật</h5>
+          <button type="button" class="close" onclick="userView.openModalUpdateOption(false)">
+            <span aria-hidden="true" class="color--white1">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body p-0">
+            <table class="table table-hover">
+              
+              <tbody class="history-content"></tbody>
+            </table>
+        </div>
+
+        <div class="modal-footer bg--green1 py-1">
+          <button type="button" class="btn btn-light" onclick="userView.openModalHistory(false)">Đóng</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+`,
+  modelNeedPractise: `
+  <!-- modal history -->
+  <div class="modal">
+    <div class="history__modal" role="document">
+      <div class="modal-content">
+
+        <div class="modal-header bg--orange2">
+          <h5 class="modal-title text-capitalize font-weight-bold color--white1">Cần luyện thêm</h5>
+          <button type="button" class="close" onclick="userView.openModalUpdateOption(false)">
+            <span aria-hidden="true" class="color--white1">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body p-0">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Phân loại</th>
+                  <th>Số câu làm sai</th>
+                  <th>Số câu đã làm</th>
+                  <th>Tỷ lệ làm đúng</th>
+                </tr>
+              </thead>
+              <tbody class="history-content"></tbody>
+            </table>
+        </div>
+
+        <div class="modal-footer bg--orange2 py-1">
           <button type="button" class="btn btn-light" onclick="userView.openModalHistory(false)">Đóng</button>
         </div>
 
