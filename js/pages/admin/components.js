@@ -10,7 +10,7 @@ const adminComponents = {
         onclick="adminView.changeTab(0)"
       >Danh sách câu hỏi</li>
       <li class="left__item pl-3 pr-2 py-3"
-        onclick="adminView.changeTab(1)"
+        onclick="adminView.changeTab(1); uploadExcel()"
       >Import dữ liệu</li>
       <li class="left__item pl-3 pr-2 py-3"
         onclick="adminView.changeTab(2)"
@@ -21,14 +21,15 @@ const adminComponents = {
         <div class="manage__tab active">
           <div>
             <div class='manage__search mb-3 d-flex input-group'>
-              <div class="input-group-prepend">
-                <select class="btn btn-outline-secondary dropdown-toggle" id="search__condition">
-                  <option value="">Danh mục tìm kiếm</option>
-                  <option value="category">Phân loại</option>
-                  <option value="index">Mã câu hỏi</option>
-                </select>
-              </div>
-              <input type="text" class="p-2 rounded border" id="searchInput" placeholder="search something here">
+              <h3 class="mb-0 mr-3" >
+                Linh collection:
+              </h3>
+              <select id="searchInput" class="p-2 rounded border bg--white1">
+                <option value="">----- Chọn bộ đề ----</option>
+                <option value="/tests/B2/question-list">Collection B2</option>
+                <option value="/tests/B3/question-list">Collection B3(testing)</option>
+                <option value="/tests/B4/question-list">Collection B4(testing)</option>
+              </select>
               <div class="input-group-append">
                 <button class="btn btn-success" onclick='adminController.getAndShowData()'>Tìm kiếm</button>
               </div>
@@ -63,20 +64,36 @@ const adminComponents = {
           </div>
         </div>
         <div class="manage__tab">
-          Import du lieu<br/>
-          Import du lieu<br/>
-          Import du lieu<br/>
-          Import du lieu<br/>
-          Import du lieu<br/>
-          Import du lieu<br/>
-          Import du lieu<br/>
-          Import du lieu<br/>
-          Import du lieu<br/>
-          Import du lieu<br/>
-          Import du lieu<br/>
+          <h2 class="text-center text-uppercase m-5 font-weight-bold">Trang nhập dữ liệu excel => fireStore</h2>
+          <div class="row p-5">
+              <label class="mb-3 col-4 ">FILE LOAD : </label>
+              <input type="file" id="file" class="mb-3 col-8 rounded border p-1">
+              
+              <label class="mb-3 col-4">Link to Collection : </label>
+              <input type="text" id="collection" class="mb-3 col-8 rounded border p-1" placeholder=" Nhập đường link đến collection vào đây" >
+              
+              <label class="mb-3 col-4 ">Mục đích:</label>
+              <select id="actionType" class="mb-3 col-8 rounded border p-1"">
+                <option value="update">Cập nhật Collection có sẵn</option>
+                <option value="create">Tạo 1 Collection mới</option>
+              </select>
+              <div>
+              <button class="mb-3 mx-3 btn btn-success upload">UPLOAD TO FIRE STORE</button>
+            </div>
+      
+          </div>
+          <div class="progress mb-3">
+            <div class="progress-bar progress-bar-striped upload-progress bg-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <div class="results w-100"></div>
         </div>
         <div class="manage__tab scrollit">
-          phản hồi của người dùng
+        <p class="display-3 font-weight-bolder text-center mt-5 color--grey3">
+          Phản hồi của người dùng
+        </p>
+        <p class="display-3 font-weight-bolder text-center mt-5 color--grey3">
+          "Coming soon - 2021"
+        </p>
         </div>
     </div>
 

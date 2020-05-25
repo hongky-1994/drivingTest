@@ -79,7 +79,7 @@ const push = (screen, historyMethod) => {
     <div class="header__item pl-4 py-3 color--grey3 h2 font-weight-lighter m-0 bg--white1 bg--hover--grey2 color--hover--purple2"
       id="admin_auth"  
       onclick="push('admin'); layoutView.showNav()">
-        Trang quản lý câu hỏi của admin (chỉ admin mới thẩy -- bổ sung sau)
+        Trang quản lý câu hỏi của admin
       </div>
       ` + header.innerHTML
   }
