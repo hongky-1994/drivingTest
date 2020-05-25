@@ -81,7 +81,9 @@ const adminView = {
       
       adminController.fillInputValueWithData('#noImage', 'checked',Boolean(currentQues.images))
       if (currentQues.images) {
-        adminController.fillInputValueWithData('#output_image','src', currentQues.images)
+        // adminController.fillInputValueWithData('#output_image','src', currentQues.images)
+        loadingView.imgLoading('#output_image', currentQues.images)
+
       } else {
         adminController.imgChooseCheckbox()
       }
@@ -104,7 +106,8 @@ const adminView = {
     var reader = new FileReader()
     reader.onload = () => {
       var output = document.getElementById('output_image')
-      output.src = reader.result || '../../../js/assets/images/no-image.png';
+      // output.src = reader.result || '../../../js/assets/images/no-image.png';
+      loadingView.imgLoading('#output_image', reader.result || '../../../js/assets/images/no-image.png')
     }
     event.target.files.length > 0 && 
     reader.readAsDataURL(event.target.files[0])

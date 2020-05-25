@@ -6,8 +6,10 @@ const userView = {
                 app.innerHTML = userComponents.user
                 userView.showCurrentUserInfo()
                 const email = firebase.auth().currentUser.email
-                await userController.addNewUser(email)
-                await userController.getTestFromFirebase()
+                if(!authModel.user.isAnonymous){
+                    await userController.addNewUser(email)
+                    await userController.getTestFromFirebase()
+                }
                 userView.showShortenHistory()
                 userView.showShortenSumUp()
                 userView.showNeedPractise()
@@ -17,11 +19,6 @@ const userView = {
                     const file = event.target.files[0]
                     if(file) userController.editProfileImage(file)
                 })
-                break
-            }
-            case 'dang test' /*'history'*/:{
-                app.innerHTML = userComponents.history
-                // userController.uploadTestToFirebase();
                 break
             }
             case 'history': {
@@ -61,7 +58,12 @@ const userView = {
     //Modal edit các thể loại 
     openModalUpdateOption: (open) => {
         const modal = document.querySelector(".modal__container")
-        modal.innerHTML = open ? userComponents.modal : ""
+        
+        if (authModel.user.isAnonymous) {
+            modal.innerHTML = open ? userComponents.modelAnonymous : ""
+        } else {
+            modal.innerHTML = open ? userComponents.modal : ""
+        }
     },
     openModalEditPassword: (open) => {
         // get DOM
@@ -121,7 +123,7 @@ const userView = {
         })
         : historyContent.innerHTML += `
             <tr>
-                <td colspan="4" class='text-center color--grey3'>Chưa có dữ liệu bài thi</td>
+                <td colspan="5" class='text-center color--grey3'>Chưa có dữ liệu bài thi</td>
             </tr>`
     },
     displaySumUp: () => {

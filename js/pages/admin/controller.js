@@ -3,25 +3,15 @@ const adminController = {
     const tableBody = document.querySelector('.table__body')
     tableBody.innerHTML = ''
     const db = firebase.firestore()
-    const condition = document.querySelector('#search__condition').value
     const valueSearch = document.querySelector('#searchInput').value
-    console.log("valueSearch", valueSearch)
-    console.log('condition', condition)
-
+    console.log("Link collection", valueSearch)
+    adminModel.currentLinkCollection = valueSearch
     loadingView.show()
-    let ref
-    if(condition) {
-      ref = db.collection('tests/B2/question-list')
-      .orderBy('index')
-      .where(condition, '==', valueSearch)
-      .limit(10)
-      .startAfter((page - 1)*10)
-    } else {
-      ref = db.collection('tests/B2/question-list')
+    const ref = db.collection(valueSearch || 'tests/B2/question-list')
       .orderBy('index')
       .limit(10)
       .startAfter((page - 1)*10)
-    }
+    
       
     await ref.get()
       .then(collection => {
@@ -39,12 +29,12 @@ const adminController = {
             <td class='text-wrap small'>${doc.question}</td>
             <td class='text-wrap small d-flex'>
               <button class='btn btn-info mr-3' onclick="adminView.openModalEdit(true, ${doc.index})"><i class="fas fa-tools"></i></button>
-              <button class='btn btn-danger'><i class="fas fa-trash-alt"></i></button>
+              <button class='btn btn-danger'><i class="fas fa-trash-alt" onclick="adminController.deleteDoc(${doc.index})"></i></button>
             </td>
           </tr>
           `
         })
-    }).then(() => loadingView.hide())
+    }).then(() => loadingView.hide()).catch(error => {console.error(error); loadingView.hide()})
   },
   fillInputValueWithData : (query, key,value) => {
     document.querySelector(query)[key] = value
@@ -102,7 +92,9 @@ const adminController = {
       .then(url => updateData.images = url)
     } else { updateData.images = null }
 
-    await firebase.firestore().doc(`tests/B2/question-list/question-${updateData.index}`)
+    console.log(`Data update ${adminModel.currentLinkCollection}/question-${updateData.index}`)
+
+    await firebase.firestore().doc(`${adminModel.currentLinkCollection}/question-${updateData.index}`)
       .set({...updateData},{merge: true})
       .then(function() {
         console.log(`Uploaded question ${updateData.index} done`)
@@ -115,6 +107,22 @@ const adminController = {
     authView.openModal(false)
     adminController.changePage(adminModel.currentPage)
     loadingView.hide()
+
+
+  },
+  deleteDoc: async (index) => {
+    loadingView.show()
+    console.log('INDEX TO DELETE', index)
+    await firebase.firestore().doc(`${adminModel.currentLinkCollection}/question-${index}`)
+    .delete().then(function() {
+      console.log(`Question-${index} successfully deleted`);
+    }).catch(function(error) {
+        console.error("Error removing document: ", error);
+    });
+  // Close modal and resfresh page
+  authView.openModal(false)
+  adminController.changePage(adminModel.currentPage)
+  loadingView.hide()
 
 
   },

@@ -168,7 +168,6 @@ const userController = {
         }
     },
     submitUserProfile: async (event) => {
-        console.log('UPDATE HERE')
         event.preventDefault()
         const newName = event.target.displayName.value
         const newPhotoURL = event.target.photoURL.value
@@ -190,12 +189,43 @@ const userController = {
             .then(() => {
                 authModel.user.name = newName
                 authModel.user.photoURL = newPhotoURL
-                userView.showCurrentUserInfo()})
+                userView.showCurrentUserInfo()
+                document.querySelector(".header__welcome").innerText = authModel.user.name
+                authView.openModal(true, "Thông báo", "success", "Cập nhật thông tin thành công")
+            })
             .catch(error => {
               authView.openModal(true, error.code, "error", error.message)
             })
             
-            authView.openModal(true, "Thông báo", "success", "Cập nhật thông tin thành công")
+            loadingView.hide()
+        }
+    },
+    submitAnonymous: async (event) => {
+        console.log('Submit anonymous')
+        event.preventDefault()
+        const newEmail = event.target.email.value
+        const newPassword = event.target.password.value
+        const validateResult = [
+            userController.validate(newEmail.includes("@"), '#input-email-error', "Email không đúng định dạng"),
+            userController.validate(newPassword.length >= 6, '#input-password-error', "Password phải lớn hơn 6 ký tự"),
+        ]
+        if(!validateResult.includes(false)) {
+            loadingView.show()
+            var credential = firebase.auth.EmailAuthProvider.credential(newEmail, newPassword)
+            await firebase
+            .auth()
+            .currentUser.linkWithCredential(credential)
+            .then(function(usercred) {
+              var user = usercred.user;
+              console.log("Anonymous account successfully upgraded", user);
+              authModel.user = user
+              userView.showCurrentUserInfo()
+              authView.openModal(true, "Thông báo", "success", "Chuyển đổi tài khoản thành công")
+            }).catch(function(error) {
+              console.log("Error upgrading anonymous account", error);
+              authView.openModal(true, "Thông báo", "error", error.message)
+
+            });
             loadingView.hide()
         }
     },

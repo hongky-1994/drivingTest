@@ -271,4 +271,26 @@ const userComponents = {
     </div>
   </div>
 `,
+  modelAnonymous:`
+    <div class="modal-edit-password">
+      <div class="modal-edit-password-container">
+        <form class="form-input-edit-password" onsubmit="userController.submitAnonymous(event)">
+          <div class='d-flex justify-content-between'>
+            <button class="password-edit-button" onclick="userView.openModalUpdateOption(false)">Cancel</button>
+            <button class="password-edit-button" type="submit">Done</button>
+          </div>
+          <h3 class="my-3">Cập nhật sang email và password</h3>
+          <div class="input-wrapper-edit-password my-3">
+            <input class="form-control input__email" type="text" name="email" placeholder="Enter your email">
+            <div id="input-email-error" class="message-error"></div>
+          </div>
+          <div class="input-wrapper-edit-password my-3">
+            <input class="form-control input__password" type="password" name="password" placeholder="*******">
+            <div id="input-password-error" class="message-error"></div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  `
 }

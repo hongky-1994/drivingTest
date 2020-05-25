@@ -5,7 +5,7 @@ const layoutView = {
     
     // change avata
     document.querySelector(".avata__img").src = authModel.user.photoURL
-    document.querySelector(".header__welcome").innerText = ((authModel.user.name === null || authModel.user.name === undefined) ? "Người lạ" : authModel.user.name)
+    document.querySelector(".header__welcome").innerText = authModel.user.name || "Người lạ"
   },
   hide: (screen) => {
     const div = document.querySelector(screen)
